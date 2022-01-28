@@ -209,23 +209,28 @@ namespace Mediatek86.vue
             this.tabOngletsApplication.Controls.Add(this.tabRevues);
             this.tabOngletsApplication.Controls.Add(this.tabReceptionRevue);
             this.tabOngletsApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabOngletsApplication.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabOngletsApplication.ItemSize = new System.Drawing.Size(49, 18);
             this.tabOngletsApplication.Location = new System.Drawing.Point(0, 0);
+            this.tabOngletsApplication.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabOngletsApplication.Name = "tabOngletsApplication";
             this.tabOngletsApplication.SelectedIndex = 0;
-            this.tabOngletsApplication.Size = new System.Drawing.Size(883, 659);
+            this.tabOngletsApplication.Size = new System.Drawing.Size(1324, 862);
             this.tabOngletsApplication.TabIndex = 0;
+            this.tabOngletsApplication.SelectedIndexChanged += new System.EventHandler(this.tabOngletsApplication_SelectedIndexChanged);
             // 
             // tabLivres
             // 
+            this.tabLivres.BackColor = System.Drawing.Color.White;
             this.tabLivres.Controls.Add(this.grpLivresInfos);
             this.tabLivres.Controls.Add(this.grpLivresRecherche);
             this.tabLivres.Location = new System.Drawing.Point(4, 22);
+            this.tabLivres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabLivres.Name = "tabLivres";
-            this.tabLivres.Size = new System.Drawing.Size(875, 633);
+            this.tabLivres.Size = new System.Drawing.Size(1316, 836);
             this.tabLivres.TabIndex = 2;
             this.tabLivres.Text = "Livres";
-            this.tabLivres.UseVisualStyleBackColor = true;
+            this.tabLivres.Click += new System.EventHandler(this.tabLivres_Click);
             this.tabLivres.Enter += new System.EventHandler(this.TabLivres_Enter);
             // 
             // grpLivresInfos
@@ -249,186 +254,236 @@ namespace Mediatek86.vue
             this.grpLivresInfos.Controls.Add(this.label8);
             this.grpLivresInfos.Controls.Add(this.label12);
             this.grpLivresInfos.Controls.Add(this.label9);
-            this.grpLivresInfos.Location = new System.Drawing.Point(8, 381);
+            this.grpLivresInfos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpLivresInfos.Location = new System.Drawing.Point(12, 500);
+            this.grpLivresInfos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpLivresInfos.Name = "grpLivresInfos";
-            this.grpLivresInfos.Size = new System.Drawing.Size(859, 245);
+            this.grpLivresInfos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpLivresInfos.Size = new System.Drawing.Size(1288, 331);
             this.grpLivresInfos.TabIndex = 19;
             this.grpLivresInfos.TabStop = false;
             this.grpLivresInfos.Text = "Informations détaillées";
+            this.grpLivresInfos.Enter += new System.EventHandler(this.grpLivresInfos_Enter);
             // 
             // txbLivresIsbn
             // 
-            this.txbLivresIsbn.Location = new System.Drawing.Point(441, 20);
+            this.txbLivresIsbn.Location = new System.Drawing.Point(662, 28);
+            this.txbLivresIsbn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresIsbn.Name = "txbLivresIsbn";
             this.txbLivresIsbn.ReadOnly = true;
-            this.txbLivresIsbn.Size = new System.Drawing.Size(100, 20);
+            this.txbLivresIsbn.Size = new System.Drawing.Size(148, 26);
             this.txbLivresIsbn.TabIndex = 32;
+            this.txbLivresIsbn.TextChanged += new System.EventHandler(this.txbLivresIsbn_TextChanged);
             // 
             // txbLivresImage
             // 
-            this.txbLivresImage.Location = new System.Drawing.Point(150, 195);
+            this.txbLivresImage.Location = new System.Drawing.Point(225, 270);
+            this.txbLivresImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresImage.Name = "txbLivresImage";
             this.txbLivresImage.ReadOnly = true;
-            this.txbLivresImage.Size = new System.Drawing.Size(391, 20);
+            this.txbLivresImage.Size = new System.Drawing.Size(584, 26);
             this.txbLivresImage.TabIndex = 31;
+            this.txbLivresImage.TextChanged += new System.EventHandler(this.txbLivresImage_TextChanged);
             // 
             // txbLivresRayon
             // 
-            this.txbLivresRayon.Location = new System.Drawing.Point(150, 170);
+            this.txbLivresRayon.Location = new System.Drawing.Point(225, 235);
+            this.txbLivresRayon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresRayon.Name = "txbLivresRayon";
             this.txbLivresRayon.ReadOnly = true;
-            this.txbLivresRayon.Size = new System.Drawing.Size(207, 20);
+            this.txbLivresRayon.Size = new System.Drawing.Size(309, 26);
             this.txbLivresRayon.TabIndex = 30;
+            this.txbLivresRayon.TextChanged += new System.EventHandler(this.txbLivresRayon_TextChanged);
             // 
             // txbLivresPublic
             // 
-            this.txbLivresPublic.Location = new System.Drawing.Point(150, 145);
+            this.txbLivresPublic.Location = new System.Drawing.Point(225, 200);
+            this.txbLivresPublic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresPublic.Name = "txbLivresPublic";
             this.txbLivresPublic.ReadOnly = true;
-            this.txbLivresPublic.Size = new System.Drawing.Size(207, 20);
+            this.txbLivresPublic.Size = new System.Drawing.Size(309, 26);
             this.txbLivresPublic.TabIndex = 29;
+            this.txbLivresPublic.TextChanged += new System.EventHandler(this.txbLivresPublic_TextChanged);
             // 
             // txbLivresGenre
             // 
-            this.txbLivresGenre.Location = new System.Drawing.Point(150, 120);
+            this.txbLivresGenre.Location = new System.Drawing.Point(225, 167);
+            this.txbLivresGenre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresGenre.Name = "txbLivresGenre";
             this.txbLivresGenre.ReadOnly = true;
-            this.txbLivresGenre.Size = new System.Drawing.Size(207, 20);
+            this.txbLivresGenre.Size = new System.Drawing.Size(309, 26);
             this.txbLivresGenre.TabIndex = 28;
+            this.txbLivresGenre.TextChanged += new System.EventHandler(this.txbLivresGenre_TextChanged);
             // 
             // txbLivresCollection
             // 
-            this.txbLivresCollection.Location = new System.Drawing.Point(150, 95);
+            this.txbLivresCollection.Location = new System.Drawing.Point(225, 132);
+            this.txbLivresCollection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresCollection.Name = "txbLivresCollection";
             this.txbLivresCollection.ReadOnly = true;
-            this.txbLivresCollection.Size = new System.Drawing.Size(391, 20);
+            this.txbLivresCollection.Size = new System.Drawing.Size(584, 26);
             this.txbLivresCollection.TabIndex = 27;
+            this.txbLivresCollection.TextChanged += new System.EventHandler(this.txbLivresCollection_TextChanged);
             // 
             // txbLivresAuteur
             // 
-            this.txbLivresAuteur.Location = new System.Drawing.Point(150, 70);
+            this.txbLivresAuteur.Location = new System.Drawing.Point(225, 97);
+            this.txbLivresAuteur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresAuteur.Name = "txbLivresAuteur";
             this.txbLivresAuteur.ReadOnly = true;
-            this.txbLivresAuteur.Size = new System.Drawing.Size(207, 20);
+            this.txbLivresAuteur.Size = new System.Drawing.Size(309, 26);
             this.txbLivresAuteur.TabIndex = 26;
+            this.txbLivresAuteur.TextChanged += new System.EventHandler(this.txbLivresAuteur_TextChanged);
             // 
             // txbLivresTitre
             // 
-            this.txbLivresTitre.Location = new System.Drawing.Point(150, 45);
+            this.txbLivresTitre.Location = new System.Drawing.Point(225, 62);
+            this.txbLivresTitre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresTitre.Name = "txbLivresTitre";
             this.txbLivresTitre.ReadOnly = true;
-            this.txbLivresTitre.Size = new System.Drawing.Size(391, 20);
+            this.txbLivresTitre.Size = new System.Drawing.Size(584, 26);
             this.txbLivresTitre.TabIndex = 25;
+            this.txbLivresTitre.TextChanged += new System.EventHandler(this.txbLivresTitre_TextChanged);
             // 
             // txbLivresNumero
             // 
-            this.txbLivresNumero.Location = new System.Drawing.Point(150, 20);
+            this.txbLivresNumero.Location = new System.Drawing.Point(225, 28);
+            this.txbLivresNumero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresNumero.Name = "txbLivresNumero";
             this.txbLivresNumero.ReadOnly = true;
-            this.txbLivresNumero.Size = new System.Drawing.Size(100, 20);
+            this.txbLivresNumero.Size = new System.Drawing.Size(148, 26);
             this.txbLivresNumero.TabIndex = 24;
+            this.txbLivresNumero.TextChanged += new System.EventHandler(this.txbLivresNumero_TextChanged);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(6, 120);
+            this.label22.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label22.Location = new System.Drawing.Point(9, 167);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(49, 13);
+            this.label22.Size = new System.Drawing.Size(66, 23);
             this.label22.TabIndex = 22;
             this.label22.Text = "Genre :";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // pcbLivresImage
             // 
-            this.pcbLivresImage.Location = new System.Drawing.Point(560, 19);
+            this.pcbLivresImage.Location = new System.Drawing.Point(840, 26);
+            this.pcbLivresImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbLivresImage.Name = "pcbLivresImage";
-            this.pcbLivresImage.Size = new System.Drawing.Size(284, 210);
+            this.pcbLivresImage.Size = new System.Drawing.Size(426, 290);
             this.pcbLivresImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbLivresImage.TabIndex = 21;
             this.pcbLivresImage.TabStop = false;
+            this.pcbLivresImage.Click += new System.EventHandler(this.pcbLivresImage_Click);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(6, 145);
+            this.label19.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label19.Location = new System.Drawing.Point(9, 200);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.Size = new System.Drawing.Size(65, 23);
             this.label19.TabIndex = 19;
             this.label19.Text = "Public :";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 170);
+            this.label1.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 235);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(67, 23);
             this.label1.TabIndex = 17;
             this.label1.Text = "Rayon :";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 45);
+            this.label10.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(9, 62);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.Size = new System.Drawing.Size(54, 23);
             this.label10.TabIndex = 8;
             this.label10.Text = "Titre :";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 20);
+            this.label7.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(9, 28);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 13);
+            this.label7.Size = new System.Drawing.Size(187, 23);
             this.label7.TabIndex = 5;
             this.label7.Text = "Numéro de document :";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(6, 70);
+            this.label11.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(9, 97);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 13);
+            this.label11.Size = new System.Drawing.Size(93, 23);
             this.label11.TabIndex = 9;
             this.label11.Text = "Auteur(e) :";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 195);
+            this.label8.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(9, 270);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 13);
+            this.label8.Size = new System.Drawing.Size(158, 23);
             this.label8.TabIndex = 6;
             this.label8.Text = "Chemin de l\'image :";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(6, 95);
+            this.label12.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label12.Location = new System.Drawing.Point(9, 132);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.Size = new System.Drawing.Size(95, 23);
             this.label12.TabIndex = 10;
             this.label12.Text = "Collection :";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(357, 20);
+            this.label9.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(536, 28);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.Size = new System.Drawing.Size(99, 23);
             this.label9.TabIndex = 7;
             this.label9.Text = "Code ISBN :";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // grpLivresRecherche
             // 
+            this.grpLivresRecherche.BackColor = System.Drawing.Color.White;
             this.grpLivresRecherche.Controls.Add(this.btnLivresAnnulRayons);
             this.grpLivresRecherche.Controls.Add(this.btnlivresAnnulPublics);
             this.grpLivresRecherche.Controls.Add(this.btnLivresNumRecherche);
@@ -444,127 +499,161 @@ namespace Mediatek86.vue
             this.grpLivresRecherche.Controls.Add(this.dgvLivresListe);
             this.grpLivresRecherche.Controls.Add(this.label6);
             this.grpLivresRecherche.Controls.Add(this.txbLivresTitreRecherche);
-            this.grpLivresRecherche.Location = new System.Drawing.Point(8, 13);
+            this.grpLivresRecherche.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpLivresRecherche.Location = new System.Drawing.Point(12, 18);
+            this.grpLivresRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpLivresRecherche.Name = "grpLivresRecherche";
-            this.grpLivresRecherche.Size = new System.Drawing.Size(859, 362);
+            this.grpLivresRecherche.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpLivresRecherche.Size = new System.Drawing.Size(1288, 481);
             this.grpLivresRecherche.TabIndex = 18;
             this.grpLivresRecherche.TabStop = false;
             this.grpLivresRecherche.Text = "Recherches";
+            this.grpLivresRecherche.Enter += new System.EventHandler(this.grpLivresRecherche_Enter);
             // 
             // btnLivresAnnulRayons
             // 
-            this.btnLivresAnnulRayons.Location = new System.Drawing.Point(833, 104);
+            this.btnLivresAnnulRayons.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLivresAnnulRayons.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLivresAnnulRayons.Location = new System.Drawing.Point(1250, 132);
+            this.btnLivresAnnulRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLivresAnnulRayons.Name = "btnLivresAnnulRayons";
-            this.btnLivresAnnulRayons.Size = new System.Drawing.Size(22, 22);
+            this.btnLivresAnnulRayons.Size = new System.Drawing.Size(33, 30);
             this.btnLivresAnnulRayons.TabIndex = 16;
             this.btnLivresAnnulRayons.Text = "X";
-            this.btnLivresAnnulRayons.UseVisualStyleBackColor = true;
+            this.btnLivresAnnulRayons.UseVisualStyleBackColor = false;
             this.btnLivresAnnulRayons.Click += new System.EventHandler(this.BtnLivresAnnulRayons_Click);
             // 
             // btnlivresAnnulPublics
             // 
-            this.btnlivresAnnulPublics.Location = new System.Drawing.Point(833, 60);
+            this.btnlivresAnnulPublics.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnlivresAnnulPublics.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnlivresAnnulPublics.Location = new System.Drawing.Point(1250, 77);
+            this.btnlivresAnnulPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnlivresAnnulPublics.Name = "btnlivresAnnulPublics";
-            this.btnlivresAnnulPublics.Size = new System.Drawing.Size(22, 22);
+            this.btnlivresAnnulPublics.Size = new System.Drawing.Size(33, 30);
             this.btnlivresAnnulPublics.TabIndex = 15;
             this.btnlivresAnnulPublics.Text = "X";
-            this.btnlivresAnnulPublics.UseVisualStyleBackColor = true;
+            this.btnlivresAnnulPublics.UseVisualStyleBackColor = false;
             this.btnlivresAnnulPublics.Click += new System.EventHandler(this.BtnLivresAnnulPublics_Click);
             // 
             // btnLivresNumRecherche
             // 
-            this.btnLivresNumRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLivresNumRecherche.Location = new System.Drawing.Point(314, 59);
+            this.btnLivresNumRecherche.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLivresNumRecherche.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLivresNumRecherche.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLivresNumRecherche.Location = new System.Drawing.Point(471, 70);
+            this.btnLivresNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLivresNumRecherche.Name = "btnLivresNumRecherche";
-            this.btnLivresNumRecherche.Size = new System.Drawing.Size(96, 22);
+            this.btnLivresNumRecherche.Size = new System.Drawing.Size(144, 40);
             this.btnLivresNumRecherche.TabIndex = 14;
             this.btnLivresNumRecherche.Text = "Rechercher";
-            this.btnLivresNumRecherche.UseVisualStyleBackColor = true;
+            this.btnLivresNumRecherche.UseVisualStyleBackColor = false;
             this.btnLivresNumRecherche.Click += new System.EventHandler(this.BtnLivresNumRecherche_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 63);
+            this.label5.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(9, 82);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(186, 13);
+            this.label5.Size = new System.Drawing.Size(254, 23);
             this.label5.TabIndex = 13;
             this.label5.Text = "Saisir un numéro de document :";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txbLivresNumRecherche
             // 
-            this.txbLivresNumRecherche.Location = new System.Drawing.Point(220, 60);
+            this.txbLivresNumRecherche.Location = new System.Drawing.Point(330, 77);
+            this.txbLivresNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresNumRecherche.Name = "txbLivresNumRecherche";
-            this.txbLivresNumRecherche.Size = new System.Drawing.Size(67, 20);
+            this.txbLivresNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbLivresNumRecherche.TabIndex = 12;
+            this.txbLivresNumRecherche.TextChanged += new System.EventHandler(this.txbLivresNumRecherche_TextChanged);
             // 
             // btnLivresAnnulGenres
             // 
-            this.btnLivresAnnulGenres.Location = new System.Drawing.Point(833, 17);
+            this.btnLivresAnnulGenres.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLivresAnnulGenres.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLivresAnnulGenres.Location = new System.Drawing.Point(1250, 24);
+            this.btnLivresAnnulGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLivresAnnulGenres.Name = "btnLivresAnnulGenres";
-            this.btnLivresAnnulGenres.Size = new System.Drawing.Size(22, 22);
+            this.btnLivresAnnulGenres.Size = new System.Drawing.Size(33, 30);
             this.btnLivresAnnulGenres.TabIndex = 11;
             this.btnLivresAnnulGenres.Text = "X";
-            this.btnLivresAnnulGenres.UseVisualStyleBackColor = true;
+            this.btnLivresAnnulGenres.UseVisualStyleBackColor = false;
             this.btnLivresAnnulGenres.Click += new System.EventHandler(this.BtnLivresAnnulGenres_Click);
             // 
             // cbxLivresRayons
             // 
             this.cbxLivresRayons.FormattingEnabled = true;
-            this.cbxLivresRayons.Location = new System.Drawing.Point(620, 105);
+            this.cbxLivresRayons.Location = new System.Drawing.Point(930, 133);
+            this.cbxLivresRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxLivresRayons.Name = "cbxLivresRayons";
-            this.cbxLivresRayons.Size = new System.Drawing.Size(207, 21);
+            this.cbxLivresRayons.Size = new System.Drawing.Size(309, 26);
             this.cbxLivresRayons.TabIndex = 10;
             this.cbxLivresRayons.SelectedIndexChanged += new System.EventHandler(this.CbxLivresRayons_SelectedIndexChanged);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(458, 108);
+            this.label21.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label21.Location = new System.Drawing.Point(687, 138);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(153, 13);
+            this.label21.Size = new System.Drawing.Size(207, 23);
             this.label21.TabIndex = 9;
             this.label21.Text = "Ou sélectionner le rayon :";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // cbxLivresPublics
             // 
             this.cbxLivresPublics.FormattingEnabled = true;
-            this.cbxLivresPublics.Location = new System.Drawing.Point(620, 60);
+            this.cbxLivresPublics.Location = new System.Drawing.Point(930, 77);
+            this.cbxLivresPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxLivresPublics.Name = "cbxLivresPublics";
-            this.cbxLivresPublics.Size = new System.Drawing.Size(207, 21);
+            this.cbxLivresPublics.Size = new System.Drawing.Size(309, 26);
             this.cbxLivresPublics.TabIndex = 8;
             this.cbxLivresPublics.SelectedIndexChanged += new System.EventHandler(this.CbxLivresPublics_SelectedIndexChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(458, 63);
+            this.label20.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label20.Location = new System.Drawing.Point(687, 82);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(156, 13);
+            this.label20.Size = new System.Drawing.Size(208, 23);
             this.label20.TabIndex = 7;
             this.label20.Text = "Ou sélectionner le public :";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // cbxLivresGenres
             // 
+            this.cbxLivresGenres.BackColor = System.Drawing.SystemColors.Window;
             this.cbxLivresGenres.FormattingEnabled = true;
-            this.cbxLivresGenres.Location = new System.Drawing.Point(620, 18);
+            this.cbxLivresGenres.Location = new System.Drawing.Point(930, 25);
+            this.cbxLivresGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxLivresGenres.Name = "cbxLivresGenres";
-            this.cbxLivresGenres.Size = new System.Drawing.Size(207, 21);
+            this.cbxLivresGenres.Size = new System.Drawing.Size(309, 26);
             this.cbxLivresGenres.TabIndex = 6;
             this.cbxLivresGenres.SelectedIndexChanged += new System.EventHandler(this.CbxLivresGenres_SelectedIndexChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(460, 21);
+            this.label14.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label14.Location = new System.Drawing.Point(690, 29);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(154, 13);
+            this.label14.Size = new System.Drawing.Size(206, 23);
             this.label14.TabIndex = 5;
             this.label14.Text = "Ou sélectionner le genre :";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // dgvLivresListe
             // 
@@ -572,33 +661,42 @@ namespace Mediatek86.vue
             this.dgvLivresListe.AllowUserToDeleteRows = false;
             this.dgvLivresListe.AllowUserToResizeColumns = false;
             this.dgvLivresListe.AllowUserToResizeRows = false;
+            this.dgvLivresListe.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvLivresListe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLivresListe.Location = new System.Drawing.Point(9, 150);
+            this.dgvLivresListe.Location = new System.Drawing.Point(14, 184);
+            this.dgvLivresListe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvLivresListe.MultiSelect = false;
             this.dgvLivresListe.Name = "dgvLivresListe";
             this.dgvLivresListe.ReadOnly = true;
             this.dgvLivresListe.RowHeadersVisible = false;
+            this.dgvLivresListe.RowHeadersWidth = 51;
             this.dgvLivresListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLivresListe.Size = new System.Drawing.Size(844, 200);
+            this.dgvLivresListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvLivresListe.TabIndex = 4;
+            this.dgvLivresListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLivresListe_CellContentClick);
             this.dgvLivresListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvLivresListe_ColumnHeaderMouseClick);
             this.dgvLivresListe.SelectionChanged += new System.EventHandler(this.DgvLivresListe_SelectionChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 21);
+            this.label6.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(9, 29);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(208, 13);
+            this.label6.Size = new System.Drawing.Size(280, 23);
             this.label6.TabIndex = 2;
             this.label6.Text = "Saisir le titre ou la partie d\'un titre :";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txbLivresTitreRecherche
             // 
-            this.txbLivresTitreRecherche.Location = new System.Drawing.Point(220, 18);
+            this.txbLivresTitreRecherche.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txbLivresTitreRecherche.Location = new System.Drawing.Point(330, 25);
+            this.txbLivresTitreRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbLivresTitreRecherche.Name = "txbLivresTitreRecherche";
-            this.txbLivresTitreRecherche.Size = new System.Drawing.Size(190, 20);
+            this.txbLivresTitreRecherche.Size = new System.Drawing.Size(283, 26);
             this.txbLivresTitreRecherche.TabIndex = 3;
             this.txbLivresTitreRecherche.TextChanged += new System.EventHandler(this.TxbLivresTitreRecherche_TextChanged);
             // 
@@ -607,11 +705,13 @@ namespace Mediatek86.vue
             this.tabDvd.Controls.Add(this.grpDvdInfos);
             this.tabDvd.Controls.Add(this.grpDvdRecherche);
             this.tabDvd.Location = new System.Drawing.Point(4, 22);
+            this.tabDvd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabDvd.Name = "tabDvd";
-            this.tabDvd.Size = new System.Drawing.Size(875, 633);
+            this.tabDvd.Size = new System.Drawing.Size(1316, 836);
             this.tabDvd.TabIndex = 3;
             this.tabDvd.Text = "DVD";
             this.tabDvd.UseVisualStyleBackColor = true;
+            this.tabDvd.Click += new System.EventHandler(this.tabDvd_Click);
             this.tabDvd.Enter += new System.EventHandler(this.tabDvd_Enter);
             // 
             // grpDvdInfos
@@ -635,186 +735,228 @@ namespace Mediatek86.vue
             this.grpDvdInfos.Controls.Add(this.label29);
             this.grpDvdInfos.Controls.Add(this.label30);
             this.grpDvdInfos.Controls.Add(this.label31);
-            this.grpDvdInfos.Location = new System.Drawing.Point(8, 381);
+            this.grpDvdInfos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpDvdInfos.Location = new System.Drawing.Point(12, 489);
+            this.grpDvdInfos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpDvdInfos.Name = "grpDvdInfos";
-            this.grpDvdInfos.Size = new System.Drawing.Size(859, 245);
+            this.grpDvdInfos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpDvdInfos.Size = new System.Drawing.Size(1288, 339);
             this.grpDvdInfos.TabIndex = 21;
             this.grpDvdInfos.TabStop = false;
             this.grpDvdInfos.Text = "Informations détaillées";
+            this.grpDvdInfos.Enter += new System.EventHandler(this.grpDvdInfos_Enter);
             // 
             // txbDvdDuree
             // 
-            this.txbDvdDuree.Location = new System.Drawing.Point(441, 20);
+            this.txbDvdDuree.Location = new System.Drawing.Point(662, 28);
+            this.txbDvdDuree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdDuree.Name = "txbDvdDuree";
             this.txbDvdDuree.ReadOnly = true;
-            this.txbDvdDuree.Size = new System.Drawing.Size(100, 20);
+            this.txbDvdDuree.Size = new System.Drawing.Size(148, 26);
             this.txbDvdDuree.TabIndex = 32;
+            this.txbDvdDuree.TextChanged += new System.EventHandler(this.txbDvdDuree_TextChanged);
             // 
             // txbDvdImage
             // 
-            this.txbDvdImage.Location = new System.Drawing.Point(150, 215);
+            this.txbDvdImage.Location = new System.Drawing.Point(225, 298);
+            this.txbDvdImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdImage.Name = "txbDvdImage";
             this.txbDvdImage.ReadOnly = true;
-            this.txbDvdImage.Size = new System.Drawing.Size(391, 20);
+            this.txbDvdImage.Size = new System.Drawing.Size(584, 26);
             this.txbDvdImage.TabIndex = 31;
+            this.txbDvdImage.TextChanged += new System.EventHandler(this.txbDvdImage_TextChanged);
             // 
             // txbDvdRayon
             // 
-            this.txbDvdRayon.Location = new System.Drawing.Point(150, 190);
+            this.txbDvdRayon.Location = new System.Drawing.Point(225, 263);
+            this.txbDvdRayon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdRayon.Name = "txbDvdRayon";
             this.txbDvdRayon.ReadOnly = true;
-            this.txbDvdRayon.Size = new System.Drawing.Size(207, 20);
+            this.txbDvdRayon.Size = new System.Drawing.Size(309, 26);
             this.txbDvdRayon.TabIndex = 30;
+            this.txbDvdRayon.TextChanged += new System.EventHandler(this.txbDvdRayon_TextChanged);
             // 
             // txbDvdPublic
             // 
-            this.txbDvdPublic.Location = new System.Drawing.Point(150, 165);
+            this.txbDvdPublic.Location = new System.Drawing.Point(225, 228);
+            this.txbDvdPublic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdPublic.Name = "txbDvdPublic";
             this.txbDvdPublic.ReadOnly = true;
-            this.txbDvdPublic.Size = new System.Drawing.Size(207, 20);
+            this.txbDvdPublic.Size = new System.Drawing.Size(309, 26);
             this.txbDvdPublic.TabIndex = 29;
+            this.txbDvdPublic.TextChanged += new System.EventHandler(this.txbDvdPublic_TextChanged);
             // 
             // txbDvdGenre
             // 
-            this.txbDvdGenre.Location = new System.Drawing.Point(150, 140);
+            this.txbDvdGenre.Location = new System.Drawing.Point(225, 193);
+            this.txbDvdGenre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdGenre.Name = "txbDvdGenre";
             this.txbDvdGenre.ReadOnly = true;
-            this.txbDvdGenre.Size = new System.Drawing.Size(207, 20);
+            this.txbDvdGenre.Size = new System.Drawing.Size(309, 26);
             this.txbDvdGenre.TabIndex = 28;
+            this.txbDvdGenre.TextChanged += new System.EventHandler(this.txbDvdGenre_TextChanged);
             // 
             // txbDvdSynopsis
             // 
             this.txbDvdSynopsis.AcceptsReturn = true;
-            this.txbDvdSynopsis.Location = new System.Drawing.Point(150, 95);
+            this.txbDvdSynopsis.Location = new System.Drawing.Point(225, 132);
+            this.txbDvdSynopsis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdSynopsis.Multiline = true;
             this.txbDvdSynopsis.Name = "txbDvdSynopsis";
             this.txbDvdSynopsis.ReadOnly = true;
             this.txbDvdSynopsis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txbDvdSynopsis.Size = new System.Drawing.Size(391, 39);
+            this.txbDvdSynopsis.Size = new System.Drawing.Size(584, 52);
             this.txbDvdSynopsis.TabIndex = 27;
+            this.txbDvdSynopsis.TextChanged += new System.EventHandler(this.txbDvdSynopsis_TextChanged);
             // 
             // txbDvdRealisateur
             // 
-            this.txbDvdRealisateur.Location = new System.Drawing.Point(150, 70);
+            this.txbDvdRealisateur.Location = new System.Drawing.Point(225, 97);
+            this.txbDvdRealisateur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdRealisateur.Name = "txbDvdRealisateur";
             this.txbDvdRealisateur.ReadOnly = true;
-            this.txbDvdRealisateur.Size = new System.Drawing.Size(207, 20);
+            this.txbDvdRealisateur.Size = new System.Drawing.Size(309, 26);
             this.txbDvdRealisateur.TabIndex = 26;
+            this.txbDvdRealisateur.TextChanged += new System.EventHandler(this.txbDvdRealisateur_TextChanged);
             // 
             // txbDvdTitre
             // 
-            this.txbDvdTitre.Location = new System.Drawing.Point(150, 45);
+            this.txbDvdTitre.Location = new System.Drawing.Point(225, 62);
+            this.txbDvdTitre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdTitre.Name = "txbDvdTitre";
             this.txbDvdTitre.ReadOnly = true;
-            this.txbDvdTitre.Size = new System.Drawing.Size(391, 20);
+            this.txbDvdTitre.Size = new System.Drawing.Size(584, 26);
             this.txbDvdTitre.TabIndex = 25;
+            this.txbDvdTitre.TextChanged += new System.EventHandler(this.txbDvdTitre_TextChanged);
             // 
             // txbDvdNumero
             // 
-            this.txbDvdNumero.Location = new System.Drawing.Point(150, 20);
+            this.txbDvdNumero.Location = new System.Drawing.Point(225, 28);
+            this.txbDvdNumero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdNumero.Name = "txbDvdNumero";
             this.txbDvdNumero.ReadOnly = true;
-            this.txbDvdNumero.Size = new System.Drawing.Size(100, 20);
+            this.txbDvdNumero.Size = new System.Drawing.Size(148, 26);
             this.txbDvdNumero.TabIndex = 24;
+            this.txbDvdNumero.TextChanged += new System.EventHandler(this.txbDvdNumero_TextChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(6, 140);
+            this.label23.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(9, 193);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(49, 13);
+            this.label23.Size = new System.Drawing.Size(66, 23);
             this.label23.TabIndex = 22;
             this.label23.Text = "Genre :";
+            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // pcbDvdImage
             // 
-            this.pcbDvdImage.Location = new System.Drawing.Point(560, 19);
+            this.pcbDvdImage.Location = new System.Drawing.Point(840, 26);
+            this.pcbDvdImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbDvdImage.Name = "pcbDvdImage";
-            this.pcbDvdImage.Size = new System.Drawing.Size(284, 210);
+            this.pcbDvdImage.Size = new System.Drawing.Size(426, 290);
             this.pcbDvdImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbDvdImage.TabIndex = 21;
             this.pcbDvdImage.TabStop = false;
+            this.pcbDvdImage.Click += new System.EventHandler(this.pcbDvdImage_Click);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(6, 165);
+            this.label24.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(9, 228);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(50, 13);
+            this.label24.Size = new System.Drawing.Size(65, 23);
             this.label24.TabIndex = 19;
             this.label24.Text = "Public :";
+            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(6, 190);
+            this.label25.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(9, 263);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(51, 13);
+            this.label25.Size = new System.Drawing.Size(67, 23);
             this.label25.TabIndex = 17;
             this.label25.Text = "Rayon :";
+            this.label25.Click += new System.EventHandler(this.label25_Click);
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(6, 45);
+            this.label26.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(9, 62);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(41, 13);
+            this.label26.Size = new System.Drawing.Size(54, 23);
             this.label26.TabIndex = 8;
             this.label26.Text = "Titre :";
+            this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(6, 20);
+            this.label27.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(9, 28);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(135, 13);
+            this.label27.Size = new System.Drawing.Size(187, 23);
             this.label27.TabIndex = 5;
             this.label27.Text = "Numéro de document :";
+            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(6, 70);
+            this.label28.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(9, 97);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(112, 13);
+            this.label28.Size = new System.Drawing.Size(150, 23);
             this.label28.TabIndex = 9;
             this.label28.Text = "Réalisateur(trice) :";
+            this.label28.Click += new System.EventHandler(this.label28_Click);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(6, 215);
+            this.label29.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(9, 298);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(117, 13);
+            this.label29.Size = new System.Drawing.Size(158, 23);
             this.label29.TabIndex = 6;
             this.label29.Text = "Chemin de l\'image :";
+            this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(6, 95);
+            this.label30.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(9, 132);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(65, 13);
+            this.label30.Size = new System.Drawing.Size(87, 23);
             this.label30.TabIndex = 10;
             this.label30.Text = "Synopsis :";
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(357, 20);
+            this.label31.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(536, 28);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(49, 13);
+            this.label31.Size = new System.Drawing.Size(66, 23);
             this.label31.TabIndex = 7;
             this.label31.Text = "Durée :";
+            this.label31.Click += new System.EventHandler(this.label31_Click);
             // 
             // grpDvdRecherche
             // 
@@ -833,127 +975,156 @@ namespace Mediatek86.vue
             this.grpDvdRecherche.Controls.Add(this.dgvDvdListe);
             this.grpDvdRecherche.Controls.Add(this.label42);
             this.grpDvdRecherche.Controls.Add(this.txbDvdTitreRecherche);
-            this.grpDvdRecherche.Location = new System.Drawing.Point(8, 13);
+            this.grpDvdRecherche.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpDvdRecherche.Location = new System.Drawing.Point(12, 18);
+            this.grpDvdRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpDvdRecherche.Name = "grpDvdRecherche";
-            this.grpDvdRecherche.Size = new System.Drawing.Size(859, 362);
+            this.grpDvdRecherche.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpDvdRecherche.Size = new System.Drawing.Size(1288, 474);
             this.grpDvdRecherche.TabIndex = 20;
             this.grpDvdRecherche.TabStop = false;
             this.grpDvdRecherche.Text = "Recherches";
+            this.grpDvdRecherche.Enter += new System.EventHandler(this.grpDvdRecherche_Enter);
             // 
             // btnDvdAnnulRayons
             // 
-            this.btnDvdAnnulRayons.Location = new System.Drawing.Point(833, 104);
+            this.btnDvdAnnulRayons.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnDvdAnnulRayons.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDvdAnnulRayons.Location = new System.Drawing.Point(1250, 132);
+            this.btnDvdAnnulRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDvdAnnulRayons.Name = "btnDvdAnnulRayons";
-            this.btnDvdAnnulRayons.Size = new System.Drawing.Size(22, 22);
+            this.btnDvdAnnulRayons.Size = new System.Drawing.Size(33, 30);
             this.btnDvdAnnulRayons.TabIndex = 16;
             this.btnDvdAnnulRayons.Text = "X";
-            this.btnDvdAnnulRayons.UseVisualStyleBackColor = true;
+            this.btnDvdAnnulRayons.UseVisualStyleBackColor = false;
             this.btnDvdAnnulRayons.Click += new System.EventHandler(this.btnDvdAnnulRayons_Click);
             // 
             // btnDvdAnnulPublics
             // 
-            this.btnDvdAnnulPublics.Location = new System.Drawing.Point(833, 60);
+            this.btnDvdAnnulPublics.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnDvdAnnulPublics.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDvdAnnulPublics.Location = new System.Drawing.Point(1250, 77);
+            this.btnDvdAnnulPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDvdAnnulPublics.Name = "btnDvdAnnulPublics";
-            this.btnDvdAnnulPublics.Size = new System.Drawing.Size(22, 22);
+            this.btnDvdAnnulPublics.Size = new System.Drawing.Size(33, 30);
             this.btnDvdAnnulPublics.TabIndex = 15;
             this.btnDvdAnnulPublics.Text = "X";
-            this.btnDvdAnnulPublics.UseVisualStyleBackColor = true;
+            this.btnDvdAnnulPublics.UseVisualStyleBackColor = false;
             this.btnDvdAnnulPublics.Click += new System.EventHandler(this.btnDvdAnnulPublics_Click);
             // 
             // btnDvdNumRecherche
             // 
-            this.btnDvdNumRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDvdNumRecherche.Location = new System.Drawing.Point(314, 59);
+            this.btnDvdNumRecherche.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnDvdNumRecherche.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDvdNumRecherche.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDvdNumRecherche.Location = new System.Drawing.Point(471, 71);
+            this.btnDvdNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDvdNumRecherche.Name = "btnDvdNumRecherche";
-            this.btnDvdNumRecherche.Size = new System.Drawing.Size(96, 22);
+            this.btnDvdNumRecherche.Size = new System.Drawing.Size(144, 36);
             this.btnDvdNumRecherche.TabIndex = 14;
             this.btnDvdNumRecherche.Text = "Rechercher";
-            this.btnDvdNumRecherche.UseVisualStyleBackColor = true;
+            this.btnDvdNumRecherche.UseVisualStyleBackColor = false;
             this.btnDvdNumRecherche.Click += new System.EventHandler(this.btnDvdNumRecherche_Click);
             // 
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(6, 63);
+            this.label38.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(9, 82);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(186, 13);
+            this.label38.Size = new System.Drawing.Size(254, 23);
             this.label38.TabIndex = 13;
             this.label38.Text = "Saisir un numéro de document :";
+            this.label38.Click += new System.EventHandler(this.label38_Click);
             // 
             // txbDvdNumRecherche
             // 
-            this.txbDvdNumRecherche.Location = new System.Drawing.Point(220, 60);
+            this.txbDvdNumRecherche.Location = new System.Drawing.Point(330, 77);
+            this.txbDvdNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdNumRecherche.Name = "txbDvdNumRecherche";
-            this.txbDvdNumRecherche.Size = new System.Drawing.Size(67, 20);
+            this.txbDvdNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbDvdNumRecherche.TabIndex = 12;
+            this.txbDvdNumRecherche.TextChanged += new System.EventHandler(this.txbDvdNumRecherche_TextChanged);
             // 
             // btnDvdAnnulGenres
             // 
-            this.btnDvdAnnulGenres.Location = new System.Drawing.Point(833, 17);
+            this.btnDvdAnnulGenres.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnDvdAnnulGenres.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDvdAnnulGenres.Location = new System.Drawing.Point(1250, 24);
+            this.btnDvdAnnulGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDvdAnnulGenres.Name = "btnDvdAnnulGenres";
-            this.btnDvdAnnulGenres.Size = new System.Drawing.Size(22, 22);
+            this.btnDvdAnnulGenres.Size = new System.Drawing.Size(33, 30);
             this.btnDvdAnnulGenres.TabIndex = 11;
             this.btnDvdAnnulGenres.Text = "X";
-            this.btnDvdAnnulGenres.UseVisualStyleBackColor = true;
+            this.btnDvdAnnulGenres.UseVisualStyleBackColor = false;
             this.btnDvdAnnulGenres.Click += new System.EventHandler(this.btnDvdAnnulGenres_Click);
             // 
             // cbxDvdRayons
             // 
             this.cbxDvdRayons.FormattingEnabled = true;
-            this.cbxDvdRayons.Location = new System.Drawing.Point(620, 105);
+            this.cbxDvdRayons.Location = new System.Drawing.Point(930, 133);
+            this.cbxDvdRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxDvdRayons.Name = "cbxDvdRayons";
-            this.cbxDvdRayons.Size = new System.Drawing.Size(207, 21);
+            this.cbxDvdRayons.Size = new System.Drawing.Size(309, 26);
             this.cbxDvdRayons.TabIndex = 10;
             this.cbxDvdRayons.SelectedIndexChanged += new System.EventHandler(this.cbxDvdRayons_SelectedIndexChanged);
             // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(458, 108);
+            this.label39.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(687, 138);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(153, 13);
+            this.label39.Size = new System.Drawing.Size(207, 23);
             this.label39.TabIndex = 9;
             this.label39.Text = "Ou sélectionner le rayon :";
+            this.label39.Click += new System.EventHandler(this.label39_Click);
             // 
             // cbxDvdPublics
             // 
             this.cbxDvdPublics.FormattingEnabled = true;
-            this.cbxDvdPublics.Location = new System.Drawing.Point(620, 60);
+            this.cbxDvdPublics.Location = new System.Drawing.Point(930, 77);
+            this.cbxDvdPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxDvdPublics.Name = "cbxDvdPublics";
-            this.cbxDvdPublics.Size = new System.Drawing.Size(207, 21);
+            this.cbxDvdPublics.Size = new System.Drawing.Size(309, 26);
             this.cbxDvdPublics.TabIndex = 8;
             this.cbxDvdPublics.SelectedIndexChanged += new System.EventHandler(this.cbxDvdPublics_SelectedIndexChanged);
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(458, 63);
+            this.label40.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(687, 82);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(156, 13);
+            this.label40.Size = new System.Drawing.Size(208, 23);
             this.label40.TabIndex = 7;
             this.label40.Text = "Ou sélectionner le public :";
+            this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
             // cbxDvdGenres
             // 
             this.cbxDvdGenres.FormattingEnabled = true;
-            this.cbxDvdGenres.Location = new System.Drawing.Point(620, 18);
+            this.cbxDvdGenres.Location = new System.Drawing.Point(930, 25);
+            this.cbxDvdGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxDvdGenres.Name = "cbxDvdGenres";
-            this.cbxDvdGenres.Size = new System.Drawing.Size(207, 21);
+            this.cbxDvdGenres.Size = new System.Drawing.Size(309, 26);
             this.cbxDvdGenres.TabIndex = 6;
             this.cbxDvdGenres.SelectedIndexChanged += new System.EventHandler(this.cbxDvdGenres_SelectedIndexChanged);
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(460, 21);
+            this.label41.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(690, 29);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(154, 13);
+            this.label41.Size = new System.Drawing.Size(206, 23);
             this.label41.TabIndex = 5;
             this.label41.Text = "Ou sélectionner le genre :";
+            this.label41.Click += new System.EventHandler(this.label41_Click);
             // 
             // dgvDvdListe
             // 
@@ -961,33 +1132,40 @@ namespace Mediatek86.vue
             this.dgvDvdListe.AllowUserToDeleteRows = false;
             this.dgvDvdListe.AllowUserToResizeColumns = false;
             this.dgvDvdListe.AllowUserToResizeRows = false;
+            this.dgvDvdListe.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvDvdListe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDvdListe.Location = new System.Drawing.Point(9, 150);
+            this.dgvDvdListe.Location = new System.Drawing.Point(14, 184);
+            this.dgvDvdListe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDvdListe.MultiSelect = false;
             this.dgvDvdListe.Name = "dgvDvdListe";
             this.dgvDvdListe.ReadOnly = true;
             this.dgvDvdListe.RowHeadersVisible = false;
+            this.dgvDvdListe.RowHeadersWidth = 51;
             this.dgvDvdListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDvdListe.Size = new System.Drawing.Size(844, 200);
+            this.dgvDvdListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvDvdListe.TabIndex = 4;
+            this.dgvDvdListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDvdListe_CellContentClick);
             this.dgvDvdListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDvdListe_ColumnHeaderMouseClick);
             this.dgvDvdListe.SelectionChanged += new System.EventHandler(this.dgvDvdListe_SelectionChanged);
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(6, 21);
+            this.label42.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(9, 29);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(208, 13);
+            this.label42.Size = new System.Drawing.Size(280, 23);
             this.label42.TabIndex = 2;
             this.label42.Text = "Saisir le titre ou la partie d\'un titre :";
+            this.label42.Click += new System.EventHandler(this.label42_Click);
             // 
             // txbDvdTitreRecherche
             // 
-            this.txbDvdTitreRecherche.Location = new System.Drawing.Point(220, 18);
+            this.txbDvdTitreRecherche.Location = new System.Drawing.Point(330, 25);
+            this.txbDvdTitreRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDvdTitreRecherche.Name = "txbDvdTitreRecherche";
-            this.txbDvdTitreRecherche.Size = new System.Drawing.Size(190, 20);
+            this.txbDvdTitreRecherche.Size = new System.Drawing.Size(283, 26);
             this.txbDvdTitreRecherche.TabIndex = 3;
             this.txbDvdTitreRecherche.TextChanged += new System.EventHandler(this.txbDvdTitreRecherche_TextChanged);
             // 
@@ -996,12 +1174,14 @@ namespace Mediatek86.vue
             this.tabRevues.Controls.Add(this.grpRevuesInfos);
             this.tabRevues.Controls.Add(this.grpRevuesRecherche);
             this.tabRevues.Location = new System.Drawing.Point(4, 22);
+            this.tabRevues.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabRevues.Name = "tabRevues";
-            this.tabRevues.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRevues.Size = new System.Drawing.Size(875, 633);
+            this.tabRevues.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabRevues.Size = new System.Drawing.Size(1316, 836);
             this.tabRevues.TabIndex = 1;
             this.tabRevues.Text = "Revues";
             this.tabRevues.UseVisualStyleBackColor = true;
+            this.tabRevues.Click += new System.EventHandler(this.tabRevues_Click);
             this.tabRevues.Enter += new System.EventHandler(this.tabRevues_Enter);
             // 
             // grpRevuesInfos
@@ -1025,185 +1205,227 @@ namespace Mediatek86.vue
             this.grpRevuesInfos.Controls.Add(this.label46);
             this.grpRevuesInfos.Controls.Add(this.label47);
             this.grpRevuesInfos.Controls.Add(this.label48);
-            this.grpRevuesInfos.Location = new System.Drawing.Point(8, 381);
+            this.grpRevuesInfos.Font = new System.Drawing.Font("Calibri", 9F);
+            this.grpRevuesInfos.Location = new System.Drawing.Point(12, 493);
+            this.grpRevuesInfos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpRevuesInfos.Name = "grpRevuesInfos";
-            this.grpRevuesInfos.Size = new System.Drawing.Size(859, 245);
+            this.grpRevuesInfos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpRevuesInfos.Size = new System.Drawing.Size(1288, 340);
             this.grpRevuesInfos.TabIndex = 20;
             this.grpRevuesInfos.TabStop = false;
             this.grpRevuesInfos.Text = "Informations détaillées";
+            this.grpRevuesInfos.Enter += new System.EventHandler(this.grpRevuesInfos_Enter);
             // 
             // chkRevuesEmpruntable
             // 
             this.chkRevuesEmpruntable.AutoSize = true;
             this.chkRevuesEmpruntable.Enabled = false;
-            this.chkRevuesEmpruntable.Location = new System.Drawing.Point(526, 20);
+            this.chkRevuesEmpruntable.Location = new System.Drawing.Point(789, 28);
+            this.chkRevuesEmpruntable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkRevuesEmpruntable.Name = "chkRevuesEmpruntable";
-            this.chkRevuesEmpruntable.Size = new System.Drawing.Size(15, 14);
+            this.chkRevuesEmpruntable.Size = new System.Drawing.Size(18, 17);
             this.chkRevuesEmpruntable.TabIndex = 32;
             this.chkRevuesEmpruntable.UseVisualStyleBackColor = true;
+            this.chkRevuesEmpruntable.CheckedChanged += new System.EventHandler(this.chkRevuesEmpruntable_CheckedChanged);
             // 
             // txbRevuesImage
             // 
-            this.txbRevuesImage.Location = new System.Drawing.Point(150, 195);
+            this.txbRevuesImage.Location = new System.Drawing.Point(225, 270);
+            this.txbRevuesImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesImage.Name = "txbRevuesImage";
             this.txbRevuesImage.ReadOnly = true;
-            this.txbRevuesImage.Size = new System.Drawing.Size(391, 20);
+            this.txbRevuesImage.Size = new System.Drawing.Size(584, 26);
             this.txbRevuesImage.TabIndex = 31;
+            this.txbRevuesImage.TextChanged += new System.EventHandler(this.txbRevuesImage_TextChanged);
             // 
             // txbRevuesRayon
             // 
-            this.txbRevuesRayon.Location = new System.Drawing.Point(150, 170);
+            this.txbRevuesRayon.Location = new System.Drawing.Point(225, 235);
+            this.txbRevuesRayon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesRayon.Name = "txbRevuesRayon";
             this.txbRevuesRayon.ReadOnly = true;
-            this.txbRevuesRayon.Size = new System.Drawing.Size(207, 20);
+            this.txbRevuesRayon.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesRayon.TabIndex = 30;
+            this.txbRevuesRayon.TextChanged += new System.EventHandler(this.txbRevuesRayon_TextChanged);
             // 
             // txbRevuesPublic
             // 
-            this.txbRevuesPublic.Location = new System.Drawing.Point(150, 145);
+            this.txbRevuesPublic.Location = new System.Drawing.Point(225, 200);
+            this.txbRevuesPublic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesPublic.Name = "txbRevuesPublic";
             this.txbRevuesPublic.ReadOnly = true;
-            this.txbRevuesPublic.Size = new System.Drawing.Size(207, 20);
+            this.txbRevuesPublic.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesPublic.TabIndex = 29;
+            this.txbRevuesPublic.TextChanged += new System.EventHandler(this.txbRevuesPublic_TextChanged);
             // 
             // txbRevuesGenre
             // 
-            this.txbRevuesGenre.Location = new System.Drawing.Point(150, 120);
+            this.txbRevuesGenre.Location = new System.Drawing.Point(225, 167);
+            this.txbRevuesGenre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesGenre.Name = "txbRevuesGenre";
             this.txbRevuesGenre.ReadOnly = true;
-            this.txbRevuesGenre.Size = new System.Drawing.Size(207, 20);
+            this.txbRevuesGenre.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesGenre.TabIndex = 28;
+            this.txbRevuesGenre.TextChanged += new System.EventHandler(this.txbRevuesGenre_TextChanged);
             // 
             // txbRevuesDateMiseADispo
             // 
-            this.txbRevuesDateMiseADispo.Location = new System.Drawing.Point(150, 95);
+            this.txbRevuesDateMiseADispo.Location = new System.Drawing.Point(225, 132);
+            this.txbRevuesDateMiseADispo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesDateMiseADispo.Name = "txbRevuesDateMiseADispo";
             this.txbRevuesDateMiseADispo.ReadOnly = true;
-            this.txbRevuesDateMiseADispo.Size = new System.Drawing.Size(100, 20);
+            this.txbRevuesDateMiseADispo.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesDateMiseADispo.TabIndex = 27;
+            this.txbRevuesDateMiseADispo.TextChanged += new System.EventHandler(this.txbRevuesDateMiseADispo_TextChanged);
             // 
             // txbRevuesPeriodicite
             // 
-            this.txbRevuesPeriodicite.Location = new System.Drawing.Point(150, 70);
+            this.txbRevuesPeriodicite.Location = new System.Drawing.Point(225, 97);
+            this.txbRevuesPeriodicite.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesPeriodicite.Name = "txbRevuesPeriodicite";
             this.txbRevuesPeriodicite.ReadOnly = true;
-            this.txbRevuesPeriodicite.Size = new System.Drawing.Size(100, 20);
+            this.txbRevuesPeriodicite.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesPeriodicite.TabIndex = 26;
+            this.txbRevuesPeriodicite.TextChanged += new System.EventHandler(this.txbRevuesPeriodicite_TextChanged);
             // 
             // txbRevuesTitre
             // 
-            this.txbRevuesTitre.Location = new System.Drawing.Point(150, 45);
+            this.txbRevuesTitre.Location = new System.Drawing.Point(225, 62);
+            this.txbRevuesTitre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesTitre.Name = "txbRevuesTitre";
             this.txbRevuesTitre.ReadOnly = true;
-            this.txbRevuesTitre.Size = new System.Drawing.Size(391, 20);
+            this.txbRevuesTitre.Size = new System.Drawing.Size(584, 26);
             this.txbRevuesTitre.TabIndex = 25;
+            this.txbRevuesTitre.TextChanged += new System.EventHandler(this.txbRevuesTitre_TextChanged);
             // 
             // txbRevuesNumero
             // 
-            this.txbRevuesNumero.Location = new System.Drawing.Point(150, 20);
+            this.txbRevuesNumero.Location = new System.Drawing.Point(225, 28);
+            this.txbRevuesNumero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesNumero.Name = "txbRevuesNumero";
             this.txbRevuesNumero.ReadOnly = true;
-            this.txbRevuesNumero.Size = new System.Drawing.Size(100, 20);
+            this.txbRevuesNumero.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesNumero.TabIndex = 24;
+            this.txbRevuesNumero.TextChanged += new System.EventHandler(this.txbRevuesNumero_TextChanged);
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(6, 120);
+            this.label35.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(9, 167);
+            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(49, 13);
+            this.label35.Size = new System.Drawing.Size(66, 23);
             this.label35.TabIndex = 22;
             this.label35.Text = "Genre :";
+            this.label35.Click += new System.EventHandler(this.label35_Click);
             // 
             // pcbRevuesImage
             // 
-            this.pcbRevuesImage.Location = new System.Drawing.Point(560, 19);
+            this.pcbRevuesImage.Location = new System.Drawing.Point(840, 26);
+            this.pcbRevuesImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbRevuesImage.Name = "pcbRevuesImage";
-            this.pcbRevuesImage.Size = new System.Drawing.Size(284, 210);
+            this.pcbRevuesImage.Size = new System.Drawing.Size(426, 290);
             this.pcbRevuesImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbRevuesImage.TabIndex = 21;
             this.pcbRevuesImage.TabStop = false;
+            this.pcbRevuesImage.Click += new System.EventHandler(this.pcbRevuesImage_Click);
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(6, 145);
+            this.label36.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(9, 200);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(50, 13);
+            this.label36.Size = new System.Drawing.Size(65, 23);
             this.label36.TabIndex = 19;
             this.label36.Text = "Public :";
+            this.label36.Click += new System.EventHandler(this.label36_Click);
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(6, 170);
+            this.label37.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(9, 235);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(51, 13);
+            this.label37.Size = new System.Drawing.Size(67, 23);
             this.label37.TabIndex = 17;
             this.label37.Text = "Rayon :";
+            this.label37.Click += new System.EventHandler(this.label37_Click);
             // 
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(6, 45);
+            this.label43.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(9, 62);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(41, 13);
+            this.label43.Size = new System.Drawing.Size(54, 23);
             this.label43.TabIndex = 8;
             this.label43.Text = "Titre :";
+            this.label43.Click += new System.EventHandler(this.label43_Click);
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(6, 20);
+            this.label44.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(9, 28);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(135, 13);
+            this.label44.Size = new System.Drawing.Size(187, 23);
             this.label44.TabIndex = 5;
             this.label44.Text = "Numéro de document :";
+            this.label44.Click += new System.EventHandler(this.label44_Click);
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(6, 70);
+            this.label45.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(9, 97);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(75, 13);
+            this.label45.Size = new System.Drawing.Size(100, 23);
             this.label45.TabIndex = 9;
             this.label45.Text = "Périodicité :";
+            this.label45.Click += new System.EventHandler(this.label45_Click);
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(6, 195);
+            this.label46.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(9, 270);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(117, 13);
+            this.label46.Size = new System.Drawing.Size(158, 23);
             this.label46.TabIndex = 6;
             this.label46.Text = "Chemin de l\'image :";
+            this.label46.Click += new System.EventHandler(this.label46_Click);
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(6, 95);
+            this.label47.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(9, 132);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(118, 13);
+            this.label47.Size = new System.Drawing.Size(156, 23);
             this.label47.TabIndex = 10;
             this.label47.Text = "Délai mise à dispo :";
+            this.label47.Click += new System.EventHandler(this.label47_Click);
             // 
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(435, 20);
+            this.label48.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(652, 28);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(85, 13);
+            this.label48.Size = new System.Drawing.Size(118, 23);
             this.label48.TabIndex = 7;
             this.label48.Text = "Empruntable :";
+            this.label48.Click += new System.EventHandler(this.label48_Click);
             // 
             // grpRevuesRecherche
             // 
@@ -1222,127 +1444,156 @@ namespace Mediatek86.vue
             this.grpRevuesRecherche.Controls.Add(this.dgvRevuesListe);
             this.grpRevuesRecherche.Controls.Add(this.label34);
             this.grpRevuesRecherche.Controls.Add(this.txbRevuesTitreRecherche);
-            this.grpRevuesRecherche.Location = new System.Drawing.Point(8, 13);
+            this.grpRevuesRecherche.Font = new System.Drawing.Font("Calibri", 9F);
+            this.grpRevuesRecherche.Location = new System.Drawing.Point(12, 18);
+            this.grpRevuesRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpRevuesRecherche.Name = "grpRevuesRecherche";
-            this.grpRevuesRecherche.Size = new System.Drawing.Size(859, 362);
+            this.grpRevuesRecherche.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpRevuesRecherche.Size = new System.Drawing.Size(1288, 479);
             this.grpRevuesRecherche.TabIndex = 19;
             this.grpRevuesRecherche.TabStop = false;
             this.grpRevuesRecherche.Text = "Recherches";
+            this.grpRevuesRecherche.Enter += new System.EventHandler(this.grpRevuesRecherche_Enter);
             // 
             // btnRevuesAnnulRayons
             // 
-            this.btnRevuesAnnulRayons.Location = new System.Drawing.Point(833, 104);
+            this.btnRevuesAnnulRayons.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRevuesAnnulRayons.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRevuesAnnulRayons.Location = new System.Drawing.Point(1250, 132);
+            this.btnRevuesAnnulRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRevuesAnnulRayons.Name = "btnRevuesAnnulRayons";
-            this.btnRevuesAnnulRayons.Size = new System.Drawing.Size(22, 22);
+            this.btnRevuesAnnulRayons.Size = new System.Drawing.Size(33, 30);
             this.btnRevuesAnnulRayons.TabIndex = 16;
             this.btnRevuesAnnulRayons.Text = "X";
-            this.btnRevuesAnnulRayons.UseVisualStyleBackColor = true;
+            this.btnRevuesAnnulRayons.UseVisualStyleBackColor = false;
             this.btnRevuesAnnulRayons.Click += new System.EventHandler(this.btnRevuesAnnulRayons_Click);
             // 
             // btnRevuesAnnulPublics
             // 
-            this.btnRevuesAnnulPublics.Location = new System.Drawing.Point(833, 60);
+            this.btnRevuesAnnulPublics.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRevuesAnnulPublics.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRevuesAnnulPublics.Location = new System.Drawing.Point(1250, 77);
+            this.btnRevuesAnnulPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRevuesAnnulPublics.Name = "btnRevuesAnnulPublics";
-            this.btnRevuesAnnulPublics.Size = new System.Drawing.Size(22, 22);
+            this.btnRevuesAnnulPublics.Size = new System.Drawing.Size(33, 30);
             this.btnRevuesAnnulPublics.TabIndex = 15;
             this.btnRevuesAnnulPublics.Text = "X";
-            this.btnRevuesAnnulPublics.UseVisualStyleBackColor = true;
+            this.btnRevuesAnnulPublics.UseVisualStyleBackColor = false;
             this.btnRevuesAnnulPublics.Click += new System.EventHandler(this.btnRevuesAnnulPublics_Click);
             // 
             // btnRevuesNumRecherche
             // 
-            this.btnRevuesNumRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevuesNumRecherche.Location = new System.Drawing.Point(314, 59);
+            this.btnRevuesNumRecherche.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRevuesNumRecherche.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRevuesNumRecherche.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRevuesNumRecherche.Location = new System.Drawing.Point(471, 76);
+            this.btnRevuesNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRevuesNumRecherche.Name = "btnRevuesNumRecherche";
-            this.btnRevuesNumRecherche.Size = new System.Drawing.Size(96, 22);
+            this.btnRevuesNumRecherche.Size = new System.Drawing.Size(144, 39);
             this.btnRevuesNumRecherche.TabIndex = 14;
             this.btnRevuesNumRecherche.Text = "Rechercher";
-            this.btnRevuesNumRecherche.UseVisualStyleBackColor = true;
+            this.btnRevuesNumRecherche.UseVisualStyleBackColor = false;
             this.btnRevuesNumRecherche.Click += new System.EventHandler(this.btnRevuesNumRecherche_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 63);
+            this.label2.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 82);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 13);
+            this.label2.Size = new System.Drawing.Size(254, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Saisir un numéro de document :";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txbRevuesNumRecherche
             // 
-            this.txbRevuesNumRecherche.Location = new System.Drawing.Point(220, 60);
+            this.txbRevuesNumRecherche.Location = new System.Drawing.Point(330, 77);
+            this.txbRevuesNumRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesNumRecherche.Name = "txbRevuesNumRecherche";
-            this.txbRevuesNumRecherche.Size = new System.Drawing.Size(67, 20);
+            this.txbRevuesNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbRevuesNumRecherche.TabIndex = 12;
+            this.txbRevuesNumRecherche.TextChanged += new System.EventHandler(this.txbRevuesNumRecherche_TextChanged);
             // 
             // btnRevuesAnnulGenres
             // 
-            this.btnRevuesAnnulGenres.Location = new System.Drawing.Point(833, 17);
+            this.btnRevuesAnnulGenres.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRevuesAnnulGenres.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRevuesAnnulGenres.Location = new System.Drawing.Point(1250, 24);
+            this.btnRevuesAnnulGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRevuesAnnulGenres.Name = "btnRevuesAnnulGenres";
-            this.btnRevuesAnnulGenres.Size = new System.Drawing.Size(22, 22);
+            this.btnRevuesAnnulGenres.Size = new System.Drawing.Size(33, 30);
             this.btnRevuesAnnulGenres.TabIndex = 11;
             this.btnRevuesAnnulGenres.Text = "X";
-            this.btnRevuesAnnulGenres.UseVisualStyleBackColor = true;
+            this.btnRevuesAnnulGenres.UseVisualStyleBackColor = false;
             this.btnRevuesAnnulGenres.Click += new System.EventHandler(this.btnRevuesAnnulGenres_Click);
             // 
             // cbxRevuesRayons
             // 
             this.cbxRevuesRayons.FormattingEnabled = true;
-            this.cbxRevuesRayons.Location = new System.Drawing.Point(620, 105);
+            this.cbxRevuesRayons.Location = new System.Drawing.Point(930, 133);
+            this.cbxRevuesRayons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxRevuesRayons.Name = "cbxRevuesRayons";
-            this.cbxRevuesRayons.Size = new System.Drawing.Size(207, 21);
+            this.cbxRevuesRayons.Size = new System.Drawing.Size(309, 26);
             this.cbxRevuesRayons.TabIndex = 10;
             this.cbxRevuesRayons.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesRayons_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(458, 108);
+            this.label4.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(687, 138);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 13);
+            this.label4.Size = new System.Drawing.Size(207, 23);
             this.label4.TabIndex = 9;
             this.label4.Text = "Ou sélectionner le rayon :";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // cbxRevuesPublics
             // 
             this.cbxRevuesPublics.FormattingEnabled = true;
-            this.cbxRevuesPublics.Location = new System.Drawing.Point(620, 60);
+            this.cbxRevuesPublics.Location = new System.Drawing.Point(930, 77);
+            this.cbxRevuesPublics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxRevuesPublics.Name = "cbxRevuesPublics";
-            this.cbxRevuesPublics.Size = new System.Drawing.Size(207, 21);
+            this.cbxRevuesPublics.Size = new System.Drawing.Size(309, 26);
             this.cbxRevuesPublics.TabIndex = 8;
             this.cbxRevuesPublics.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesPublics_SelectedIndexChanged);
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(458, 63);
+            this.label32.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(687, 82);
+            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(156, 13);
+            this.label32.Size = new System.Drawing.Size(208, 23);
             this.label32.TabIndex = 7;
             this.label32.Text = "Ou sélectionner le public :";
+            this.label32.Click += new System.EventHandler(this.label32_Click);
             // 
             // cbxRevuesGenres
             // 
             this.cbxRevuesGenres.FormattingEnabled = true;
-            this.cbxRevuesGenres.Location = new System.Drawing.Point(620, 18);
+            this.cbxRevuesGenres.Location = new System.Drawing.Point(930, 25);
+            this.cbxRevuesGenres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxRevuesGenres.Name = "cbxRevuesGenres";
-            this.cbxRevuesGenres.Size = new System.Drawing.Size(207, 21);
+            this.cbxRevuesGenres.Size = new System.Drawing.Size(309, 26);
             this.cbxRevuesGenres.TabIndex = 6;
             this.cbxRevuesGenres.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesGenres_SelectedIndexChanged);
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(460, 21);
+            this.label33.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(690, 29);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(154, 13);
+            this.label33.Size = new System.Drawing.Size(206, 23);
             this.label33.TabIndex = 5;
             this.label33.Text = "Ou sélectionner le genre :";
+            this.label33.Click += new System.EventHandler(this.label33_Click);
             // 
             // dgvRevuesListe
             // 
@@ -1350,33 +1601,40 @@ namespace Mediatek86.vue
             this.dgvRevuesListe.AllowUserToDeleteRows = false;
             this.dgvRevuesListe.AllowUserToResizeColumns = false;
             this.dgvRevuesListe.AllowUserToResizeRows = false;
+            this.dgvRevuesListe.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvRevuesListe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRevuesListe.Location = new System.Drawing.Point(9, 150);
+            this.dgvRevuesListe.Location = new System.Drawing.Point(14, 180);
+            this.dgvRevuesListe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvRevuesListe.MultiSelect = false;
             this.dgvRevuesListe.Name = "dgvRevuesListe";
             this.dgvRevuesListe.ReadOnly = true;
             this.dgvRevuesListe.RowHeadersVisible = false;
+            this.dgvRevuesListe.RowHeadersWidth = 51;
             this.dgvRevuesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRevuesListe.Size = new System.Drawing.Size(844, 200);
+            this.dgvRevuesListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvRevuesListe.TabIndex = 4;
+            this.dgvRevuesListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRevuesListe_CellContentClick);
             this.dgvRevuesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRevuesListe_ColumnHeaderMouseClick);
             this.dgvRevuesListe.SelectionChanged += new System.EventHandler(this.dgvRevuesListe_SelectionChanged);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(6, 21);
+            this.label34.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(9, 29);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(208, 13);
+            this.label34.Size = new System.Drawing.Size(280, 23);
             this.label34.TabIndex = 2;
             this.label34.Text = "Saisir le titre ou la partie d\'un titre :";
+            this.label34.Click += new System.EventHandler(this.label34_Click);
             // 
             // txbRevuesTitreRecherche
             // 
-            this.txbRevuesTitreRecherche.Location = new System.Drawing.Point(220, 18);
+            this.txbRevuesTitreRecherche.Location = new System.Drawing.Point(330, 25);
+            this.txbRevuesTitreRecherche.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbRevuesTitreRecherche.Name = "txbRevuesTitreRecherche";
-            this.txbRevuesTitreRecherche.Size = new System.Drawing.Size(190, 20);
+            this.txbRevuesTitreRecherche.Size = new System.Drawing.Size(283, 26);
             this.txbRevuesTitreRecherche.TabIndex = 3;
             this.txbRevuesTitreRecherche.TextChanged += new System.EventHandler(this.txbRevuesTitreRecherche_TextChanged);
             // 
@@ -1385,11 +1643,13 @@ namespace Mediatek86.vue
             this.tabReceptionRevue.Controls.Add(this.grpReceptionExemplaire);
             this.tabReceptionRevue.Controls.Add(this.grpReceptionRevue);
             this.tabReceptionRevue.Location = new System.Drawing.Point(4, 22);
+            this.tabReceptionRevue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabReceptionRevue.Name = "tabReceptionRevue";
-            this.tabReceptionRevue.Size = new System.Drawing.Size(875, 633);
+            this.tabReceptionRevue.Size = new System.Drawing.Size(1316, 836);
             this.tabReceptionRevue.TabIndex = 4;
             this.tabReceptionRevue.Text = "Parutions des revues";
             this.tabReceptionRevue.UseVisualStyleBackColor = true;
+            this.tabReceptionRevue.Click += new System.EventHandler(this.tabReceptionRevue_Click);
             this.tabReceptionRevue.Enter += new System.EventHandler(this.tabReceptionRevue_Enter);
             // 
             // grpReceptionExemplaire
@@ -1403,96 +1663,120 @@ namespace Mediatek86.vue
             this.grpReceptionExemplaire.Controls.Add(this.label17);
             this.grpReceptionExemplaire.Controls.Add(this.dtpReceptionExemplaireDate);
             this.grpReceptionExemplaire.Controls.Add(this.label16);
-            this.grpReceptionExemplaire.Location = new System.Drawing.Point(8, 380);
+            this.grpReceptionExemplaire.Font = new System.Drawing.Font("Calibri", 9F);
+            this.grpReceptionExemplaire.Location = new System.Drawing.Point(12, 527);
+            this.grpReceptionExemplaire.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpReceptionExemplaire.Name = "grpReceptionExemplaire";
-            this.grpReceptionExemplaire.Size = new System.Drawing.Size(859, 244);
+            this.grpReceptionExemplaire.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpReceptionExemplaire.Size = new System.Drawing.Size(1288, 337);
             this.grpReceptionExemplaire.TabIndex = 16;
             this.grpReceptionExemplaire.TabStop = false;
             this.grpReceptionExemplaire.Text = "Nouvelle parution réceptionnée pour cette revue";
+            this.grpReceptionExemplaire.Enter += new System.EventHandler(this.grpReceptionExemplaire_Enter);
             // 
             // btnReceptionExemplaireImage
             // 
-            this.btnReceptionExemplaireImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceptionExemplaireImage.Location = new System.Drawing.Point(446, 69);
+            this.btnReceptionExemplaireImage.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnReceptionExemplaireImage.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceptionExemplaireImage.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReceptionExemplaireImage.Location = new System.Drawing.Point(669, 93);
+            this.btnReceptionExemplaireImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReceptionExemplaireImage.Name = "btnReceptionExemplaireImage";
-            this.btnReceptionExemplaireImage.Size = new System.Drawing.Size(96, 22);
+            this.btnReceptionExemplaireImage.Size = new System.Drawing.Size(144, 36);
             this.btnReceptionExemplaireImage.TabIndex = 43;
             this.btnReceptionExemplaireImage.Text = "Rechercher";
-            this.btnReceptionExemplaireImage.UseVisualStyleBackColor = true;
+            this.btnReceptionExemplaireImage.UseVisualStyleBackColor = false;
             this.btnReceptionExemplaireImage.Click += new System.EventHandler(this.btnReceptionExemplaireImage_Click);
             // 
             // pcbReceptionExemplaireImage
             // 
-            this.pcbReceptionExemplaireImage.Location = new System.Drawing.Point(560, 19);
+            this.pcbReceptionExemplaireImage.Location = new System.Drawing.Point(840, 26);
+            this.pcbReceptionExemplaireImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbReceptionExemplaireImage.Name = "pcbReceptionExemplaireImage";
-            this.pcbReceptionExemplaireImage.Size = new System.Drawing.Size(284, 210);
+            this.pcbReceptionExemplaireImage.Size = new System.Drawing.Size(426, 265);
             this.pcbReceptionExemplaireImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionExemplaireImage.TabIndex = 42;
             this.pcbReceptionExemplaireImage.TabStop = false;
+            this.pcbReceptionExemplaireImage.Click += new System.EventHandler(this.pcbReceptionExemplaireImage_Click);
             // 
             // btnReceptionExemplaireValider
             // 
-            this.btnReceptionExemplaireValider.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceptionExemplaireValider.Location = new System.Drawing.Point(6, 95);
+            this.btnReceptionExemplaireValider.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnReceptionExemplaireValider.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceptionExemplaireValider.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReceptionExemplaireValider.Location = new System.Drawing.Point(9, 140);
+            this.btnReceptionExemplaireValider.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReceptionExemplaireValider.Name = "btnReceptionExemplaireValider";
-            this.btnReceptionExemplaireValider.Size = new System.Drawing.Size(535, 22);
+            this.btnReceptionExemplaireValider.Size = new System.Drawing.Size(802, 39);
             this.btnReceptionExemplaireValider.TabIndex = 17;
             this.btnReceptionExemplaireValider.Text = "Valider la réception";
-            this.btnReceptionExemplaireValider.UseVisualStyleBackColor = true;
+            this.btnReceptionExemplaireValider.UseVisualStyleBackColor = false;
             this.btnReceptionExemplaireValider.Click += new System.EventHandler(this.btnReceptionExemplaireValider_Click);
             // 
             // txbReceptionExemplaireImage
             // 
-            this.txbReceptionExemplaireImage.Location = new System.Drawing.Point(150, 70);
+            this.txbReceptionExemplaireImage.Location = new System.Drawing.Point(225, 97);
+            this.txbReceptionExemplaireImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionExemplaireImage.Name = "txbReceptionExemplaireImage";
             this.txbReceptionExemplaireImage.ReadOnly = true;
-            this.txbReceptionExemplaireImage.Size = new System.Drawing.Size(290, 20);
+            this.txbReceptionExemplaireImage.Size = new System.Drawing.Size(433, 26);
             this.txbReceptionExemplaireImage.TabIndex = 5;
+            this.txbReceptionExemplaireImage.TextChanged += new System.EventHandler(this.txbReceptionExemplaireImage_TextChanged);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(6, 70);
+            this.label18.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(9, 97);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(127, 13);
+            this.label18.Size = new System.Drawing.Size(173, 23);
             this.label18.TabIndex = 4;
             this.label18.Text = "Emplacement image :";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // txbReceptionExemplaireNumero
             // 
-            this.txbReceptionExemplaireNumero.Location = new System.Drawing.Point(150, 20);
+            this.txbReceptionExemplaireNumero.Location = new System.Drawing.Point(225, 28);
+            this.txbReceptionExemplaireNumero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionExemplaireNumero.Name = "txbReceptionExemplaireNumero";
-            this.txbReceptionExemplaireNumero.Size = new System.Drawing.Size(100, 20);
+            this.txbReceptionExemplaireNumero.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionExemplaireNumero.TabIndex = 3;
+            this.txbReceptionExemplaireNumero.TextChanged += new System.EventHandler(this.txbReceptionExemplaireNumero_TextChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(6, 45);
+            this.label17.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(9, 62);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(110, 13);
+            this.label17.Size = new System.Drawing.Size(149, 23);
             this.label17.TabIndex = 2;
             this.label17.Text = "Date de parution :";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // dtpReceptionExemplaireDate
             // 
             this.dtpReceptionExemplaireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReceptionExemplaireDate.Location = new System.Drawing.Point(150, 45);
+            this.dtpReceptionExemplaireDate.Location = new System.Drawing.Point(225, 62);
+            this.dtpReceptionExemplaireDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpReceptionExemplaireDate.Name = "dtpReceptionExemplaireDate";
-            this.dtpReceptionExemplaireDate.Size = new System.Drawing.Size(100, 20);
+            this.dtpReceptionExemplaireDate.Size = new System.Drawing.Size(148, 26);
             this.dtpReceptionExemplaireDate.TabIndex = 1;
+            this.dtpReceptionExemplaireDate.ValueChanged += new System.EventHandler(this.dtpReceptionExemplaireDate_ValueChanged);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 20);
+            this.label16.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(9, 28);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(129, 13);
+            this.label16.Size = new System.Drawing.Size(179, 23);
             this.label16.TabIndex = 0;
             this.label16.Text = "Numéro réceptionné :";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // grpReceptionRevue
             // 
@@ -1520,41 +1804,51 @@ namespace Mediatek86.vue
             this.grpReceptionRevue.Controls.Add(this.label54);
             this.grpReceptionRevue.Controls.Add(this.label55);
             this.grpReceptionRevue.Controls.Add(this.btnReceptionRechercher);
-            this.grpReceptionRevue.Location = new System.Drawing.Point(8, 13);
+            this.grpReceptionRevue.Font = new System.Drawing.Font("Calibri", 9F);
+            this.grpReceptionRevue.Location = new System.Drawing.Point(12, 18);
+            this.grpReceptionRevue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpReceptionRevue.Name = "grpReceptionRevue";
-            this.grpReceptionRevue.Size = new System.Drawing.Size(859, 361);
+            this.grpReceptionRevue.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpReceptionRevue.Size = new System.Drawing.Size(1288, 499);
             this.grpReceptionRevue.TabIndex = 15;
             this.grpReceptionRevue.TabStop = false;
             this.grpReceptionRevue.Text = "Recherche revue";
+            this.grpReceptionRevue.Enter += new System.EventHandler(this.grpReceptionRevue_Enter);
             // 
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(557, 20);
+            this.label56.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(836, 28);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(85, 13);
+            this.label56.Size = new System.Drawing.Size(115, 23);
             this.label56.TabIndex = 55;
             this.label56.Text = "Image revue :";
+            this.label56.Click += new System.EventHandler(this.label56_Click);
             // 
             // pcbReceptionExemplaireRevueImage
             // 
-            this.pcbReceptionExemplaireRevueImage.Location = new System.Drawing.Point(560, 145);
+            this.pcbReceptionExemplaireRevueImage.Location = new System.Drawing.Point(840, 200);
+            this.pcbReceptionExemplaireRevueImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbReceptionExemplaireRevueImage.Name = "pcbReceptionExemplaireRevueImage";
-            this.pcbReceptionExemplaireRevueImage.Size = new System.Drawing.Size(284, 210);
+            this.pcbReceptionExemplaireRevueImage.Size = new System.Drawing.Size(426, 290);
             this.pcbReceptionExemplaireRevueImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionExemplaireRevueImage.TabIndex = 54;
             this.pcbReceptionExemplaireRevueImage.TabStop = false;
+            this.pcbReceptionExemplaireRevueImage.Click += new System.EventHandler(this.pcbReceptionExemplaireRevueImage_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(6, 220);
+            this.label13.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(9, 305);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.Size = new System.Drawing.Size(94, 23);
             this.label13.TabIndex = 53;
             this.label13.Text = "Parutions :";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // dgvReceptionExemplairesListe
             // 
@@ -1562,15 +1856,19 @@ namespace Mediatek86.vue
             this.dgvReceptionExemplairesListe.AllowUserToDeleteRows = false;
             this.dgvReceptionExemplairesListe.AllowUserToResizeColumns = false;
             this.dgvReceptionExemplairesListe.AllowUserToResizeRows = false;
+            this.dgvReceptionExemplairesListe.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvReceptionExemplairesListe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceptionExemplairesListe.Location = new System.Drawing.Point(150, 221);
+            this.dgvReceptionExemplairesListe.Location = new System.Drawing.Point(225, 306);
+            this.dgvReceptionExemplairesListe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvReceptionExemplairesListe.MultiSelect = false;
             this.dgvReceptionExemplairesListe.Name = "dgvReceptionExemplairesListe";
             this.dgvReceptionExemplairesListe.ReadOnly = true;
             this.dgvReceptionExemplairesListe.RowHeadersVisible = false;
+            this.dgvReceptionExemplairesListe.RowHeadersWidth = 51;
             this.dgvReceptionExemplairesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReceptionExemplairesListe.Size = new System.Drawing.Size(391, 134);
+            this.dgvReceptionExemplairesListe.Size = new System.Drawing.Size(586, 186);
             this.dgvReceptionExemplairesListe.TabIndex = 52;
+            this.dgvReceptionExemplairesListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReceptionExemplairesListe_CellContentClick);
             this.dgvReceptionExemplairesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvExemplairesListe_ColumnHeaderMouseClick);
             this.dgvReceptionExemplairesListe.SelectionChanged += new System.EventHandler(this.dgvReceptionExemplairesListe_SelectionChanged);
             // 
@@ -1578,192 +1876,234 @@ namespace Mediatek86.vue
             // 
             this.chkReceptionRevueEmpruntable.AutoSize = true;
             this.chkReceptionRevueEmpruntable.Enabled = false;
-            this.chkReceptionRevueEmpruntable.Location = new System.Drawing.Point(527, 20);
+            this.chkReceptionRevueEmpruntable.Location = new System.Drawing.Point(791, 28);
+            this.chkReceptionRevueEmpruntable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkReceptionRevueEmpruntable.Name = "chkReceptionRevueEmpruntable";
-            this.chkReceptionRevueEmpruntable.Size = new System.Drawing.Size(15, 14);
+            this.chkReceptionRevueEmpruntable.Size = new System.Drawing.Size(18, 17);
             this.chkReceptionRevueEmpruntable.TabIndex = 51;
             this.chkReceptionRevueEmpruntable.UseVisualStyleBackColor = true;
+            this.chkReceptionRevueEmpruntable.CheckedChanged += new System.EventHandler(this.chkReceptionRevueEmpruntable_CheckedChanged);
             // 
             // txbReceptionRevueImage
             // 
-            this.txbReceptionRevueImage.Location = new System.Drawing.Point(150, 195);
+            this.txbReceptionRevueImage.Location = new System.Drawing.Point(225, 270);
+            this.txbReceptionRevueImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueImage.Name = "txbReceptionRevueImage";
             this.txbReceptionRevueImage.ReadOnly = true;
-            this.txbReceptionRevueImage.Size = new System.Drawing.Size(391, 20);
+            this.txbReceptionRevueImage.Size = new System.Drawing.Size(584, 26);
             this.txbReceptionRevueImage.TabIndex = 50;
+            this.txbReceptionRevueImage.TextChanged += new System.EventHandler(this.txbReceptionRevueImage_TextChanged);
             // 
             // txbReceptionRevueRayon
             // 
-            this.txbReceptionRevueRayon.Location = new System.Drawing.Point(150, 170);
+            this.txbReceptionRevueRayon.Location = new System.Drawing.Point(225, 235);
+            this.txbReceptionRevueRayon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueRayon.Name = "txbReceptionRevueRayon";
             this.txbReceptionRevueRayon.ReadOnly = true;
-            this.txbReceptionRevueRayon.Size = new System.Drawing.Size(207, 20);
+            this.txbReceptionRevueRayon.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevueRayon.TabIndex = 49;
+            this.txbReceptionRevueRayon.TextChanged += new System.EventHandler(this.txbReceptionRevueRayon_TextChanged);
             // 
             // txbReceptionRevuePublic
             // 
-            this.txbReceptionRevuePublic.Location = new System.Drawing.Point(150, 145);
+            this.txbReceptionRevuePublic.Location = new System.Drawing.Point(225, 200);
+            this.txbReceptionRevuePublic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevuePublic.Name = "txbReceptionRevuePublic";
             this.txbReceptionRevuePublic.ReadOnly = true;
-            this.txbReceptionRevuePublic.Size = new System.Drawing.Size(207, 20);
+            this.txbReceptionRevuePublic.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevuePublic.TabIndex = 48;
+            this.txbReceptionRevuePublic.TextChanged += new System.EventHandler(this.txbReceptionRevuePublic_TextChanged);
             // 
             // txbReceptionRevueGenre
             // 
-            this.txbReceptionRevueGenre.Location = new System.Drawing.Point(150, 120);
+            this.txbReceptionRevueGenre.Location = new System.Drawing.Point(225, 167);
+            this.txbReceptionRevueGenre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueGenre.Name = "txbReceptionRevueGenre";
             this.txbReceptionRevueGenre.ReadOnly = true;
-            this.txbReceptionRevueGenre.Size = new System.Drawing.Size(207, 20);
+            this.txbReceptionRevueGenre.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevueGenre.TabIndex = 47;
+            this.txbReceptionRevueGenre.TextChanged += new System.EventHandler(this.txbReceptionRevueGenre_TextChanged);
             // 
             // txbReceptionRevueDelaiMiseADispo
             // 
-            this.txbReceptionRevueDelaiMiseADispo.Location = new System.Drawing.Point(150, 95);
+            this.txbReceptionRevueDelaiMiseADispo.Location = new System.Drawing.Point(225, 132);
+            this.txbReceptionRevueDelaiMiseADispo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueDelaiMiseADispo.Name = "txbReceptionRevueDelaiMiseADispo";
             this.txbReceptionRevueDelaiMiseADispo.ReadOnly = true;
-            this.txbReceptionRevueDelaiMiseADispo.Size = new System.Drawing.Size(100, 20);
+            this.txbReceptionRevueDelaiMiseADispo.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionRevueDelaiMiseADispo.TabIndex = 46;
+            this.txbReceptionRevueDelaiMiseADispo.TextChanged += new System.EventHandler(this.txbReceptionRevueDelaiMiseADispo_TextChanged);
             // 
             // txbReceptionRevuePeriodicite
             // 
-            this.txbReceptionRevuePeriodicite.Location = new System.Drawing.Point(150, 70);
+            this.txbReceptionRevuePeriodicite.Location = new System.Drawing.Point(225, 97);
+            this.txbReceptionRevuePeriodicite.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevuePeriodicite.Name = "txbReceptionRevuePeriodicite";
             this.txbReceptionRevuePeriodicite.ReadOnly = true;
-            this.txbReceptionRevuePeriodicite.Size = new System.Drawing.Size(100, 20);
+            this.txbReceptionRevuePeriodicite.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionRevuePeriodicite.TabIndex = 45;
+            this.txbReceptionRevuePeriodicite.TextChanged += new System.EventHandler(this.txbReceptionRevuePeriodicite_TextChanged);
             // 
             // txbReceptionRevueTitre
             // 
-            this.txbReceptionRevueTitre.Location = new System.Drawing.Point(150, 45);
+            this.txbReceptionRevueTitre.Location = new System.Drawing.Point(225, 62);
+            this.txbReceptionRevueTitre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueTitre.Name = "txbReceptionRevueTitre";
             this.txbReceptionRevueTitre.ReadOnly = true;
-            this.txbReceptionRevueTitre.Size = new System.Drawing.Size(391, 20);
+            this.txbReceptionRevueTitre.Size = new System.Drawing.Size(584, 26);
             this.txbReceptionRevueTitre.TabIndex = 44;
+            this.txbReceptionRevueTitre.TextChanged += new System.EventHandler(this.txbReceptionRevueTitre_TextChanged);
             // 
             // txbReceptionRevueNumero
             // 
-            this.txbReceptionRevueNumero.Location = new System.Drawing.Point(150, 20);
+            this.txbReceptionRevueNumero.Location = new System.Drawing.Point(225, 28);
+            this.txbReceptionRevueNumero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbReceptionRevueNumero.Name = "txbReceptionRevueNumero";
-            this.txbReceptionRevueNumero.Size = new System.Drawing.Size(100, 20);
+            this.txbReceptionRevueNumero.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionRevueNumero.TabIndex = 43;
             this.txbReceptionRevueNumero.TextChanged += new System.EventHandler(this.txbReceptionRevueNumero_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 120);
+            this.label3.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 167);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(66, 23);
             this.label3.TabIndex = 42;
             this.label3.Text = "Genre :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pcbReceptionRevueImage
             // 
-            this.pcbReceptionRevueImage.Location = new System.Drawing.Point(690, 20);
+            this.pcbReceptionRevueImage.Location = new System.Drawing.Point(1035, 28);
+            this.pcbReceptionRevueImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pcbReceptionRevueImage.Name = "pcbReceptionRevueImage";
-            this.pcbReceptionRevueImage.Size = new System.Drawing.Size(154, 114);
+            this.pcbReceptionRevueImage.Size = new System.Drawing.Size(231, 157);
             this.pcbReceptionRevueImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionRevueImage.TabIndex = 41;
             this.pcbReceptionRevueImage.TabStop = false;
+            this.pcbReceptionRevueImage.Click += new System.EventHandler(this.pcbReceptionRevueImage_Click);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 145);
+            this.label15.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(9, 200);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 13);
+            this.label15.Size = new System.Drawing.Size(65, 23);
             this.label15.TabIndex = 40;
             this.label15.Text = "Public :";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(6, 170);
+            this.label49.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(9, 235);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(51, 13);
+            this.label49.Size = new System.Drawing.Size(67, 23);
             this.label49.TabIndex = 39;
             this.label49.Text = "Rayon :";
+            this.label49.Click += new System.EventHandler(this.label49_Click);
             // 
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(6, 45);
+            this.label50.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(9, 62);
+            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(41, 13);
+            this.label50.Size = new System.Drawing.Size(54, 23);
             this.label50.TabIndex = 36;
             this.label50.Text = "Titre :";
+            this.label50.Click += new System.EventHandler(this.label50_Click);
             // 
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(6, 20);
+            this.label51.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(9, 28);
+            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(94, 13);
+            this.label51.Size = new System.Drawing.Size(130, 23);
             this.label51.TabIndex = 33;
             this.label51.Text = "Numéro revue :";
+            this.label51.Click += new System.EventHandler(this.label51_Click);
             // 
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(6, 70);
+            this.label52.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(9, 97);
+            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(75, 13);
+            this.label52.Size = new System.Drawing.Size(100, 23);
             this.label52.TabIndex = 37;
             this.label52.Text = "Périodicité :";
+            this.label52.Click += new System.EventHandler(this.label52_Click);
             // 
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(6, 195);
+            this.label53.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(9, 270);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(117, 13);
+            this.label53.Size = new System.Drawing.Size(158, 23);
             this.label53.TabIndex = 34;
             this.label53.Text = "Chemin de l\'image :";
+            this.label53.Click += new System.EventHandler(this.label53_Click);
             // 
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(6, 95);
+            this.label54.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(9, 132);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(118, 13);
+            this.label54.Size = new System.Drawing.Size(156, 23);
             this.label54.TabIndex = 38;
             this.label54.Text = "Délai mise à dispo :";
+            this.label54.Click += new System.EventHandler(this.label54_Click);
             // 
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(436, 20);
+            this.label55.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(654, 28);
+            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(85, 13);
+            this.label55.Size = new System.Drawing.Size(118, 23);
             this.label55.TabIndex = 35;
             this.label55.Text = "Empruntable :";
+            this.label55.Click += new System.EventHandler(this.label55_Click);
             // 
             // btnReceptionRechercher
             // 
-            this.btnReceptionRechercher.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceptionRechercher.Location = new System.Drawing.Point(261, 19);
+            this.btnReceptionRechercher.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnReceptionRechercher.Font = new System.Drawing.Font("Calibri", 11F);
+            this.btnReceptionRechercher.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReceptionRechercher.Location = new System.Drawing.Point(392, 26);
+            this.btnReceptionRechercher.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReceptionRechercher.Name = "btnReceptionRechercher";
-            this.btnReceptionRechercher.Size = new System.Drawing.Size(96, 22);
+            this.btnReceptionRechercher.Size = new System.Drawing.Size(144, 30);
             this.btnReceptionRechercher.TabIndex = 16;
             this.btnReceptionRechercher.Text = "Rechercher";
-            this.btnReceptionRechercher.UseVisualStyleBackColor = true;
+            this.btnReceptionRechercher.UseVisualStyleBackColor = false;
             this.btnReceptionRechercher.Click += new System.EventHandler(this.btnReceptionRechercher_Click);
             // 
             // FrmMediatek
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 659);
+            this.ClientSize = new System.Drawing.Size(1324, 862);
             this.Controls.Add(this.tabOngletsApplication);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmMediatek";
             this.Text = "Gestion Médiathèque";
             this.tabOngletsApplication.ResumeLayout(false);

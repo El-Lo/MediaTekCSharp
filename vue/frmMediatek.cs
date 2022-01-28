@@ -1278,5 +1278,604 @@ namespace Mediatek86.vue
 
         #endregion
 
+        private void grpLivresInfos_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpLivresRecherche_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpDvdRecherche_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label38_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label39_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label42_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpDvdInfos_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabOngletsApplication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbRevuesImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabLivres_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresIsbn_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresImage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresRayon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresPublic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresGenre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresCollection_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresAuteur_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresTitre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbLivresImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbLivresNumRecherche_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvLivresListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabDvd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdDuree_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdImage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdRayon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdPublic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdGenre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdSynopsis_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdRealisateur_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdTitre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbDvdImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label31_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDvdNumRecherche_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDvdListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabRevues_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpRevuesInfos_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkRevuesEmpruntable_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesImage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesRayon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesPublic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesGenre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesDateMiseADispo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesPeriodicite_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesTitre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label35_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvRevuesListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label43_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label44_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label45_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label46_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label47_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label48_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpRevuesRecherche_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbRevuesNumRecherche_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label32_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label33_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label34_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabReceptionRevue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpReceptionExemplaire_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbReceptionExemplaireImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionExemplaireImage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionExemplaireNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpReceptionExemplaireDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpReceptionRevue_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label56_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbReceptionExemplaireRevueImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvReceptionExemplairesListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void chkReceptionRevueEmpruntable_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevueImage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevueRayon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevuePublic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevueGenre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevueDelaiMiseADispo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevuePeriodicite_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbReceptionRevueTitre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbReceptionRevueImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label51_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label52_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label53_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label54_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label55_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
