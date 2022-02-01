@@ -103,6 +103,16 @@ namespace Mediatek86.controleur
             return Dao.CreerExemplaire(exemplaire);
         }
 
+        /// <summary>
+        /// Retourne une list de commandes pour un document (DVD ou Livre)
+        /// </summary>
+        /// <param name="exemplaire">Le document concerné</param>
+        /// <returns>List de commandes</returns>
+        public List<CommandeDocument> GetCommandesdeDeDocument(string DocID)
+        {
+            return Dao.GetCommandesdeDeDocument(DocID);
+        }
+
     }
 
 }

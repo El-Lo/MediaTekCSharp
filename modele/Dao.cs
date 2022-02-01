@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mediatek86.bdd;
 using System;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Mediatek86.modele
 {
@@ -117,6 +118,42 @@ namespace Mediatek86.modele
             curs.Close();
 
             return lesLivres;
+        }
+
+        /// <summary>
+        /// Retourne Livre/Dvd avec commandes les livres à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Livre</returns>
+        public static List<CommandeDocument> GetCommandesdeDeDocument(string idLivreOuDvd)
+        {
+            List<CommandeDocument> lesCommandes = new List<CommandeDocument>();
+            string req = "Select suiv.titre as etapesuivi, cmd.dateCommande as dateCommande,  cmd.montant, cdoc.nbExemplaire as nbExemplaires";
+            req += "from commandededocument cdoc";
+            req += "join comande cmd on cdoc.id=cmd.id ";
+            req += "join etapesuivi suiv on cdoc.idEtapeSuivi = suiv.id ";
+            req += "where cdoc.idLivreDvd = @DocID";
+            req += "order by dateCommande desc ";
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+           Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@DocID", idLivreOuDvd);
+            curs.ReqSelect(req, parameters);
+
+            while (curs.Read())
+            {
+                string id = (string)curs.Field("id");
+                DateTime dateDeCommande = new DateTime();
+                Decimal montant = 0;
+                int nbExemplaires = 0;
+                DateTime.TryParse((string)curs.Field("datedecommande"), out dateDeCommande);
+                Decimal.TryParse((string)curs.Field("montant"), out montant);
+                Int32.TryParse((string)curs.Field("nbExemplaires"), out nbExemplaires);
+                CommandeDocument Commande = new CommandeDocument(nbExemplaires, (string)curs.Field("etapesuivi"), (string)curs.Field("id"), dateDeCommande, montant);
+                lesCommandes.Add(Commande);
+            }
+            curs.Close();
+
+            return lesCommandes;
         }
 
         /// <summary>

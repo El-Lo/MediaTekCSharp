@@ -23,6 +23,8 @@ namespace Mediatek86.vue
         private readonly BindingSource bdgRayons = new BindingSource();
         private readonly BindingSource bdgRevuesListe = new BindingSource();
         private readonly BindingSource bdgExemplairesListe = new BindingSource();
+        private readonly BindingSource bdgDocumentAvecCommandes = new BindingSource();
+        private readonly BindingSource bdgRevueAvecCommandes = new BindingSource();
         private List<Livre> lesLivres = new List<Livre>();
         private List<Dvd> lesDvd = new List<Dvd>();
         private List<Revue> lesRevues = new List<Revue>();
@@ -1933,70 +1935,104 @@ namespace Mediatek86.vue
 
         private void btnLivresEtCommandesSearch_Click(object sender, EventArgs e)
         {
-            if (!txbLivresNumRecherche.Text.Equals(""))
+            if (!txbSearchDocumentsAndCommandes.Text.Equals(""))
             {
-                txbLivresTitreRecherche.Text = "";
-                cbxLivresGenres.SelectedIndex = -1;
-                cbxLivresRayons.SelectedIndex = -1;
-                cbxLivresPublics.SelectedIndex = -1;
-                Livre livre = lesLivres.Find(x => x.Id.Equals(txbLivresNumRecherche.Text));
+             
+                Livre livre = lesLivres.Find(x => x.Id.Equals(txbSearchDocumentsAndCommandes.Text));
                 if (livre != null)
                 {
-                    List<Livre> livres = new List<Livre>();
-                    livres.Add(livre);
-                    RemplirLivresListe(livres);
+                   
+                    txbCommandeLivreTitre.Text = livre.Titre;
+                    txbCommandeLivreAuteur.Text = livre.Auteur;
+                    txbCommandeLivreCheminImage.Text = livre.Image;
+                    txbCommandeLivreCollection.Text = livre.Collection;
+                    txbCommandeLivreGenre.Text = livre.Genre;
+                    txbCommandeLivreNumero.Text = livre.Id;
+                    txbCommandeLivreRayon.Text = livre.Rayon;
+                    txbCommandeLivrePublic.Text = livre.Public;
+                    txbCommandeLivresISBDN.Text = livre.Isbn;
+                    List<CommandeDocument> commandes = controle.GetCommandesdeDeDocument(livre.Id);
+
+                    bdgDocumentAvecCommandes.DataSource = commandes;
+                    dgvCommandesdeLivres.DataSource = bdgDocumentAvecCommandes;
+                    dgvCommandesdeLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        
                 }
                 else
                 {
                     MessageBox.Show("numéro introuvable");
-                    RemplirLivresListeComplete();
+                    
                 }
             }
-            else
-            {
-                RemplirLivresListeComplete();
-            }
+           
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void btnDVDsEtCommandesSearch_Click(object sender, EventArgs e)
         {
-          
+            if (!txbSearchDvdsAndCommandes.Text.Equals(""))
+            {
+
+                Dvd Dvd = lesDvd.Find(x => x.Id.Equals(txbSearchDvdsAndCommandes.Text));
+                if (Dvd != null)
+                {
+
+                    txbCommandeDvdTitre.Text = Dvd.Titre;
+                    txbCommandeDvdRealisat.Text = Dvd.Realisateur;
+                    txbCommandeDvdCheminImage.Text = Dvd.Image;
+                    txbCommandeDvdSynopsis.Text = Dvd.Synopsis;
+                    txbCommandeDvdGenre.Text = Dvd.Genre;
+                    txbCommandeDvdNumero.Text = Dvd.Id;
+                    txbCommandeDvdRayon.Text = Dvd.Rayon;
+                    txbCommandeDvdPublic.Text = Dvd.Public;
+                    txbCommandeDvdDuree.Text = Convert.ToString(Dvd.Duree);
+                    List<CommandeDocument> commandes = controle.GetCommandesdeDeDocument(Dvd.Id);
+
+                    bdgDocumentAvecCommandes.DataSource = commandes;
+                    dgvCommandesdeDvd.DataSource = bdgDocumentAvecCommandes;
+                    dgvCommandesdeDvd.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                }
+                else
+                {
+                    MessageBox.Show("numéro introuvable");
+
+                }
+            }
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
         private void label58_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void label73_Click(object sender, EventArgs e)
         {
 
         }
