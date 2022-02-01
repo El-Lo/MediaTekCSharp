@@ -1,4 +1,5 @@
 ﻿
+
 namespace Mediatek86.metier
 {
     public class Document
@@ -14,7 +15,7 @@ namespace Mediatek86.metier
         private readonly string idRayon;
         private readonly string rayon;
 
-        public Document(string id, string titre, string image, string idGenre, string genre, 
+        public Document(string id, string titre, string image, string idGenre, string genre,
             string idPublic, string lePublic, string idRayon, string rayon)
         {
             this.id = id;

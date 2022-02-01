@@ -59,6 +59,48 @@ namespace Mediatek86.vue
         #endregion
 
 
+
+        #region CommandeDvds
+        //-----------------------------------------------------------
+        // ONGLET "CommandeDvds"
+        //------------------------------------------------------------
+
+        /// <summary>
+        /// Ouverture de l'onglet Commande Dvds : 
+        /// appel des méthodes pour remplir le datagrid des revues et des combos (genre, rayon, public)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TabCommandeDvds_Enter(object sender, EventArgs e)
+        {
+            lesRevues = controle.GetAllRevues();
+            RemplirComboCategorie(controle.GetAllGenres(), bdgGenres, cbxRevuesGenres);
+            RemplirComboCategorie(controle.GetAllPublics(), bdgPublics, cbxRevuesPublics);
+            RemplirComboCategorie(controle.GetAllRayons(), bdgRayons, cbxRevuesRayons);
+            RemplirRevuesListeComplete();
+        }
+        #endregion
+
+        #region CommandeLivres
+        //-----------------------------------------------------------
+        // ONGLET "CommandeLivres"
+        //------------------------------------------------------------
+
+        /// <summary>
+        /// Ouverture de l'onglet Commande Livres : 
+        /// appel des méthodes pour remplir le datagrid des revues et des combos (genre, rayon, public)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabCommandeLivres_Enter(object sender, EventArgs e)
+        {
+            //lesRevues = controle.GetAllRevues();
+            //RemplirComboCategorie(controle.GetAllGenres(), bdgGenres, cbxRevuesGenres);
+            //RemplirComboCategorie(controle.GetAllPublics(), bdgPublics, cbxRevuesPublics);
+            //RemplirComboCategorie(controle.GetAllRayons(), bdgRayons, cbxRevuesRayons);
+            //RemplirRevuesListeComplete();
+        }
+        #endregion
         #region Revues
         //-----------------------------------------------------------
         // ONGLET "Revues"
@@ -130,7 +172,7 @@ namespace Mediatek86.vue
         }
 
         /// <summary>
-        /// Recherche et affichage des revues dont le titre matche acec la saisie.
+        /// Recherche et affichage des revues dont le titre matche avec la saisie.
         /// Cette procédure est exécutée à chaque ajout ou suppression de caractère
         /// dans le textBox de saisie.
         /// </summary>
@@ -1582,8 +1624,22 @@ namespace Mediatek86.vue
         {
 
         }
+        private void tabCommandeDvds_Click(object sender, EventArgs e)
+        {
 
+        }private void tabCommandeLivres_Click(object sender, EventArgs e)
+        {
+
+        }
         private void grpRevuesInfos_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void grpCommandeDvdsInfos(object sender, EventArgs e)
+        {
+
+        }
+        private void grpCommandeLivresInfos(object sender, EventArgs e)
         {
 
         }
@@ -1687,6 +1743,7 @@ namespace Mediatek86.vue
         {
 
         }
+        
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -1868,12 +1925,78 @@ namespace Mediatek86.vue
 
         }
 
-        private void label54_Click(object sender, EventArgs e)
+        
+        private void label55_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label55_Click(object sender, EventArgs e)
+        private void btnLivresEtCommandesSearch_Click(object sender, EventArgs e)
+        {
+            if (!txbLivresNumRecherche.Text.Equals(""))
+            {
+                txbLivresTitreRecherche.Text = "";
+                cbxLivresGenres.SelectedIndex = -1;
+                cbxLivresRayons.SelectedIndex = -1;
+                cbxLivresPublics.SelectedIndex = -1;
+                Livre livre = lesLivres.Find(x => x.Id.Equals(txbLivresNumRecherche.Text));
+                if (livre != null)
+                {
+                    List<Livre> livres = new List<Livre>();
+                    livres.Add(livre);
+                    RemplirLivresListe(livres);
+                }
+                else
+                {
+                    MessageBox.Show("numéro introuvable");
+                    RemplirLivresListeComplete();
+                }
+            }
+            else
+            {
+                RemplirLivresListeComplete();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void btnDVDsEtCommandesSearch_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void label58_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
