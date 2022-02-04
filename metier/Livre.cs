@@ -1,5 +1,7 @@
 ﻿
 
+using System.Collections.Generic;
+
 namespace Mediatek86.metier
 {
     public class Livre : LivreDvd
@@ -8,6 +10,7 @@ namespace Mediatek86.metier
         private readonly string isbn;
         private readonly string auteur;
         private readonly string collection;
+      
 
         public Livre(string id, string titre, string image, string isbn, string auteur, string collection, 
             string idGenre, string genre, string idPublic, string lePublic, string idRayon, string rayon)
@@ -21,6 +24,8 @@ namespace Mediatek86.metier
         public string Isbn { get => isbn; }
         public string Auteur { get => auteur; }
         public string Collection { get => collection; }
+
+        
 
     }
 }

@@ -14,6 +14,7 @@ namespace Mediatek86.metier
         public CommandeDocument(int nbExemplaire, string EtapeSuivi, string id, DateTime dateCommande, decimal montant) : base(id, dateCommande, montant)
         {
             this.nbExemplaire = nbExemplaire;
+            this.etapeSuivi = EtapeSuivi;
         }
 
         public int NbExemplaire { get => nbExemplaire; }

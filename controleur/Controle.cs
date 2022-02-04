@@ -2,7 +2,7 @@
 using Mediatek86.modele;
 using Mediatek86.metier;
 using Mediatek86.vue;
-
+using System;
 
 namespace Mediatek86.controleur
 {
@@ -92,6 +92,14 @@ namespace Mediatek86.controleur
         {
             return Dao.GetExemplairesRevue(idDocuement);
         }
+        /// <summary>
+        /// récupère les étapes possibles d'une commande
+        /// </summary>
+        /// <returns>Collection de KeyValuePair</returns>
+        public List<KeyValuePair<string, string>> GetAllEtapes()
+        {
+            return Dao.GetEtapesdeCommande();
+        }
 
         /// <summary>
         /// Crée un exemplaire d'une revue dans la bdd
@@ -113,6 +121,42 @@ namespace Mediatek86.controleur
             return Dao.GetCommandesdeDeDocument(DocID);
         }
 
+        /// <summary>
+        /// Enregistrer une commandes pour un document (DVD ou Livre)
+        /// </summary>
+        /// <param name="exemplaire">Le document concerné</param>
+        /// <returns>True si la création a pu se faire</returns>
+        public bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
+        {
+            return Dao.EnregistrerCommandeDocument(DocumentID, montant, nbExemplaires);
+        }
+        public string UpdateCommandeEtape(string ID, int newEtapeID)
+        {
+            string erreur = "";
+            // 1 En cours
+            // 2 Livree 
+            // 3 Reglee
+            // 4 Relancee
+            // Une commande livrée (2) ou réglée(3) ne peut pas revenir à une étape précédente : en cours (1) ou relancée (4)
+            // Une commande ne peut pas être réglée (3) si elle n'est pas livrée(2)
+            int etapeActuelle = Dao.GetEtapeDeCommande(ID);
+            if (etapeActuelle != 0)
+            {
+                if ((etapeActuelle == 2 || etapeActuelle == 4) && (newEtapeID == 1 || newEtapeID == 4))
+                {
+                    erreur = "Une commande livrée ou réglée ne peut pas revenir à une étape précédente";
+                }
+                else if (newEtapeID == 3 && etapeActuelle != 2)
+                {
+                    erreur = "Une commande ne peut pas être réglée si elle n'est pas livrée";
+                }
+                else
+                {
+                    Dao.UpdateCommandeEtape(ID, newEtapeID);
+                }
+            }
+            return erreur;
+        }
     }
 
 }

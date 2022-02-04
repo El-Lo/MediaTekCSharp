@@ -14,7 +14,7 @@ namespace Mediatek86.modele
         private static readonly string userid = "root";
         private static readonly string password = "";
         private static readonly string database = "mediatek86";
-        private static readonly string connectionString = "server="+server+";user id="+userid+";password="+password+";database="+database+";SslMode=none";
+        private static readonly string connectionString = "server=" + server + ";user id=" + userid + ";password=" + password + ";database=" + database + ";SslMode=none";
 
         /// <summary>
         /// Retourne tous les genres à partir de la BDD
@@ -111,13 +111,36 @@ namespace Mediatek86.modele
                 string genre = (string)curs.Field("genre");
                 string lepublic = (string)curs.Field("public");
                 string rayon = (string)curs.Field("rayon");
-                Livre livre = new Livre(id, titre, image, isbn, auteur, collection, idgenre, genre, 
+                Livre livre = new Livre(id, titre, image, isbn, auteur, collection, idgenre, genre,
                     idpublic, lepublic, idrayon, rayon);
                 lesLivres.Add(livre);
             }
             curs.Close();
 
             return lesLivres;
+        }
+
+
+        /// <summary>
+        /// Retourne les étapes possibles d'une commande
+        /// </summary>
+        /// <returns>Collection de KeyValuePair</returns>
+        public static List<KeyValuePair<string, string>> GetEtapesdeCommande()
+        {
+        
+            string req = "Select es.idEtapeSuivi as id, es.titre as titre from etapesuivi es order by titre ";
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+            List<KeyValuePair<string, string>> listeEtapes = new List<KeyValuePair<string, string>>(); 
+            while (curs.Read())
+            {
+                KeyValuePair<string, string> etape = new KeyValuePair<string, string>(curs.Field("id").ToString(), curs.Field("titre").ToString());
+                listeEtapes.Add(etape);
+            }
+            curs.Close();
+
+            return listeEtapes;
         }
 
         /// <summary>
@@ -127,15 +150,16 @@ namespace Mediatek86.modele
         public static List<CommandeDocument> GetCommandesdeDeDocument(string idLivreOuDvd)
         {
             List<CommandeDocument> lesCommandes = new List<CommandeDocument>();
-            string req = "Select suiv.titre as etapesuivi, cmd.dateCommande as dateCommande,  cmd.montant, cdoc.nbExemplaire as nbExemplaires";
-            req += "from commandededocument cdoc";
-            req += "join comande cmd on cdoc.id=cmd.id ";
-            req += "join etapesuivi suiv on cdoc.idEtapeSuivi = suiv.id ";
-            req += "where cdoc.idLivreDvd = @DocID";
-            req += "order by dateCommande desc ";
+            string req = "Select cmd.id, suiv.titre as titreEtape, cmd.dateCommande as dateCommande,  cmd.montant, cdoc.nbExemplaire as nbExemplaires from commandedocument cdoc ";
+            req += "join commande cmd on cdoc.id=cmd.id ";
+            req += "join etapesuivi suiv on cdoc.idEtapeSuivi = suiv.idEtapeSuivi ";
+            req += "where cdoc.idLivreDvd = @DocID ";
+             
+                        req += "order by dateCommande desc ";
+          
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
-           Dictionary<string, object> parameters = new Dictionary<string, object>();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@DocID", idLivreOuDvd);
             curs.ReqSelect(req, parameters);
 
@@ -145,17 +169,48 @@ namespace Mediatek86.modele
                 DateTime dateDeCommande = new DateTime();
                 Decimal montant = 0;
                 int nbExemplaires = 0;
-                DateTime.TryParse((string)curs.Field("datedecommande"), out dateDeCommande);
-                Decimal.TryParse((string)curs.Field("montant"), out montant);
-                Int32.TryParse((string)curs.Field("nbExemplaires"), out nbExemplaires);
-                CommandeDocument Commande = new CommandeDocument(nbExemplaires, (string)curs.Field("etapesuivi"), (string)curs.Field("id"), dateDeCommande, montant);
+                if (curs.Field("dateCommande") != null)
+                    DateTime.TryParse(curs.Field("dateCommande").ToString(), out dateDeCommande);
+                if (curs.Field("montant") != null)
+                {
+                    Decimal.TryParse(curs.Field("montant").ToString(), out montant);
+                }
+                if(curs.Field("nbExemplaires") != null)
+                    Int32.TryParse(curs.Field("nbExemplaires").ToString(), out nbExemplaires);
+                CommandeDocument Commande = new CommandeDocument(nbExemplaires, curs.Field("titreEtape").ToString(), curs.Field("id").ToString(), dateDeCommande, montant);
                 lesCommandes.Add(Commande);
             }
             curs.Close();
 
             return lesCommandes;
         }
+        /// <summary>
+        /// Enregistrer une nouvelle commande de document (DVD ou Livre)
+        /// </summary>
+        /// <returns>Vrai si l'enregistrement s'est fait correctement</returns>
+        public static bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
+        {
+            string id = DateTime.Now.ToString("ddMMyyHHmmssffff") + DocumentID + montant.ToString();
+            string req = "insert into commande(id, dateCommande, montant) ";
+            req += "values(@id, @dateTimeNow, @montant)  ";
+            
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@dateTimeNow", DateTime.Now);
+            parameters.Add("@montant", montant);
+            parameters.Add("@id", id);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters);
 
+
+            req = "insert into commandedocument(nbExemplaire, id, idLivreDvd, idEtapeSuivi) ";
+            req += "values(@nbExemplaires, @id, @DocumentID, 1) ";
+            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
+            parameters2.Add("@id", id);
+            parameters2.Add("@nbExemplaires", nbExemplaires);
+            parameters2.Add("@DocumentID", DocumentID);
+            dbUpdater.ReqUpdate(req, parameters2);
+            return true;
+        }
         /// <summary>
         /// Retourne toutes les dvd à partir de la BDD
         /// </summary>
@@ -294,9 +349,50 @@ namespace Mediatek86.modele
                 curs.ReqUpdate(req, parameters);
                 curs.Close();
                 return true;
-            }catch{
+            }
+            catch
+            {
                 return false;
             }
+        }
+
+
+        /// <summary>
+        /// Changer l'etape d'une commande
+        /// </summary>
+        /// <param name="CommandeID"></param>
+        /// <param name="EtapeID"></param>
+        public static void UpdateCommandeEtape(string CommandeID, int EtapeID)
+        {
+            string req = "update commandedocument set idEtapeSuivi = @EtapeID where id = @commandeID";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@commandeID", CommandeID);
+            parameters.Add("@EtapeID", EtapeID);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters);
+        }
+
+        /// <summary>
+        /// Get Etape d'une commande
+        /// </summary>
+        /// <param name="CommandeID"></param>
+        /// <returns></returns>
+        public static short GetEtapeDeCommande(string CommandeID)
+        {
+            string req = "select idEtapeSuivi from commandedocument where id = @commandeID";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@commandeID", CommandeID);
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            
+            curs.ReqSelect(req, parameters);
+            short idEtape = 0;
+            while (curs.Read())
+            {
+                string id = curs.Field("idEtapeSuivi").ToString();
+                Int16.TryParse(id, out idEtape);
+            }
+            curs.Close();
+            return idEtape;
         }
 
     }
