@@ -127,12 +127,12 @@ namespace Mediatek86.modele
         /// <returns>Collection de KeyValuePair</returns>
         public static List<KeyValuePair<string, string>> GetEtapesdeCommande()
         {
-        
+
             string req = "Select es.idEtapeSuivi as id, es.titre as titre from etapesuivi es order by titre ";
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
             curs.ReqSelect(req, null);
-            List<KeyValuePair<string, string>> listeEtapes = new List<KeyValuePair<string, string>>(); 
+            List<KeyValuePair<string, string>> listeEtapes = new List<KeyValuePair<string, string>>();
             while (curs.Read())
             {
                 KeyValuePair<string, string> etape = new KeyValuePair<string, string>(curs.Field("id").ToString(), curs.Field("titre").ToString());
@@ -154,9 +154,9 @@ namespace Mediatek86.modele
             req += "join commande cmd on cdoc.id=cmd.id ";
             req += "join etapesuivi suiv on cdoc.idEtapeSuivi = suiv.idEtapeSuivi ";
             req += "where cdoc.idLivreDvd = @DocID ";
-             
-                        req += "order by dateCommande desc ";
-          
+
+            req += "order by dateCommande desc ";
+
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -175,9 +175,48 @@ namespace Mediatek86.modele
                 {
                     Decimal.TryParse(curs.Field("montant").ToString(), out montant);
                 }
-                if(curs.Field("nbExemplaires") != null)
+                if (curs.Field("nbExemplaires") != null)
                     Int32.TryParse(curs.Field("nbExemplaires").ToString(), out nbExemplaires);
                 CommandeDocument Commande = new CommandeDocument(nbExemplaires, curs.Field("titreEtape").ToString(), curs.Field("id").ToString(), dateDeCommande, montant);
+                lesCommandes.Add(Commande);
+            }
+            curs.Close();
+
+            return lesCommandes;
+        }
+
+        public static List<CommandeRevue> GetAbonnementsDeRevue(string idRevue)
+        {
+            List<CommandeRevue> lesCommandes = new List<CommandeRevue>();
+            string req = "Select cmd.id, cmd.dateCommande as dateCommande,  cmd.montant, abnmt.dateFinAbonnement as dateFinAbonnement from abonnement abnmt ";
+            req += "join commande cmd on abnmt.id=cmd.id ";
+
+            req += "where abnmt.idRevue = @RevueID ";
+
+            req += "order by dateCommande desc ";
+
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@RevueID", idRevue);
+            curs.ReqSelect(req, parameters);
+
+            while (curs.Read())
+            {
+                string id = (string)curs.Field("id");
+                DateTime dateDeCommande = new DateTime();
+                DateTime dateFinAbonnement = new DateTime();
+                Decimal montant = 0;
+
+                if (curs.Field("dateCommande") != null)
+                    DateTime.TryParse(curs.Field("dateCommande").ToString(), out dateDeCommande);
+                if (curs.Field("montant") != null)
+                {
+                    Decimal.TryParse(curs.Field("montant").ToString(), out montant);
+                }
+                if (curs.Field("datefinabonnement") != null)
+                    DateTime.TryParse(curs.Field("dateFinAbonnement").ToString(), out dateFinAbonnement);
+                CommandeRevue Commande = new CommandeRevue(dateFinAbonnement, curs.Field("id").ToString(), dateDeCommande, montant);
                 lesCommandes.Add(Commande);
             }
             curs.Close();
@@ -190,26 +229,69 @@ namespace Mediatek86.modele
         /// <returns>Vrai si l'enregistrement s'est fait correctement</returns>
         public static bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
         {
-            string id = DateTime.Now.ToString("ddMMyyHHmmssffff") + DocumentID + montant.ToString();
+            // Creer l'ID du document
+            string id = creerCommandeID(DocumentID, montant);
+            // enregistrer la commande dans table commande
+            EnregistrerCommande(id, montant);
+            // enregistrer les données particulieres a une commande de livre ou dvd
+            string req = "insert into commandedocument(nbExemplaire, id, idLivreDvd, idEtapeSuivi) ";
+            req += "values(@nbExemplaires, @id, @DocumentID, 1) ";
+            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
+            parameters2.Add("@id", id);
+            parameters2.Add("@nbExemplaires", nbExemplaires);
+            parameters2.Add("@DocumentID", DocumentID);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters2);
+            return true;
+        }
+        /// <summary>
+        /// Enregistrer une nouvelle abonnement ou rénouveller une abonnement
+        /// </summary>
+        /// <returns>Vrai si l'enregistrement s'est fait correctement</returns>
+        public static bool EnregistrerAbonnement(string DocumentID, decimal montant, DateTime dateFinAbonnement)
+        {
+            // Creer l'ID du document
+            string id = creerCommandeID(DocumentID, montant);
+            // enregistrer la commande dans table commande
+            EnregistrerCommande(id, montant);
+            // enregistrer les données particulieres a une commande de livre ou dvd
+            string req = "insert into abonnement(dateFinAbonnement, id, idRevue) ";
+            req += "values(@dateFinAbonnement, @id, @DocumentID) ";
+            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
+            parameters2.Add("@id", id);
+            parameters2.Add("@dateFinAbonnement", dateFinAbonnement);
+            parameters2.Add("@DocumentID", DocumentID);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters2);
+            return true;
+        }
+        /// <summary>
+        /// Creer un ID pour un commande, que ce soit pour une abonnement ou une commande de dvd ou livre
+        /// </summary>
+        /// <param name="DocumentID"></param>
+        /// <param name="montant"></param>
+        /// <returns></returns>
+        private static string creerCommandeID(string DocumentID, decimal montant)
+        {
+            return DateTime.Now.ToString("ddMMyyHHmmssffff") + DocumentID + montant.ToString();
+        }
+        /// <summary>
+        /// Premiere enregistrement lorsqu'on crée une commande de document ou une abonnement : Creerla commande dans la table commande. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="montant"></param>
+        private static void EnregistrerCommande(string id, decimal montant)
+        {
+
             string req = "insert into commande(id, dateCommande, montant) ";
             req += "values(@id, @dateTimeNow, @montant)  ";
-            
+
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@dateTimeNow", DateTime.Now);
             parameters.Add("@montant", montant);
             parameters.Add("@id", id);
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
-
-
-            req = "insert into commandedocument(nbExemplaire, id, idLivreDvd, idEtapeSuivi) ";
-            req += "values(@nbExemplaires, @id, @DocumentID, 1) ";
-            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
-            parameters2.Add("@id", id);
-            parameters2.Add("@nbExemplaires", nbExemplaires);
-            parameters2.Add("@DocumentID", DocumentID);
-            dbUpdater.ReqUpdate(req, parameters2);
-            return true;
         }
         /// <summary>
         /// Retourne toutes les dvd à partir de la BDD
@@ -383,7 +465,7 @@ namespace Mediatek86.modele
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@commandeID", CommandeID);
             BddMySql curs = BddMySql.GetInstance(connectionString);
-            
+
             curs.ReqSelect(req, parameters);
             short idEtape = 0;
             while (curs.Read())
@@ -395,5 +477,87 @@ namespace Mediatek86.modele
             return idEtape;
         }
 
+        /// <summary>
+        /// Supprimer une commande de Dvd ou Livre si elle n'est pas déjà livrée
+        /// </summary>
+        /// <param name="DocID"></param>
+        public static void SupprimerCommandeDvdLivre(string DocID)
+        {
+
+            string req = "delete from commandedocument cmd where cmd.id = @id and idEtapeSuivi = 1; "; 
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", DocID);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters);
+
+            req = "delete from commande c where c.id = @id and exists(select 1 from commandedocument cmd where cmd.id = c.id and idEtapeSuivi = 1) ; ";
+            dbUpdater.ReqUpdate(req, parameters);
+        }
+
+        /// <summary>
+        /// Retourne les dates de parution des exemplaires d'une revue
+        /// </summary>
+        /// <returns>Liste d'objets Exemplaire</returns>
+        public static List<DateTime> GetDateDesExemplairesdeRevue(string idDocument)
+        {
+            List<DateTime> lesDatesDesExemplaires = new List<DateTime>();
+            string req = "Select e.dateAchat from exemplaire e where e.id = @id";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", idDocument}
+                };
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, parameters);
+
+            while (curs.Read())
+            {
+                DateTime dt = new DateTime();
+                if (DateTime.TryParse(curs.Field("dateAchat").ToString(), out dt))
+                {
+                    lesDatesDesExemplaires.Add(dt);
+                }
+            }
+            curs.Close();
+
+            return lesDatesDesExemplaires;
+        }
+
+        /// <summary>
+        /// Supprimer un abonnement si il n'y a aucun exemplaire rataché
+        /// </summary>
+        /// <param name="idAbonnement"></param>
+        public static void SupprimerAbonnement(string idAbonnement)
+        {
+            // supprimer l'element child en verifiant qu'il n'y a aucun exemplaire rataché à l'abonnement
+            string req = "delete ab, cmd from abonnement ab join commande cmd on cmd.id = ab.id where ab.id = @idAbonnement and not exists(select 1 from exemplaire ex where ex.dateAchat > cmd.dateCommande and ex.dateAchat < ab.dateFinAbonnement and ex.id = ab.idRevue)  ";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idAbonnement", idAbonnement);
+            BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
+            dbUpdater.ReqUpdate(req, parameters);
+
+            
+        }
+
+        public static List<string> RecupererRevuesAbonnementTerminant()
+        {
+
+            List<string> dDates = new List<string>();
+            string req = "Select doc.titre as titre, ab.dateFinAbonnement as dateFin from abonnement ab join document doc on ab.idrevue = doc.id where ab.dateFinAbonnement between curdate()  AND DATE_ADD(curdate(), INTERVAL 30 DAY);";
+             
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+
+            while (curs.Read())
+            {
+                dDates.Add((string)curs.Field("titre") + " : " + ((DateTime)curs.Field("dateFin")).ToString("dd/MM/yyyy"));
+            }
+            curs.Close();
+
+            return dDates;
+        }
     }
 }

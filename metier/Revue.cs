@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Mediatek86.metier
 {
     public class Revue : Document
@@ -17,5 +19,6 @@ namespace Mediatek86.metier
         public string Periodicite { get; set; }
         public bool Empruntable { get; set; }
         public int DelaiMiseADispo { get; set; }
+        public List<CommandeRevue> Abonnements { get; set; }
     }
 }

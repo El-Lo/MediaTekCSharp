@@ -29,7 +29,14 @@ namespace Mediatek86.controleur
             FrmMediatek frmMediatek = new FrmMediatek(this);
             frmMediatek.ShowDialog();
         }
-
+        /// <summary>
+        /// Retourner une liste de revues avec des abonnement qui se terminera sous 30 jours 
+        /// </summary>
+        /// <returns></returns>
+        public List<string> RecupererRevuesAbonnementTerminant()
+        {
+            return Dao.RecupererRevuesAbonnementTerminant();
+        }
         /// <summary>
         /// getter sur la liste des genres
         /// </summary>
@@ -120,23 +127,44 @@ namespace Mediatek86.controleur
         {
             return Dao.GetCommandesdeDeDocument(DocID);
         }
+        /// <summary>
+        /// Retourne une list d'abonnements pour une revue
+        /// </summary>
+        /// <param name="RevueID"></param>
+        /// <returns></returns>
+        public List<CommandeRevue> GetAbonnementsDeRevue(string RevueID)
+        {
+            return Dao.GetAbonnementsDeRevue(RevueID);
+        }
+
+        
 
         /// <summary>
-        /// Enregistrer une commandes pour un document (DVD ou Livre)
+        /// Enregistrer une commande pour un document (DVD ou Livre)
         /// </summary>
         /// <param name="exemplaire">Le document concerné</param>
         /// <returns>True si la création a pu se faire</returns>
         public bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
         {
             return Dao.EnregistrerCommandeDocument(DocumentID, montant, nbExemplaires);
+        }  
+        
+        /// <summary>
+        /// Enregistrer une abonnement pour une revue
+        /// </summary>
+        /// <param name="exemplaire">La revue concernée</param>
+        /// <returns>True si la création a pu se faire</returns>
+        public bool EnregistrerRevueAbonnement(string DocumentID, decimal montant, DateTime DateFinAbonnement)
+        {
+            return Dao.EnregistrerAbonnement(DocumentID, montant, DateFinAbonnement);
         }
         public string UpdateCommandeEtape(string ID, int newEtapeID)
         {
             string erreur = "";
             // 1 En cours
-            // 2 Livree 
-            // 3 Reglee
-            // 4 Relancee
+            // 2 Livrée 
+            // 3 Reglée
+            // 4 Relancée
             // Une commande livrée (2) ou réglée(3) ne peut pas revenir à une étape précédente : en cours (1) ou relancée (4)
             // Une commande ne peut pas être réglée (3) si elle n'est pas livrée(2)
             int etapeActuelle = Dao.GetEtapeDeCommande(ID);
@@ -156,6 +184,52 @@ namespace Mediatek86.controleur
                 }
             }
             return erreur;
+        }
+
+        public void SupprimerCommandeDvdLivre(string DocID)
+        {
+            Dao.SupprimerCommandeDvdLivre(DocID);
+        }
+        public void SupprimerAbonnement(string IDAbonnement)
+        {
+            Dao.SupprimerAbonnement(IDAbonnement);
+        }
+        /// <summary>
+        /// Verifier si une commande peut être supprimée. 
+        /// </summary>
+        /// <param name="DateCommande"></param>
+        /// <param name="DatefinAbonnement"></param>
+        /// <param name="DateDeParution"></param>
+        /// <returns></returns>
+        public static bool EstAbonnementSupprimable(DateTime DateCommande, DateTime DatefinAbonnement, string RevueID)
+        {
+            List<DateTime> DatesDeParution = Dao.GetDateDesExemplairesdeRevue(RevueID);
+            foreach (DateTime dateP in DatesDeParution)
+            {
+                if (ParutionDansAbonnement(DateCommande, DatefinAbonnement, dateP))
+                {
+                    // une parution exist, donc la commande ne peut pas être supprimée, donc retourner faux
+                    return false;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Verifier si une date de parution est entre la date de commande et la date de fin d'abonnement
+        /// </summary>
+        /// <param name="DateCommande"></param>
+        /// <param name="DatefinAbonnement"></param>
+        /// <param name="DateDeParution"></param>
+        /// <returns></returns>
+        public static bool ParutionDansAbonnement(DateTime DateCommande, DateTime DatefinAbonnement, DateTime DateDeParution)
+        {
+
+            if (DateDeParution > DateCommande && DateDeParution < DatefinAbonnement)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 
