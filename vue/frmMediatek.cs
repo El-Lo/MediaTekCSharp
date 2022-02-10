@@ -7,6 +7,10 @@ using System.Drawing;
 using System.Linq;
 using System.Data;
 
+using System.Security.Cryptography;
+using System.Text;
+using Mediatek86.modele.utilisateur;
+
 namespace Mediatek86.vue
 {
     public partial class FrmMediatek : Form
@@ -16,6 +20,7 @@ namespace Mediatek86.vue
 
         private readonly Controle controle;
         const string ETATNEUF = "00001";
+
 
         private readonly BindingSource bdgLivresListe = new BindingSource();
         private readonly BindingSource bdgDvdListe = new BindingSource();
@@ -39,9 +44,21 @@ namespace Mediatek86.vue
         {
             InitializeComponent();
             this.controle = controle;
-            VerifierAbonnements();
+            if (Utilisateur.Service == Role.admin)
+            {
+                VerifierAbonnements();
+                pnlNotifAbonRevues.Visible = true;
+            }
+            else if (Utilisateur.Service == Role.pres)
+            {
+                tabOngletsApplication.TabPages.Remove(this.tabCommandeDvds);
+                tabOngletsApplication.TabPages.Remove(this.tabCommandeLivres);
+                tabOngletsApplication.TabPages.Remove(this.tabCommandeRevues);
+            }
         }
-
+    /// <summary>
+    /// Montrer les abonnements qui vont se terminer sous 30 jours
+    /// </summary>
         private void VerifierAbonnements()
         {
             List<string> dit = controle.RecupererRevuesAbonnementTerminant();
@@ -62,16 +79,16 @@ namespace Mediatek86.vue
                         lstbxNotifs.Items.Add(str);
                     }
                     lstbxNotifs.SelectionMode = SelectionMode.None;
-
-
-
+                     
                 }
-                else {
+                else
+                {
                     lblNotifsAucun.Visible = true;
                     lstbxNotifs.Visible = false;
                 }
             }
-            else {
+            else
+            {
                 lblNotifsAucun.Visible = true;
                 lstbxNotifs.Visible = false;
             }
@@ -275,7 +292,7 @@ namespace Mediatek86.vue
                 cbxCommandeDvdDetailEtape.Items.Clear();
                 // réinitialiser la liste de commandes
                 ChercheDvdetCommandes();
-                
+
             }
             else
             {
@@ -705,34 +722,34 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-            if (!Num.Equals(""))
-            {
-
-                Livre livre = lesLivres.Find(x => x.Id.Equals(Num));
-                if (livre != null)
+                if (!Num.Equals(""))
                 {
 
-                    txbCommandeLivreTitre.Text = livre.Titre;
-                    txbCommandeLivreAuteur.Text = livre.Auteur;
-                    txbCommandeLivreCheminImage.Text = livre.Image;
-                    txbCommandeLivreCollection.Text = livre.Collection;
-                    txbCommandeLivreGenre.Text = livre.Genre;
-                    txbCommandeLivreNumero.Text = livre.Id;
-                    txbCommandeLivreRayon.Text = livre.Rayon;
-                    txbCommandeLivrePublic.Text = livre.Public;
-                    txbCommandeLivresISBN.Text = livre.Isbn;
-                    UpdateCommandesListPourLivre(Num);
+                    Livre livre = lesLivres.Find(x => x.Id.Equals(Num));
+                    if (livre != null)
+                    {
+
+                        txbCommandeLivreTitre.Text = livre.Titre;
+                        txbCommandeLivreAuteur.Text = livre.Auteur;
+                        txbCommandeLivreCheminImage.Text = livre.Image;
+                        txbCommandeLivreCollection.Text = livre.Collection;
+                        txbCommandeLivreGenre.Text = livre.Genre;
+                        txbCommandeLivreNumero.Text = livre.Id;
+                        txbCommandeLivreRayon.Text = livre.Rayon;
+                        txbCommandeLivrePublic.Text = livre.Public;
+                        txbCommandeLivresISBN.Text = livre.Isbn;
+                        UpdateCommandesListPourLivre(Num);
 
 
 
-                }
-                else
-                {
-                    MessageBox.Show("numéro introuvable");
+                    }
+                    else
+                    {
+                        MessageBox.Show("numéro introuvable");
 
+                    }
                 }
             }
-        }
         }
         /// <summary>
         /// Recuperation des commandes pour un Livre
@@ -848,7 +865,7 @@ namespace Mediatek86.vue
                     string dateFinAbonnement = Convert.ToString(dgv.CurrentRow.Cells["dateFinAbonnement"].Value);
                     string montant = Convert.ToString(dgv.CurrentRow.Cells["montant"].Value);
                     string datecommande = Convert.ToString(dgv.CurrentRow.Cells["datecommande"].Value);
-                    
+
                     // remplir les textboxes
                     pnlCommandeRevueDetail.Visible = true;
                     lblCommandeRevueIdAbonnement.Text = id;
@@ -971,34 +988,34 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-            if (!Num.Equals(""))
-            {
-
-                Revue Revue = lesRevues.Find(x => x.Id.Equals(Num));
-                if (Revue != null)
+                if (!Num.Equals(""))
                 {
 
-                    txbCommandeRevueTitre.Text = Revue.Titre;
-                    txbCommandeRevuePeriodicite.Text = Revue.Periodicite;
-                    txbReceptionRevueDelaiMiseADispo.Text = Revue.DelaiMiseADispo.ToString();
-                    txbCommandeRevueGenre.Text = Revue.Genre;
-                    lblCommandeRevueNumero.Text = Revue.Id;
-                    txbCommandeRevueRayon.Text = Revue.Rayon;
-                    txbCommandeRevuePublic.Text = Revue.Public;
-                    txbCommandeRevueImage.Text = Revue.Image;
-                    chkCommandeRevuesEmpruntable.Checked = Revue.Empruntable;
-                    UpdateCommandesListPourRevue(Num);
+                    Revue Revue = lesRevues.Find(x => x.Id.Equals(Num));
+                    if (Revue != null)
+                    {
+
+                        txbCommandeRevueTitre.Text = Revue.Titre;
+                        txbCommandeRevuePeriodicite.Text = Revue.Periodicite;
+                        txbReceptionRevueDelaiMiseADispo.Text = Revue.DelaiMiseADispo.ToString();
+                        txbCommandeRevueGenre.Text = Revue.Genre;
+                        lblCommandeRevueNumero.Text = Revue.Id;
+                        txbCommandeRevueRayon.Text = Revue.Rayon;
+                        txbCommandeRevuePublic.Text = Revue.Public;
+                        txbCommandeRevueImage.Text = Revue.Image;
+                        chkCommandeRevuesEmpruntable.Checked = Revue.Empruntable;
+                        UpdateCommandesListPourRevue(Num);
 
 
 
-                }
-                else
-                {
-                    MessageBox.Show("numéro introuvable");
+                    }
+                    else
+                    {
+                        MessageBox.Show("numéro introuvable");
 
+                    }
                 }
             }
-        }
         }
         /// <summary>
         /// Recuperation des commandes pour un Revue
@@ -1071,7 +1088,7 @@ namespace Mediatek86.vue
                     Revue revue = lesRevues.Find(x => x.Id.Equals(lblCommandeRevueNumero.Text));
                     // récuperer commande
                     CommandeRevue cv = revue.Abonnements.Find(x => x.Id.Equals(lblCommandeRevueIdAbonnement.Text));
-                      
+
                     if (Controle.EstAbonnementSupprimable(cv.DateCommande, cv.DateFinAbonnement, lblCommandeRevueIdAbonnement.Text))
                     {
                         controle.SupprimerAbonnement(lblCommandeRevueIdAbonnement.Text);
@@ -1090,7 +1107,7 @@ namespace Mediatek86.vue
                         return;
                     }
                 }
-               
+
 
             }
             else
@@ -2965,5 +2982,7 @@ namespace Mediatek86.vue
         {
             pnlNotifAbonRevues.Visible = false;
         }
+
+     
     }
 }

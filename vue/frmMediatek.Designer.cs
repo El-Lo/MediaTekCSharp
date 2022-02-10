@@ -320,10 +320,10 @@ namespace Mediatek86.vue
             this.button1 = new System.Windows.Forms.Button();
             this.label86 = new System.Windows.Forms.Label();
             this.pnlNotifAbonRevues = new System.Windows.Forms.Panel();
+            this.lblNotifsAucun = new System.Windows.Forms.Label();
+            this.lstbxNotifs = new System.Windows.Forms.ListBox();
             this.btnFermerNotifAbonRevues = new System.Windows.Forms.Button();
             this.label106 = new System.Windows.Forms.Label();
-            this.lstbxNotifs = new System.Windows.Forms.ListBox();
-            this.lblNotifsAucun = new System.Windows.Forms.Label();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -3861,6 +3861,25 @@ namespace Mediatek86.vue
             this.pnlNotifAbonRevues.Size = new System.Drawing.Size(346, 189);
             this.pnlNotifAbonRevues.TabIndex = 1;
             // 
+            // lblNotifsAucun
+            // 
+            this.lblNotifsAucun.AutoSize = true;
+            this.lblNotifsAucun.Location = new System.Drawing.Point(16, 50);
+            this.lblNotifsAucun.Name = "lblNotifsAucun";
+            this.lblNotifsAucun.Size = new System.Drawing.Size(302, 18);
+            this.lblNotifsAucun.TabIndex = 4;
+            this.lblNotifsAucun.Text = "Aucun abonnement se termine sous 30 jours";
+            // 
+            // lstbxNotifs
+            // 
+            this.lstbxNotifs.FormattingEnabled = true;
+            this.lstbxNotifs.ItemHeight = 18;
+            this.lstbxNotifs.Location = new System.Drawing.Point(-1, 38);
+            this.lstbxNotifs.Name = "lstbxNotifs";
+            this.lstbxNotifs.Size = new System.Drawing.Size(346, 148);
+            this.lstbxNotifs.TabIndex = 3;
+            this.lstbxNotifs.Visible = false;
+            // 
             // btnFermerNotifAbonRevues
             // 
             this.btnFermerNotifAbonRevues.BackColor = System.Drawing.Color.Salmon;
@@ -3882,24 +3901,6 @@ namespace Mediatek86.vue
             this.label106.Size = new System.Drawing.Size(257, 18);
             this.label106.TabIndex = 0;
             this.label106.Text = "Revues avec abonnements a terminer";
-            // 
-            // lstbxNotifs
-            // 
-            this.lstbxNotifs.FormattingEnabled = true;
-            this.lstbxNotifs.ItemHeight = 18;
-            this.lstbxNotifs.Location = new System.Drawing.Point(-1, 38);
-            this.lstbxNotifs.Name = "lstbxNotifs";
-            this.lstbxNotifs.Size = new System.Drawing.Size(346, 148);
-            this.lstbxNotifs.TabIndex = 3;
-            // 
-            // lblNotifsAucun
-            // 
-            this.lblNotifsAucun.AutoSize = true;
-            this.lblNotifsAucun.Location = new System.Drawing.Point(16, 50);
-            this.lblNotifsAucun.Name = "lblNotifsAucun";
-            this.lblNotifsAucun.Size = new System.Drawing.Size(0, 18);
-            this.lblNotifsAucun.TabIndex = 4;
-            this.lblNotifsAucun.Text = "Aucun abonnement se termine sous 30 jours";
             // 
             // FrmMediatek
             // 

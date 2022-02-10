@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Mediatek86.modele;
 using Mediatek86.metier;
-using Mediatek86.vue;
+ 
 using System;
+
+using Mediatek86.modele.utilisateur;
+using Mediatek86.vue;
 
 namespace Mediatek86.controleur
 {
@@ -137,7 +140,7 @@ namespace Mediatek86.controleur
             return Dao.GetAbonnementsDeRevue(RevueID);
         }
 
-        
+
 
         /// <summary>
         /// Enregistrer une commande pour un document (DVD ou Livre)
@@ -147,8 +150,8 @@ namespace Mediatek86.controleur
         public bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
         {
             return Dao.EnregistrerCommandeDocument(DocumentID, montant, nbExemplaires);
-        }  
-        
+        }
+
         /// <summary>
         /// Enregistrer une abonnement pour une revue
         /// </summary>
@@ -231,7 +234,7 @@ namespace Mediatek86.controleur
             return false;
 
         }
+
+
     }
-
 }
-

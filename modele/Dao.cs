@@ -540,7 +540,10 @@ namespace Mediatek86.modele
 
             
         }
-
+        /// <summary>
+        /// Recuperer les abonnements qui termineront sous 30 jours
+        /// </summary>
+        /// <returns>List de documetns avec la date de fin d'abonnement</returns>
         public static List<string> RecupererRevuesAbonnementTerminant()
         {
 
@@ -558,6 +561,33 @@ namespace Mediatek86.modele
             curs.Close();
 
             return dDates;
+        }
+        /// <summary>
+        /// Retourner le service dans lequel une personne travaille si le mot de passe et nom d'utilisateur sont correctes. 
+        /// </summary>
+        /// <param name="NomUtilisateur"></param>
+        /// <param name="MotDePasse"></param>
+        /// <returns></returns>
+        public static string VerifierLogin(string NomUtilisateur, string MotDePasse)
+        {
+
+            string Service = null;
+            string req = "Select s.titre as Service from utilisateurs u join services s on s.id=u.idService where u.nomUtilisateur = @nomUtilisateur and u.motDePasse = @motDePasse;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@nomUtilisateur", NomUtilisateur},
+                {"@motDePasse",  MotDePasse}
+            };
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, parameters);
+
+            while (curs.Read())
+            {
+                Service = curs.Field("Service").ToString();
+            }
+            curs.Close();
+
+            return Service;
         }
     }
 }
