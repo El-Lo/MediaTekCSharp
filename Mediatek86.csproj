@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="controleur\Controle.cs" />
     <Compile Include="controleur\Login.cs" />
+    <Compile Include="controleur\EcrireLogs.cs" />
+    <Compile Include="controleur\VerifierDates.cs" />
     <Compile Include="metier\Abonnement.cs" />
     <Compile Include="metier\Commande.cs" />
     <Compile Include="metier\CommandeRevue.cs" />

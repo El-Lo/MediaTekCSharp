@@ -19,6 +19,7 @@ namespace Mediatek86.vue
         private readonly LoginControlleur login;
         internal FrmLogin(LoginControlleur login)
         {
+            EcrireLogs.Enregistrer("123");
             InitializeComponent();
             this.login = login;
         }

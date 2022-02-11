@@ -159,13 +159,16 @@ namespace Mediatek86.modele
 
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@DocID", idLivreOuDvd);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@DocID", idLivreOuDvd }
+            };
+
             curs.ReqSelect(req, parameters);
 
             while (curs.Read())
             {
-                string id = (string)curs.Field("id");
+
                 DateTime dateDeCommande = new DateTime();
                 Decimal montant = 0;
                 int nbExemplaires = 0;
@@ -197,17 +200,18 @@ namespace Mediatek86.modele
 
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@RevueID", idRevue);
+            Dictionary<string, object> parameters = new Dictionary<string, object> {
+                { "@RevueID", idRevue }
+            };
+
+
             curs.ReqSelect(req, parameters);
 
             while (curs.Read())
             {
-                string id = (string)curs.Field("id");
                 DateTime dateDeCommande = new DateTime();
                 DateTime dateFinAbonnement = new DateTime();
                 Decimal montant = 0;
-
                 if (curs.Field("dateCommande") != null)
                     DateTime.TryParse(curs.Field("dateCommande").ToString(), out dateDeCommande);
                 if (curs.Field("montant") != null)
@@ -236,10 +240,11 @@ namespace Mediatek86.modele
             // enregistrer les données particulieres a une commande de livre ou dvd
             string req = "insert into commandedocument(nbExemplaire, id, idLivreDvd, idEtapeSuivi) ";
             req += "values(@nbExemplaires, @id, @DocumentID, 1) ";
-            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
-            parameters2.Add("@id", id);
-            parameters2.Add("@nbExemplaires", nbExemplaires);
-            parameters2.Add("@DocumentID", DocumentID);
+            Dictionary<string, object> parameters2 = new Dictionary<string, object> {
+                {"@id", id},
+                {"@nbExemplaires", nbExemplaires},
+                {"@DocumentID", DocumentID}
+            }; 
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters2);
             return true;
@@ -257,10 +262,13 @@ namespace Mediatek86.modele
             // enregistrer les données particulieres a une commande de livre ou dvd
             string req = "insert into abonnement(dateFinAbonnement, id, idRevue) ";
             req += "values(@dateFinAbonnement, @id, @DocumentID) ";
-            Dictionary<string, object> parameters2 = new Dictionary<string, object>();
-            parameters2.Add("@id", id);
-            parameters2.Add("@dateFinAbonnement", dateFinAbonnement);
-            parameters2.Add("@DocumentID", DocumentID);
+            Dictionary<string, object> parameters2 = new Dictionary<string, object>
+            {
+                {"@id", id },
+                {"@dateFinAbonnement", dateFinAbonnement},
+                {"@DocumentID", DocumentID}
+            };
+            
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters2);
             return true;
@@ -286,10 +294,11 @@ namespace Mediatek86.modele
             string req = "insert into commande(id, dateCommande, montant) ";
             req += "values(@id, @dateTimeNow, @montant)  ";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@dateTimeNow", DateTime.Now);
-            parameters.Add("@montant", montant);
-            parameters.Add("@id", id);
+            Dictionary<string, object> parameters = new Dictionary<string, object>() {
+                {"@dateTimeNow", DateTime.Now },
+                {"@montant", montant },
+                {"@id", id }
+            }; 
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
         }
@@ -447,9 +456,10 @@ namespace Mediatek86.modele
         public static void UpdateCommandeEtape(string CommandeID, int EtapeID)
         {
             string req = "update commandedocument set idEtapeSuivi = @EtapeID where id = @commandeID";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@commandeID", CommandeID);
-            parameters.Add("@EtapeID", EtapeID);
+            Dictionary<string, object> parameters = new Dictionary<string, object>() {
+                {"@commandeID", CommandeID},
+                {"@EtapeID", EtapeID}
+            }; 
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
         }
@@ -462,8 +472,10 @@ namespace Mediatek86.modele
         public static short GetEtapeDeCommande(string CommandeID)
         {
             string req = "select idEtapeSuivi from commandedocument where id = @commandeID";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@commandeID", CommandeID);
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                {"@commandeID", CommandeID}
+            }; 
             BddMySql curs = BddMySql.GetInstance(connectionString);
 
             curs.ReqSelect(req, parameters);
@@ -484,10 +496,11 @@ namespace Mediatek86.modele
         public static void SupprimerCommandeDvdLivre(string DocID)
         {
 
-            string req = "delete from commandedocument cmd where cmd.id = @id and idEtapeSuivi = 1; "; 
+            string req = "delete from commandedocument cmd where cmd.id = @id and idEtapeSuivi = 1; ";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", DocID);
+            Dictionary<string, object> parameters = new Dictionary<string, object>() {
+                {"@id", DocID}
+            }; 
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
 
@@ -496,7 +509,7 @@ namespace Mediatek86.modele
         }
 
         /// <summary>
-        /// Retourne les dates de parution des exemplaires d'une revue
+        /// Retourner les dates de parution des exemplaires d'une revue
         /// </summary>
         /// <returns>Liste d'objets Exemplaire</returns>
         public static List<DateTime> GetDateDesExemplairesdeRevue(string idDocument)
@@ -513,8 +526,7 @@ namespace Mediatek86.modele
 
             while (curs.Read())
             {
-                DateTime dt = new DateTime();
-                if (DateTime.TryParse(curs.Field("dateAchat").ToString(), out dt))
+                if (DateTime.TryParse(curs.Field("dateAchat").ToString(), out DateTime dt))
                 {
                     lesDatesDesExemplaires.Add(dt);
                 }
@@ -533,12 +545,14 @@ namespace Mediatek86.modele
             // supprimer l'element child en verifiant qu'il n'y a aucun exemplaire rataché à l'abonnement
             string req = "delete ab, cmd from abonnement ab join commande cmd on cmd.id = ab.id where ab.id = @idAbonnement and not exists(select 1 from exemplaire ex where ex.dateAchat > cmd.dateCommande and ex.dateAchat < ab.dateFinAbonnement and ex.id = ab.idRevue)  ";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@idAbonnement", idAbonnement);
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                {"@idAbonnement", idAbonnement}
+            };
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
 
-            
+
         }
         /// <summary>
         /// Recuperer les abonnements qui termineront sous 30 jours
@@ -549,7 +563,7 @@ namespace Mediatek86.modele
 
             List<string> dDates = new List<string>();
             string req = "Select doc.titre as titre, ab.dateFinAbonnement as dateFin from abonnement ab join document doc on ab.idrevue = doc.id where ab.dateFinAbonnement between curdate()  AND DATE_ADD(curdate(), INTERVAL 30 DAY);";
-             
+
 
             BddMySql curs = BddMySql.GetInstance(connectionString);
             curs.ReqSelect(req, null);

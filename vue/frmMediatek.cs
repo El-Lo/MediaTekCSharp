@@ -30,8 +30,6 @@ namespace Mediatek86.vue
         private readonly BindingSource bdgRevuesListe = new BindingSource();
         private readonly BindingSource bdgExemplairesListe = new BindingSource();
         private readonly BindingSource bdgDocumentAvecCommandes = new BindingSource();
-        private readonly BindingSource bdgAbonnementsATerminer = new BindingSource();
-        private readonly BindingSource bdgRevueAvecCommandes = new BindingSource();
         private List<Livre> lesLivres = new List<Livre>();
         private List<Dvd> lesDvd = new List<Dvd>();
         private List<Revue> lesRevues = new List<Revue>();
@@ -56,9 +54,9 @@ namespace Mediatek86.vue
                 tabOngletsApplication.TabPages.Remove(this.tabCommandeRevues);
             }
         }
-    /// <summary>
-    /// Montrer les abonnements qui vont se terminer sous 30 jours
-    /// </summary>
+        /// <summary>
+        /// Montrer les abonnements qui vont se terminer sous 30 jours
+        /// </summary>
         private void VerifierAbonnements()
         {
             List<string> dit = controle.RecupererRevuesAbonnementTerminant();
@@ -69,17 +67,13 @@ namespace Mediatek86.vue
                 {
                     lblNotifsAucun.Visible = false;
                     lstbxNotifs.Visible = true;
-                    //bdgAbonnementsATerminer.DataSource = dit.Select(x => new { Value = x }).ToList();  
-                    //dgvAbonnementsATerminer.DataSource = bdgAbonnementsATerminer;
-                    //dgvAbonnementsATerminer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    //dgvAbonnementsATerminer.ColumnHeadersVisible = false; dgvAbonnementsATerminer.RowHeadersVisible = false;
 
                     foreach (string str in dit)
                     {
                         lstbxNotifs.Items.Add(str);
                     }
                     lstbxNotifs.SelectionMode = SelectionMode.None;
-                     
+
                 }
                 else
                 {
@@ -137,9 +131,7 @@ namespace Mediatek86.vue
             cbxFindDvdByNum.Items.Clear();
             foreach (Dvd dvd in lesDvd)
             {
-                ComboboxItem item = new ComboboxItem();
-                item.Text = dvd.Id;
-                item.Value = dvd.Id;
+                ComboboxItem item = new ComboboxItem(dvd.Id, dvd.Id);
                 cbxFindDvdByNum.Items.Add(item);
             }
 
@@ -170,10 +162,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string EtapeID = item.Value;
-
-                int EtapeIDInt;
-
-                if (Int32.TryParse(EtapeID, out EtapeIDInt))
+                if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
                     string erreur = controle.UpdateCommandeEtape(lblCommandeDVDDetailID.Text, EtapeIDInt);
                     if (string.IsNullOrWhiteSpace(erreur))
@@ -224,13 +213,9 @@ namespace Mediatek86.vue
                     //ajouter les étapes
                     foreach (KeyValuePair<string, string> uneEtape in Etapes)
                     {
-                        int key;
-
-                        if (Int32.TryParse(uneEtape.Key, out key))
+                        if (Int32.TryParse(uneEtape.Key, out int key))
                         {
-                            ComboboxItem item = new ComboboxItem();
-                            item.Text = uneEtape.Value;
-                            item.Value = uneEtape.Key;
+                            ComboboxItem item = new ComboboxItem(uneEtape.Value, uneEtape.Key);
 
                             cbxCommandeDvdDetailEtape.Items.Add(item);
                         }
@@ -249,8 +234,7 @@ namespace Mediatek86.vue
 
                     // trouver l'étape
                     ComboboxItem cmbx = (ComboboxItem)cbxCommandeDvdDetailEtape.SelectedItem;
-                    int etapeID = 0;
-                    Int32.TryParse(cmbx.Value, out etapeID);
+                    Int32.TryParse(cmbx.Value, out int etapeID);
 
                     // si la commande est livré cacher le bouton pour supprimer et montrer une message sinon faire l'inverse
                     if (etapeID > 1)
@@ -294,10 +278,7 @@ namespace Mediatek86.vue
                 ChercheDvdetCommandes();
 
             }
-            else
-            {
-                return;
-            }
+
         }
         /// <summary>
         /// Enregistrer une commande de Dvd
@@ -307,17 +288,15 @@ namespace Mediatek86.vue
         private void btnEnregistrerCommandeDvd_Click(object sender, EventArgs e)
         {
             lblErrorAjouteDocumentDvd.Text = "";
-            decimal montant;
-            int nbExemplaires;
             string idDvd = txbCommandeDvdNumero.Text;
             // verifier saisie montant
-            if (!Decimal.TryParse(txbNewCommandeDvdMontant.Text, out montant))
+            if (!Decimal.TryParse(txbNewCommandeDvdMontant.Text, out decimal montant))
             {
                 lblErrorAjouteDocumentDvd.Text = "Montant incorrect, veuillez réessayer, merci.";
                 return;
             }
             // verifier saisie nbExemplaires
-            if (!Int32.TryParse(txbNewCommandeDvdNbExemplaires.Text, out nbExemplaires))
+            if (!Int32.TryParse(txbNewCommandeDvdNbExemplaires.Text, out int nbExemplaires))
             {
                 lblErrorAjouteDocumentDvd.Text = "Nombre d'exemplaires incorrect, veuillez réessayer, merci.";
                 return;
@@ -326,7 +305,7 @@ namespace Mediatek86.vue
             if (!controle.EnregistrerCommandeDocument(idDvd, montant, nbExemplaires))
             {
                 lblErrorAjouteDocumentDvd.Text = "Une erreur est survenue, merci de réesayer. (Err : 15d)";
-                return;
+
             }
             //si l'enregistrement s'est bien passée, réinitialise les champs
             else
@@ -357,7 +336,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-                if (!Num.Equals(""))
+                if (!String.IsNullOrWhiteSpace(Num))
                 {
                     Dvd Dvd = lesDvd.Find(x => x.Id.Equals(Num));
                     if (Dvd != null)
@@ -413,7 +392,7 @@ namespace Mediatek86.vue
             ComboboxItem item = (ComboboxItem)cbxFindDvdByNum.SelectedItem;
             if (item != null)
             {
-                List<CommandeDocument> sortedList = new List<CommandeDocument>();
+                List<CommandeDocument> sortedList;
                 switch (titreColonne)
                 {
                     case "datecommande":
@@ -464,9 +443,8 @@ namespace Mediatek86.vue
 
             foreach (Livre unlivre in lesLivres)
             {
-                ComboboxItem item = new ComboboxItem();
-                item.Text = unlivre.Id;
-                item.Value = unlivre.Id;
+                ComboboxItem item = new ComboboxItem(unlivre.Id, unlivre.Id);
+
                 cbxFindLivreByNum.Items.Add(item);
             }
         }
@@ -485,9 +463,7 @@ namespace Mediatek86.vue
             {
                 string EtapeID = item.Value;
 
-                int EtapeIDInt;
-
-                if (Int32.TryParse(EtapeID, out EtapeIDInt))
+                if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
                     string erreur = controle.UpdateCommandeEtape(lblCommandeLivreDetailID.Text, EtapeIDInt);
                     if (string.IsNullOrWhiteSpace(erreur))
@@ -550,23 +526,13 @@ namespace Mediatek86.vue
                     //ajouter les étapes
                     foreach (KeyValuePair<string, string> uneEtape in Etapes)
                     {
-                        int key;
-                        if (Int32.TryParse(uneEtape.Key, out key))
+                        if (Int32.TryParse(uneEtape.Key, out int key))
                         {
-                            ComboboxItem item = new ComboboxItem();
-                            item.Text = uneEtape.Value;
-                            item.Value = uneEtape.Key;
-
+                            ComboboxItem item = new ComboboxItem(uneEtape.Value, uneEtape.Key);
                             cbxCommandeLivreDetailEtape.Items.Add(item);
-
-                            //  cbxCommandeLivreDetailEtape.SelectedIndex = 0;
-
-                            //MessageBox.Show((cbxCommandeLivreDetailEtape.SelectedItem as ComboboxItem).Value.ToString());
-                            // cbxCommandeLivreDetailEtape.Items.Add(new object());
                         }
                     }
                     // selectionner la bonne étape 
-                    // cbxCommandeLivreDetailEtape.SelectedItem = selectedEtape;
                     foreach (ComboboxItem item in cbxCommandeLivreDetailEtape.Items)
                     {
                         if (item.Text == selectedEtape)
@@ -581,8 +547,7 @@ namespace Mediatek86.vue
 
                     // trouver l'étape
                     ComboboxItem cmbx = (ComboboxItem)cbxCommandeLivreDetailEtape.SelectedItem;
-                    int etapeID = 0;
-                    Int32.TryParse(cmbx.Value, out etapeID);
+                    Int32.TryParse(cmbx.Value, out int etapeID);
 
                     // si la commande est livré cacher le bouton pour supprimer et montrer une message sinon faire l'inverse
                     if (etapeID > 1)
@@ -627,10 +592,6 @@ namespace Mediatek86.vue
                 ChercheLivreetCommandes();
 
             }
-            else
-            {
-                return;
-            }
         }
         /// <summary>
         /// Enregistrer une command de livre
@@ -640,17 +601,15 @@ namespace Mediatek86.vue
         private void btnEnregistrerCommandeLivre_Click(object sender, EventArgs e)
         {
             lblErrorAjouteDocumentLivre.Text = "";
-            decimal montant;
-            int nbExemplaires;
             string idLivre = txbCommandeLivreNumero.Text;
             // verifier saisie montant
-            if (!Decimal.TryParse(txbNewCommandeLivreMontant.Text, out montant))
+            if (!Decimal.TryParse(txbNewCommandeLivreMontant.Text, out decimal montant))
             {
                 lblErrorAjouteDocumentLivre.Text = "Montant incorrect, veuillez réessayer, merci.";
                 return;
             }
             // verifier saisie nbExemplaires
-            if (!Int32.TryParse(txbNewCommandeLivreNbExemplaires.Text, out nbExemplaires))
+            if (!Int32.TryParse(txbNewCommandeLivreNbExemplaires.Text, out int nbExemplaires))
             {
                 lblErrorAjouteDocumentLivre.Text = "Nombre d'exemplaires incorrect, veuillez réessayer, merci.";
                 return;
@@ -659,7 +618,6 @@ namespace Mediatek86.vue
             if (!controle.EnregistrerCommandeDocument(idLivre, montant, nbExemplaires))
             {
                 lblErrorAjouteDocumentLivre.Text = "Une erreur est survenue, merci de réesayer. (Err : 15d)";
-                return;
             }
             //si l'enregistrement s'est bien passée, réinitialise les champs
             else
@@ -681,7 +639,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-                if (!Num.Equals(""))
+                if (!String.IsNullOrWhiteSpace(Num))
                 {
                     Livre livre = lesLivres.Find(x => x.Id.Equals(Num));
                     if (livre != null)
@@ -722,7 +680,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-                if (!Num.Equals(""))
+                if (!String.IsNullOrWhiteSpace(Num))
                 {
 
                     Livre livre = lesLivres.Find(x => x.Id.Equals(Num));
@@ -777,7 +735,7 @@ namespace Mediatek86.vue
             ComboboxItem item = (ComboboxItem)cbxFindLivreByNum.SelectedItem;
             if (item != null)
             {
-                List<CommandeDocument> sortedList = new List<CommandeDocument>();
+                List<CommandeDocument> sortedList;
                 switch (titreColonne)
                 {
                     case "datecommande":
@@ -828,9 +786,7 @@ namespace Mediatek86.vue
             cbxFindRevueByNum.Items.Clear();
             foreach (Revue unRevue in lesRevues)
             {
-                ComboboxItem item = new ComboboxItem();
-                item.Text = unRevue.Id;
-                item.Value = unRevue.Id;
+                ComboboxItem item = new ComboboxItem(unRevue.Id, unRevue.Id);
                 cbxFindRevueByNum.Items.Add(item);
             }
         }
@@ -873,9 +829,6 @@ namespace Mediatek86.vue
                     lblCommandeRevueDetailMontant.Text = montant;
                     lblNewCommandeRevueFinAbonnement.Text = dateFinAbonnement;
 
-                    // trouver une liste d'étapes
-                    List<KeyValuePair<string, string>> Etapes = controle.GetAllEtapes();
-
                     //verfier si commande est supprimable
                     if (Controle.EstAbonnementSupprimable(Convert.ToDateTime(datecommande), Convert.ToDateTime(dateFinAbonnement), lblCommandeRevueNumero.Text))
                     {
@@ -892,6 +845,7 @@ namespace Mediatek86.vue
                 }
             }
         }
+
         /// <summary>
         /// Enregistrer une command de Revue
         /// </summary>
@@ -900,17 +854,15 @@ namespace Mediatek86.vue
         private void btnEnregistrerAbonnementRevue_Click(object sender, EventArgs e)
         {
             lblErrorAjouteDocumentRevue.Text = "";
-            decimal montant;
-            DateTime dateFinAbonnement = new DateTime();
             string idRevue = lblCommandeRevueNumero.Text;
             // verifier saisie montant
-            if (!Decimal.TryParse(txbNewCommandeRevueMontant.Text, out montant))
+            if (!Decimal.TryParse(txbNewCommandeRevueMontant.Text, out decimal montant))
             {
                 lblErrorAjouteDocumentRevue.Text = "Montant incorrect, veuillez réessayer, merci.";
                 return;
             }
             // verifier saisie nbExemplaires
-            if (!DateTime.TryParse(txbNewAbonnementDateFin.Text, out dateFinAbonnement))
+            if (!DateTime.TryParse(txbNewAbonnementDateFin.Text, out DateTime dateFinAbonnement))
             {
 
                 lblErrorAjouteDocumentRevue.Text = "Date de fin d'abonnement incorrect, veuillez réessayer, merci.";
@@ -925,7 +877,7 @@ namespace Mediatek86.vue
             if (!controle.EnregistrerRevueAbonnement(idRevue, montant, dateFinAbonnement))
             {
                 lblErrorAjouteDocumentRevue.Text = "Une erreur est survenue, merci de réesayer. (Err : 15e)";
-                return;
+
             }
             //si l'enregistrement s'est bien passée, réinitialise les champs
             else
@@ -947,7 +899,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-                if (!Num.Equals(""))
+                if (!String.IsNullOrEmpty(Num))
                 {
                     Revue Revue = lesRevues.Find(x => x.Id.Equals(Num));
                     if (Revue != null)
@@ -988,7 +940,7 @@ namespace Mediatek86.vue
             if (item != null)
             {
                 string Num = item.Value;
-                if (!Num.Equals(""))
+                if (!String.IsNullOrEmpty(Num))
                 {
 
                     Revue Revue = lesRevues.Find(x => x.Id.Equals(Num));
@@ -1044,7 +996,7 @@ namespace Mediatek86.vue
             ComboboxItem item = (ComboboxItem)cbxFindRevueByNum.SelectedItem;
             if (item != null)
             {
-                List<CommandeRevue> sortedList = new List<CommandeRevue>();
+                List<CommandeRevue> sortedList;
                 switch (titreColonne)
                 {
                     case "datecommande":
@@ -1080,40 +1032,33 @@ namespace Mediatek86.vue
             string title = "Suppression d'Abonnement";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-            if (result.ToString().ToLower() == "yes")
+            if (result.ToString().ToLower() == "yes" && !string.IsNullOrWhiteSpace(lblCommandeRevueIdAbonnement.Text))
             {
-                if (!string.IsNullOrWhiteSpace(lblCommandeRevueIdAbonnement.Text))
+
+                // récuperer revue
+                Revue revue = lesRevues.Find(x => x.Id.Equals(lblCommandeRevueNumero.Text));
+                // récuperer commande
+                CommandeRevue cv = revue.Abonnements.Find(x => x.Id.Equals(lblCommandeRevueIdAbonnement.Text));
+
+                if (Controle.EstAbonnementSupprimable(cv.DateCommande, cv.DateFinAbonnement, lblCommandeRevueIdAbonnement.Text))
                 {
-                    // récuperer revue
-                    Revue revue = lesRevues.Find(x => x.Id.Equals(lblCommandeRevueNumero.Text));
-                    // récuperer commande
-                    CommandeRevue cv = revue.Abonnements.Find(x => x.Id.Equals(lblCommandeRevueIdAbonnement.Text));
-
-                    if (Controle.EstAbonnementSupprimable(cv.DateCommande, cv.DateFinAbonnement, lblCommandeRevueIdAbonnement.Text))
-                    {
-                        controle.SupprimerAbonnement(lblCommandeRevueIdAbonnement.Text);
-                        // réinitialiser pnlCommandeRevueDetail
-                        pnlCommandeRevueDetail.Visible = false;
-                        lblCommandeRevueIdAbonnement.Text = "";
-                        lblCommandeRevueDetailDateDeCommande.Text = "";
-                        lblCommandeRevueDetailMontant.Text = "";
+                    controle.SupprimerAbonnement(lblCommandeRevueIdAbonnement.Text);
+                    // réinitialiser pnlCommandeRevueDetail
+                    pnlCommandeRevueDetail.Visible = false;
+                    lblCommandeRevueIdAbonnement.Text = "";
+                    lblCommandeRevueDetailDateDeCommande.Text = "";
+                    lblCommandeRevueDetailMontant.Text = "";
 
 
-                        // réinitialiser la liste de commandes
-                        ChercheRevueetCommandes();
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    // réinitialiser la liste de commandes
+                    ChercheRevueetCommandes();
                 }
 
 
+
+
             }
-            else
-            {
-                return;
-            }
+
         }
         #endregion
 
@@ -1173,6 +1118,7 @@ namespace Mediatek86.vue
                 {
                     List<Revue> revues = new List<Revue>();
                     revues.Add(revue);
+                    //remplir les textboxes etc. sur le form
                     RemplirRevuesListe(revues);
                 }
                 else
@@ -2229,12 +2175,14 @@ namespace Mediatek86.vue
         private void btnReceptionExemplaireImage_Click(object sender, EventArgs e)
         {
             string filePath = "";
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = "c:\\";
-            openFileDialog.Filter = "Files|*.jpg;*.bmp;*.jpeg;*.png;*.gif";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                filePath = openFileDialog.FileName;
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Files|*.jpg;*.bmp;*.jpeg;*.png;*.gif";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                }
             }
             txbReceptionExemplaireImage.Text = filePath;
             try
@@ -2339,635 +2287,16 @@ namespace Mediatek86.vue
 
         #endregion
 
-        private void grpLivresInfos_Enter(object sender, EventArgs e)
-        {
 
-        }
 
-        private void grpLivresRecherche_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpDvdRecherche_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label38_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label41_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label40_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label39_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label42_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label23_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label30_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpDvdInfos_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabOngletsApplication_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbRevuesImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabLivres_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresIsbn_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresImage_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresRayon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresPublic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresGenre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresCollection_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresAuteur_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresTitre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresNumero_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbLivresImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbLivresNumRecherche_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label20_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvLivresListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabDvd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdDuree_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdImage_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdRayon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdPublic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdGenre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdSynopsis_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdRealisateur_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdTitre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdNumero_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbDvdImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label29_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label31_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDvdNumRecherche_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvDvdListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabRevues_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void tabCommandeDvds_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void tabCommandeLivres_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void grpRevuesInfos_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void grpCommandeDvdsInfos(object sender, EventArgs e)
-        {
-
-        }
-        private void grpCommandeLivresInfos(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chkRevuesEmpruntable_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesImage_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesRayon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesPublic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesGenre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesDateMiseADispo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesPeriodicite_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesTitre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesNumero_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label35_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvRevuesListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label36_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label37_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label43_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label44_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label45_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label46_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label47_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label48_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpRevuesRecherche_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbRevuesNumRecherche_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label32_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label34_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabReceptionRevue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpReceptionExemplaire_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbReceptionExemplaireImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionExemplaireImage_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionExemplaireNumero_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpReceptionExemplaireDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpReceptionRevue_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label56_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbReceptionExemplaireRevueImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvReceptionExemplairesListe_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void chkReceptionRevueEmpruntable_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevueImage_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevueRayon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevuePublic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevueGenre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevueDelaiMiseADispo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevuePeriodicite_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbReceptionRevueTitre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pcbReceptionRevueImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label49_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label50_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label51_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label52_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label53_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label55_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label58_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label73_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvCommandesdeDvd_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         public class ComboboxItem
         {
+            public ComboboxItem(string text, string value)
+            {
+                this.Text = text;
+                this.Value = value;
+            }
             public string Text { get; set; }
             public string Value { get; set; }
 
@@ -2983,6 +2312,6 @@ namespace Mediatek86.vue
             pnlNotifAbonRevues.Visible = false;
         }
 
-     
+
     }
 }

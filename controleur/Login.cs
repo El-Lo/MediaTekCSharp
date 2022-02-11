@@ -19,18 +19,26 @@ namespace Mediatek86.controleur
         /// <returns>Vrai si la personne peut être authentifié</returns>
         public bool VerifierLogin(string NomUtilisateur, string HashPass)
         {
-            string service = Dao.VerifierLogin(NomUtilisateur, HashPass);
-
-            if (!string.IsNullOrWhiteSpace(service))
+           return  EnregistrerService(Dao.VerifierLogin(NomUtilisateur, HashPass)); 
+        }
+        /// <summary>
+        /// Enregistrer le service de l'utilisateur
+        /// </summary>
+        /// <param name="Service"></param>
+        /// <returns></returns>
+        public bool EnregistrerService(string Service)
+        {
+            if (!string.IsNullOrWhiteSpace(Service))
             {
-                if (Enum.TryParse(service, out Role roles))
+                if (Enum.TryParse(Service, out Role roles))
                 {
                     Utilisateur.Service = roles;
                     return true;
                 }
+                return false;
             }
             return false;
-
+          
         }
     }
 }

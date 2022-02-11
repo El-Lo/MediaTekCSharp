@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Mediatek86.controleur;
 using MySql.Data.MySqlClient;
 
 namespace Mediatek86.bdd
@@ -77,6 +78,7 @@ namespace Mediatek86.bdd
             catch (MySqlException e)
             {
                 Console.WriteLine(e.Message);
+                EcrireLogs.Enregistrer(e.Message);
             }
             catch (InvalidOperationException e)
             {
@@ -149,6 +151,7 @@ namespace Mediatek86.bdd
             catch (MySqlException e)
             {
                 Console.WriteLine(e.Message);
+                EcrireLogs.Enregistrer(e.Message);
                 throw;
             }
             catch (InvalidOperationException e)
@@ -174,7 +177,8 @@ namespace Mediatek86.bdd
         private void ErreurGraveBddNonAccessible(Exception e)
         {
             MessageBox.Show("Base de données non accessibles", "Erreur grave");
-            Console.WriteLine(e.Message);
+            Console.WriteLine("Base de données non accessibles" + e.Message);
+            EcrireLogs.Enregistrer(e.Message);
             Environment.Exit(1);
         }
     }

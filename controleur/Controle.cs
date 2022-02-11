@@ -6,6 +6,7 @@ using System;
 
 using Mediatek86.modele.utilisateur;
 using Mediatek86.vue;
+using System.Linq;
 
 namespace Mediatek86.controleur
 {
@@ -207,33 +208,17 @@ namespace Mediatek86.controleur
         public static bool EstAbonnementSupprimable(DateTime DateCommande, DateTime DatefinAbonnement, string RevueID)
         {
             List<DateTime> DatesDeParution = Dao.GetDateDesExemplairesdeRevue(RevueID);
-            foreach (DateTime dateP in DatesDeParution)
-            {
-                if (ParutionDansAbonnement(DateCommande, DatefinAbonnement, dateP))
-                {
-                    // une parution exist, donc la commande ne peut pas être supprimée, donc retourner faux
-                    return false;
-                }
-            }
+
+
+            DateTime a = DatesDeParution.FirstOrDefault(x => VerifierDates.ParutionDansAbonnement(DateCommande, DatefinAbonnement, x));
+
+            if (a != DateTime.MinValue)
+                // une parution exist, donc la commande ne peut pas être supprimée, donc retourner faux
+                return false; 
+            
             return true;
         }
-        /// <summary>
-        /// Verifier si une date de parution est entre la date de commande et la date de fin d'abonnement
-        /// </summary>
-        /// <param name="DateCommande"></param>
-        /// <param name="DatefinAbonnement"></param>
-        /// <param name="DateDeParution"></param>
-        /// <returns></returns>
-        public static bool ParutionDansAbonnement(DateTime DateCommande, DateTime DatefinAbonnement, DateTime DateDeParution)
-        {
-
-            if (DateDeParution > DateCommande && DateDeParution < DatefinAbonnement)
-            {
-                return true;
-            }
-            return false;
-
-        }
+        
 
 
     }

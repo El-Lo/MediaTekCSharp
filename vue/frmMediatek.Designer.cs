@@ -386,7 +386,7 @@ namespace Mediatek86.vue
             this.tabOngletsApplication.SelectedIndex = 0;
             this.tabOngletsApplication.Size = new System.Drawing.Size(1324, 862);
             this.tabOngletsApplication.TabIndex = 0;
-            this.tabOngletsApplication.SelectedIndexChanged += new System.EventHandler(this.tabOngletsApplication_SelectedIndexChanged);
+           
             // 
             // tabLivres
             // 
@@ -399,7 +399,6 @@ namespace Mediatek86.vue
             this.tabLivres.Size = new System.Drawing.Size(1316, 836);
             this.tabLivres.TabIndex = 2;
             this.tabLivres.Text = "Livres";
-            this.tabLivres.Click += new System.EventHandler(this.tabLivres_Click);
             this.tabLivres.Enter += new System.EventHandler(this.TabLivres_Enter);
             // 
             // grpLivresInfos
@@ -432,7 +431,6 @@ namespace Mediatek86.vue
             this.grpLivresInfos.TabIndex = 19;
             this.grpLivresInfos.TabStop = false;
             this.grpLivresInfos.Text = "Informations détaillées";
-            this.grpLivresInfos.Enter += new System.EventHandler(this.grpLivresInfos_Enter);
             // 
             // txbLivresIsbn
             // 
@@ -442,7 +440,6 @@ namespace Mediatek86.vue
             this.txbLivresIsbn.ReadOnly = true;
             this.txbLivresIsbn.Size = new System.Drawing.Size(148, 26);
             this.txbLivresIsbn.TabIndex = 32;
-            this.txbLivresIsbn.TextChanged += new System.EventHandler(this.txbLivresIsbn_TextChanged);
             // 
             // txbLivresImage
             // 
@@ -452,7 +449,6 @@ namespace Mediatek86.vue
             this.txbLivresImage.ReadOnly = true;
             this.txbLivresImage.Size = new System.Drawing.Size(584, 26);
             this.txbLivresImage.TabIndex = 31;
-            this.txbLivresImage.TextChanged += new System.EventHandler(this.txbLivresImage_TextChanged);
             // 
             // txbLivresRayon
             // 
@@ -462,7 +458,6 @@ namespace Mediatek86.vue
             this.txbLivresRayon.ReadOnly = true;
             this.txbLivresRayon.Size = new System.Drawing.Size(309, 26);
             this.txbLivresRayon.TabIndex = 30;
-            this.txbLivresRayon.TextChanged += new System.EventHandler(this.txbLivresRayon_TextChanged);
             // 
             // txbLivresPublic
             // 
@@ -472,7 +467,6 @@ namespace Mediatek86.vue
             this.txbLivresPublic.ReadOnly = true;
             this.txbLivresPublic.Size = new System.Drawing.Size(309, 26);
             this.txbLivresPublic.TabIndex = 29;
-            this.txbLivresPublic.TextChanged += new System.EventHandler(this.txbLivresPublic_TextChanged);
             // 
             // txbLivresGenre
             // 
@@ -482,7 +476,6 @@ namespace Mediatek86.vue
             this.txbLivresGenre.ReadOnly = true;
             this.txbLivresGenre.Size = new System.Drawing.Size(309, 26);
             this.txbLivresGenre.TabIndex = 28;
-            this.txbLivresGenre.TextChanged += new System.EventHandler(this.txbLivresGenre_TextChanged);
             // 
             // txbLivresCollection
             // 
@@ -492,7 +485,6 @@ namespace Mediatek86.vue
             this.txbLivresCollection.ReadOnly = true;
             this.txbLivresCollection.Size = new System.Drawing.Size(584, 26);
             this.txbLivresCollection.TabIndex = 27;
-            this.txbLivresCollection.TextChanged += new System.EventHandler(this.txbLivresCollection_TextChanged);
             // 
             // txbLivresAuteur
             // 
@@ -502,7 +494,6 @@ namespace Mediatek86.vue
             this.txbLivresAuteur.ReadOnly = true;
             this.txbLivresAuteur.Size = new System.Drawing.Size(309, 26);
             this.txbLivresAuteur.TabIndex = 26;
-            this.txbLivresAuteur.TextChanged += new System.EventHandler(this.txbLivresAuteur_TextChanged);
             // 
             // txbLivresTitre
             // 
@@ -512,7 +503,6 @@ namespace Mediatek86.vue
             this.txbLivresTitre.ReadOnly = true;
             this.txbLivresTitre.Size = new System.Drawing.Size(584, 26);
             this.txbLivresTitre.TabIndex = 25;
-            this.txbLivresTitre.TextChanged += new System.EventHandler(this.txbLivresTitre_TextChanged);
             // 
             // txbLivresNumero
             // 
@@ -522,7 +512,6 @@ namespace Mediatek86.vue
             this.txbLivresNumero.ReadOnly = true;
             this.txbLivresNumero.Size = new System.Drawing.Size(148, 26);
             this.txbLivresNumero.TabIndex = 24;
-            this.txbLivresNumero.TextChanged += new System.EventHandler(this.txbLivresNumero_TextChanged);
             // 
             // label22
             // 
@@ -535,7 +524,6 @@ namespace Mediatek86.vue
             this.label22.Size = new System.Drawing.Size(66, 23);
             this.label22.TabIndex = 22;
             this.label22.Text = "Genre :";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // pcbLivresImage
             // 
@@ -546,7 +534,6 @@ namespace Mediatek86.vue
             this.pcbLivresImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbLivresImage.TabIndex = 21;
             this.pcbLivresImage.TabStop = false;
-            this.pcbLivresImage.Click += new System.EventHandler(this.pcbLivresImage_Click);
             // 
             // label19
             // 
@@ -559,7 +546,6 @@ namespace Mediatek86.vue
             this.label19.Size = new System.Drawing.Size(65, 23);
             this.label19.TabIndex = 19;
             this.label19.Text = "Public :";
-            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // label1
             // 
@@ -571,7 +557,6 @@ namespace Mediatek86.vue
             this.label1.Size = new System.Drawing.Size(67, 23);
             this.label1.TabIndex = 17;
             this.label1.Text = "Rayon :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label10
             // 
@@ -584,7 +569,6 @@ namespace Mediatek86.vue
             this.label10.Size = new System.Drawing.Size(54, 23);
             this.label10.TabIndex = 8;
             this.label10.Text = "Titre :";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label7
             // 
@@ -597,7 +581,6 @@ namespace Mediatek86.vue
             this.label7.Size = new System.Drawing.Size(187, 23);
             this.label7.TabIndex = 5;
             this.label7.Text = "Numéro de document :";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label11
             // 
@@ -610,7 +593,6 @@ namespace Mediatek86.vue
             this.label11.Size = new System.Drawing.Size(93, 23);
             this.label11.TabIndex = 9;
             this.label11.Text = "Auteur(e) :";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label8
             // 
@@ -622,7 +604,6 @@ namespace Mediatek86.vue
             this.label8.Size = new System.Drawing.Size(158, 23);
             this.label8.TabIndex = 6;
             this.label8.Text = "Chemin de l\'image :";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label12
             // 
@@ -635,7 +616,6 @@ namespace Mediatek86.vue
             this.label12.Size = new System.Drawing.Size(95, 23);
             this.label12.TabIndex = 10;
             this.label12.Text = "Collection :";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label9
             // 
@@ -648,7 +628,6 @@ namespace Mediatek86.vue
             this.label9.Size = new System.Drawing.Size(99, 23);
             this.label9.TabIndex = 7;
             this.label9.Text = "Code ISBN :";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // grpLivresRecherche
             // 
@@ -677,7 +656,6 @@ namespace Mediatek86.vue
             this.grpLivresRecherche.TabIndex = 18;
             this.grpLivresRecherche.TabStop = false;
             this.grpLivresRecherche.Text = "Recherches";
-            this.grpLivresRecherche.Enter += new System.EventHandler(this.grpLivresRecherche_Enter);
             // 
             // btnLivresAnnulRayons
             // 
@@ -730,7 +708,6 @@ namespace Mediatek86.vue
             this.label5.Size = new System.Drawing.Size(254, 23);
             this.label5.TabIndex = 13;
             this.label5.Text = "Saisir un numéro de document :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txbLivresNumRecherche
             // 
@@ -739,7 +716,6 @@ namespace Mediatek86.vue
             this.txbLivresNumRecherche.Name = "txbLivresNumRecherche";
             this.txbLivresNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbLivresNumRecherche.TabIndex = 12;
-            this.txbLivresNumRecherche.TextChanged += new System.EventHandler(this.txbLivresNumRecherche_TextChanged);
             // 
             // btnLivresAnnulGenres
             // 
@@ -775,7 +751,6 @@ namespace Mediatek86.vue
             this.label21.Size = new System.Drawing.Size(207, 23);
             this.label21.TabIndex = 9;
             this.label21.Text = "Ou sélectionner le rayon :";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // cbxLivresPublics
             // 
@@ -798,7 +773,6 @@ namespace Mediatek86.vue
             this.label20.Size = new System.Drawing.Size(208, 23);
             this.label20.TabIndex = 7;
             this.label20.Text = "Ou sélectionner le public :";
-            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // cbxLivresGenres
             // 
@@ -822,7 +796,6 @@ namespace Mediatek86.vue
             this.label14.Size = new System.Drawing.Size(206, 23);
             this.label14.TabIndex = 5;
             this.label14.Text = "Ou sélectionner le genre :";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // dgvLivresListe
             // 
@@ -842,7 +815,6 @@ namespace Mediatek86.vue
             this.dgvLivresListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLivresListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvLivresListe.TabIndex = 4;
-            this.dgvLivresListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLivresListe_CellContentClick);
             this.dgvLivresListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvLivresListe_ColumnHeaderMouseClick);
             this.dgvLivresListe.SelectionChanged += new System.EventHandler(this.DgvLivresListe_SelectionChanged);
             // 
@@ -857,7 +829,6 @@ namespace Mediatek86.vue
             this.label6.Size = new System.Drawing.Size(280, 23);
             this.label6.TabIndex = 2;
             this.label6.Text = "Saisir le titre ou la partie d\'un titre :";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txbLivresTitreRecherche
             // 
@@ -880,7 +851,6 @@ namespace Mediatek86.vue
             this.tabDvd.TabIndex = 3;
             this.tabDvd.Text = "DVD";
             this.tabDvd.UseVisualStyleBackColor = true;
-            this.tabDvd.Click += new System.EventHandler(this.tabDvd_Click);
             this.tabDvd.Enter += new System.EventHandler(this.tabDvd_Enter);
             // 
             // grpDvdInfos
@@ -913,7 +883,6 @@ namespace Mediatek86.vue
             this.grpDvdInfos.TabIndex = 21;
             this.grpDvdInfos.TabStop = false;
             this.grpDvdInfos.Text = "Informations détaillées";
-            this.grpDvdInfos.Enter += new System.EventHandler(this.grpDvdInfos_Enter);
             // 
             // txbDvdDuree
             // 
@@ -923,7 +892,6 @@ namespace Mediatek86.vue
             this.txbDvdDuree.ReadOnly = true;
             this.txbDvdDuree.Size = new System.Drawing.Size(148, 26);
             this.txbDvdDuree.TabIndex = 32;
-            this.txbDvdDuree.TextChanged += new System.EventHandler(this.txbDvdDuree_TextChanged);
             // 
             // txbDvdImage
             // 
@@ -933,7 +901,6 @@ namespace Mediatek86.vue
             this.txbDvdImage.ReadOnly = true;
             this.txbDvdImage.Size = new System.Drawing.Size(584, 26);
             this.txbDvdImage.TabIndex = 31;
-            this.txbDvdImage.TextChanged += new System.EventHandler(this.txbDvdImage_TextChanged);
             // 
             // txbDvdRayon
             // 
@@ -943,7 +910,6 @@ namespace Mediatek86.vue
             this.txbDvdRayon.ReadOnly = true;
             this.txbDvdRayon.Size = new System.Drawing.Size(309, 26);
             this.txbDvdRayon.TabIndex = 30;
-            this.txbDvdRayon.TextChanged += new System.EventHandler(this.txbDvdRayon_TextChanged);
             // 
             // txbDvdPublic
             // 
@@ -953,7 +919,6 @@ namespace Mediatek86.vue
             this.txbDvdPublic.ReadOnly = true;
             this.txbDvdPublic.Size = new System.Drawing.Size(309, 26);
             this.txbDvdPublic.TabIndex = 29;
-            this.txbDvdPublic.TextChanged += new System.EventHandler(this.txbDvdPublic_TextChanged);
             // 
             // txbDvdGenre
             // 
@@ -963,7 +928,6 @@ namespace Mediatek86.vue
             this.txbDvdGenre.ReadOnly = true;
             this.txbDvdGenre.Size = new System.Drawing.Size(309, 26);
             this.txbDvdGenre.TabIndex = 28;
-            this.txbDvdGenre.TextChanged += new System.EventHandler(this.txbDvdGenre_TextChanged);
             // 
             // txbDvdSynopsis
             // 
@@ -976,7 +940,6 @@ namespace Mediatek86.vue
             this.txbDvdSynopsis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txbDvdSynopsis.Size = new System.Drawing.Size(584, 52);
             this.txbDvdSynopsis.TabIndex = 27;
-            this.txbDvdSynopsis.TextChanged += new System.EventHandler(this.txbDvdSynopsis_TextChanged);
             // 
             // txbDvdRealisateur
             // 
@@ -986,7 +949,6 @@ namespace Mediatek86.vue
             this.txbDvdRealisateur.ReadOnly = true;
             this.txbDvdRealisateur.Size = new System.Drawing.Size(309, 26);
             this.txbDvdRealisateur.TabIndex = 26;
-            this.txbDvdRealisateur.TextChanged += new System.EventHandler(this.txbDvdRealisateur_TextChanged);
             // 
             // txbDvdTitre
             // 
@@ -996,7 +958,6 @@ namespace Mediatek86.vue
             this.txbDvdTitre.ReadOnly = true;
             this.txbDvdTitre.Size = new System.Drawing.Size(584, 26);
             this.txbDvdTitre.TabIndex = 25;
-            this.txbDvdTitre.TextChanged += new System.EventHandler(this.txbDvdTitre_TextChanged);
             // 
             // txbDvdNumero
             // 
@@ -1006,7 +967,6 @@ namespace Mediatek86.vue
             this.txbDvdNumero.ReadOnly = true;
             this.txbDvdNumero.Size = new System.Drawing.Size(148, 26);
             this.txbDvdNumero.TabIndex = 24;
-            this.txbDvdNumero.TextChanged += new System.EventHandler(this.txbDvdNumero_TextChanged);
             // 
             // label23
             // 
@@ -1018,7 +978,6 @@ namespace Mediatek86.vue
             this.label23.Size = new System.Drawing.Size(66, 23);
             this.label23.TabIndex = 22;
             this.label23.Text = "Genre :";
-            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // pcbDvdImage
             // 
@@ -1029,7 +988,6 @@ namespace Mediatek86.vue
             this.pcbDvdImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbDvdImage.TabIndex = 21;
             this.pcbDvdImage.TabStop = false;
-            this.pcbDvdImage.Click += new System.EventHandler(this.pcbDvdImage_Click);
             // 
             // label24
             // 
@@ -1041,7 +999,6 @@ namespace Mediatek86.vue
             this.label24.Size = new System.Drawing.Size(65, 23);
             this.label24.TabIndex = 19;
             this.label24.Text = "Public :";
-            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // label25
             // 
@@ -1053,7 +1010,6 @@ namespace Mediatek86.vue
             this.label25.Size = new System.Drawing.Size(67, 23);
             this.label25.TabIndex = 17;
             this.label25.Text = "Rayon :";
-            this.label25.Click += new System.EventHandler(this.label25_Click);
             // 
             // label26
             // 
@@ -1065,7 +1021,6 @@ namespace Mediatek86.vue
             this.label26.Size = new System.Drawing.Size(54, 23);
             this.label26.TabIndex = 8;
             this.label26.Text = "Titre :";
-            this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label27
             // 
@@ -1077,7 +1032,6 @@ namespace Mediatek86.vue
             this.label27.Size = new System.Drawing.Size(187, 23);
             this.label27.TabIndex = 5;
             this.label27.Text = "Numéro de document :";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label28
             // 
@@ -1089,7 +1043,6 @@ namespace Mediatek86.vue
             this.label28.Size = new System.Drawing.Size(150, 23);
             this.label28.TabIndex = 9;
             this.label28.Text = "Réalisateur(trice) :";
-            this.label28.Click += new System.EventHandler(this.label28_Click);
             // 
             // label29
             // 
@@ -1101,7 +1054,6 @@ namespace Mediatek86.vue
             this.label29.Size = new System.Drawing.Size(158, 23);
             this.label29.TabIndex = 6;
             this.label29.Text = "Chemin de l\'image :";
-            this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
             // label30
             // 
@@ -1113,7 +1065,6 @@ namespace Mediatek86.vue
             this.label30.Size = new System.Drawing.Size(87, 23);
             this.label30.TabIndex = 10;
             this.label30.Text = "Synopsis :";
-            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // label31
             // 
@@ -1125,7 +1076,6 @@ namespace Mediatek86.vue
             this.label31.Size = new System.Drawing.Size(66, 23);
             this.label31.TabIndex = 7;
             this.label31.Text = "Durée :";
-            this.label31.Click += new System.EventHandler(this.label31_Click);
             // 
             // grpDvdRecherche
             // 
@@ -1153,7 +1103,6 @@ namespace Mediatek86.vue
             this.grpDvdRecherche.TabIndex = 20;
             this.grpDvdRecherche.TabStop = false;
             this.grpDvdRecherche.Text = "Recherches";
-            this.grpDvdRecherche.Enter += new System.EventHandler(this.grpDvdRecherche_Enter);
             // 
             // btnDvdAnnulRayons
             // 
@@ -1205,7 +1154,6 @@ namespace Mediatek86.vue
             this.label38.Size = new System.Drawing.Size(254, 23);
             this.label38.TabIndex = 13;
             this.label38.Text = "Saisir un numéro de document :";
-            this.label38.Click += new System.EventHandler(this.label38_Click);
             // 
             // txbDvdNumRecherche
             // 
@@ -1214,7 +1162,6 @@ namespace Mediatek86.vue
             this.txbDvdNumRecherche.Name = "txbDvdNumRecherche";
             this.txbDvdNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbDvdNumRecherche.TabIndex = 12;
-            this.txbDvdNumRecherche.TextChanged += new System.EventHandler(this.txbDvdNumRecherche_TextChanged);
             // 
             // btnDvdAnnulGenres
             // 
@@ -1249,7 +1196,6 @@ namespace Mediatek86.vue
             this.label39.Size = new System.Drawing.Size(207, 23);
             this.label39.TabIndex = 9;
             this.label39.Text = "Ou sélectionner le rayon :";
-            this.label39.Click += new System.EventHandler(this.label39_Click);
             // 
             // cbxDvdPublics
             // 
@@ -1271,7 +1217,6 @@ namespace Mediatek86.vue
             this.label40.Size = new System.Drawing.Size(208, 23);
             this.label40.TabIndex = 7;
             this.label40.Text = "Ou sélectionner le public :";
-            this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
             // cbxDvdGenres
             // 
@@ -1293,7 +1238,6 @@ namespace Mediatek86.vue
             this.label41.Size = new System.Drawing.Size(206, 23);
             this.label41.TabIndex = 5;
             this.label41.Text = "Ou sélectionner le genre :";
-            this.label41.Click += new System.EventHandler(this.label41_Click);
             // 
             // dgvDvdListe
             // 
@@ -1313,7 +1257,6 @@ namespace Mediatek86.vue
             this.dgvDvdListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDvdListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvDvdListe.TabIndex = 4;
-            this.dgvDvdListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDvdListe_CellContentClick);
             this.dgvDvdListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDvdListe_ColumnHeaderMouseClick);
             this.dgvDvdListe.SelectionChanged += new System.EventHandler(this.dgvDvdListe_SelectionChanged);
             // 
@@ -1327,7 +1270,6 @@ namespace Mediatek86.vue
             this.label42.Size = new System.Drawing.Size(280, 23);
             this.label42.TabIndex = 2;
             this.label42.Text = "Saisir le titre ou la partie d\'un titre :";
-            this.label42.Click += new System.EventHandler(this.label42_Click);
             // 
             // txbDvdTitreRecherche
             // 
@@ -1813,7 +1755,6 @@ namespace Mediatek86.vue
             this.label73.Size = new System.Drawing.Size(150, 23);
             this.label73.TabIndex = 9;
             this.label73.Text = "Réalisateur(trice) :";
-            this.label73.Click += new System.EventHandler(this.label73_Click);
             // 
             // label74
             // 
@@ -1875,7 +1816,6 @@ namespace Mediatek86.vue
             this.label58.Size = new System.Drawing.Size(211, 23);
             this.label58.TabIndex = 19;
             this.label58.Text = "Saisir un numéro de DVD :";
-            this.label58.Click += new System.EventHandler(this.label58_Click);
             // 
             // tabCommandeLivres
             // 
@@ -2436,7 +2376,6 @@ namespace Mediatek86.vue
             this.tabRevues.TabIndex = 1;
             this.tabRevues.Text = "Revues";
             this.tabRevues.UseVisualStyleBackColor = true;
-            this.tabRevues.Click += new System.EventHandler(this.tabRevues_Click);
             this.tabRevues.Enter += new System.EventHandler(this.tabRevues_Enter);
             // 
             // grpRevuesInfos
@@ -2469,7 +2408,6 @@ namespace Mediatek86.vue
             this.grpRevuesInfos.TabIndex = 20;
             this.grpRevuesInfos.TabStop = false;
             this.grpRevuesInfos.Text = "Informations détaillées";
-            this.grpRevuesInfos.Enter += new System.EventHandler(this.grpRevuesInfos_Enter);
             // 
             // chkRevuesEmpruntable
             // 
@@ -2481,7 +2419,6 @@ namespace Mediatek86.vue
             this.chkRevuesEmpruntable.Size = new System.Drawing.Size(18, 17);
             this.chkRevuesEmpruntable.TabIndex = 32;
             this.chkRevuesEmpruntable.UseVisualStyleBackColor = true;
-            this.chkRevuesEmpruntable.CheckedChanged += new System.EventHandler(this.chkRevuesEmpruntable_CheckedChanged);
             // 
             // txbRevuesImage
             // 
@@ -2491,7 +2428,6 @@ namespace Mediatek86.vue
             this.txbRevuesImage.ReadOnly = true;
             this.txbRevuesImage.Size = new System.Drawing.Size(584, 26);
             this.txbRevuesImage.TabIndex = 31;
-            this.txbRevuesImage.TextChanged += new System.EventHandler(this.txbRevuesImage_TextChanged);
             // 
             // txbRevuesRayon
             // 
@@ -2501,7 +2437,6 @@ namespace Mediatek86.vue
             this.txbRevuesRayon.ReadOnly = true;
             this.txbRevuesRayon.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesRayon.TabIndex = 30;
-            this.txbRevuesRayon.TextChanged += new System.EventHandler(this.txbRevuesRayon_TextChanged);
             // 
             // txbRevuesPublic
             // 
@@ -2511,7 +2446,6 @@ namespace Mediatek86.vue
             this.txbRevuesPublic.ReadOnly = true;
             this.txbRevuesPublic.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesPublic.TabIndex = 29;
-            this.txbRevuesPublic.TextChanged += new System.EventHandler(this.txbRevuesPublic_TextChanged);
             // 
             // txbRevuesGenre
             // 
@@ -2521,7 +2455,6 @@ namespace Mediatek86.vue
             this.txbRevuesGenre.ReadOnly = true;
             this.txbRevuesGenre.Size = new System.Drawing.Size(309, 26);
             this.txbRevuesGenre.TabIndex = 28;
-            this.txbRevuesGenre.TextChanged += new System.EventHandler(this.txbRevuesGenre_TextChanged);
             // 
             // txbRevuesDateMiseADispo
             // 
@@ -2531,7 +2464,6 @@ namespace Mediatek86.vue
             this.txbRevuesDateMiseADispo.ReadOnly = true;
             this.txbRevuesDateMiseADispo.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesDateMiseADispo.TabIndex = 27;
-            this.txbRevuesDateMiseADispo.TextChanged += new System.EventHandler(this.txbRevuesDateMiseADispo_TextChanged);
             // 
             // txbRevuesPeriodicite
             // 
@@ -2541,7 +2473,6 @@ namespace Mediatek86.vue
             this.txbRevuesPeriodicite.ReadOnly = true;
             this.txbRevuesPeriodicite.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesPeriodicite.TabIndex = 26;
-            this.txbRevuesPeriodicite.TextChanged += new System.EventHandler(this.txbRevuesPeriodicite_TextChanged);
             // 
             // txbRevuesTitre
             // 
@@ -2551,7 +2482,6 @@ namespace Mediatek86.vue
             this.txbRevuesTitre.ReadOnly = true;
             this.txbRevuesTitre.Size = new System.Drawing.Size(584, 26);
             this.txbRevuesTitre.TabIndex = 25;
-            this.txbRevuesTitre.TextChanged += new System.EventHandler(this.txbRevuesTitre_TextChanged);
             // 
             // txbRevuesNumero
             // 
@@ -2561,7 +2491,6 @@ namespace Mediatek86.vue
             this.txbRevuesNumero.ReadOnly = true;
             this.txbRevuesNumero.Size = new System.Drawing.Size(148, 26);
             this.txbRevuesNumero.TabIndex = 24;
-            this.txbRevuesNumero.TextChanged += new System.EventHandler(this.txbRevuesNumero_TextChanged);
             // 
             // label35
             // 
@@ -2573,7 +2502,6 @@ namespace Mediatek86.vue
             this.label35.Size = new System.Drawing.Size(66, 23);
             this.label35.TabIndex = 22;
             this.label35.Text = "Genre :";
-            this.label35.Click += new System.EventHandler(this.label35_Click);
             // 
             // pcbRevuesImage
             // 
@@ -2584,7 +2512,6 @@ namespace Mediatek86.vue
             this.pcbRevuesImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbRevuesImage.TabIndex = 21;
             this.pcbRevuesImage.TabStop = false;
-            this.pcbRevuesImage.Click += new System.EventHandler(this.pcbRevuesImage_Click);
             // 
             // label36
             // 
@@ -2596,7 +2523,6 @@ namespace Mediatek86.vue
             this.label36.Size = new System.Drawing.Size(65, 23);
             this.label36.TabIndex = 19;
             this.label36.Text = "Public :";
-            this.label36.Click += new System.EventHandler(this.label36_Click);
             // 
             // label37
             // 
@@ -2608,7 +2534,6 @@ namespace Mediatek86.vue
             this.label37.Size = new System.Drawing.Size(67, 23);
             this.label37.TabIndex = 17;
             this.label37.Text = "Rayon :";
-            this.label37.Click += new System.EventHandler(this.label37_Click);
             // 
             // label43
             // 
@@ -2620,7 +2545,6 @@ namespace Mediatek86.vue
             this.label43.Size = new System.Drawing.Size(54, 23);
             this.label43.TabIndex = 8;
             this.label43.Text = "Titre :";
-            this.label43.Click += new System.EventHandler(this.label43_Click);
             // 
             // label44
             // 
@@ -2632,7 +2556,6 @@ namespace Mediatek86.vue
             this.label44.Size = new System.Drawing.Size(187, 23);
             this.label44.TabIndex = 5;
             this.label44.Text = "Numéro de document :";
-            this.label44.Click += new System.EventHandler(this.label44_Click);
             // 
             // label45
             // 
@@ -2644,7 +2567,6 @@ namespace Mediatek86.vue
             this.label45.Size = new System.Drawing.Size(100, 23);
             this.label45.TabIndex = 9;
             this.label45.Text = "Périodicité :";
-            this.label45.Click += new System.EventHandler(this.label45_Click);
             // 
             // label46
             // 
@@ -2656,7 +2578,6 @@ namespace Mediatek86.vue
             this.label46.Size = new System.Drawing.Size(158, 23);
             this.label46.TabIndex = 6;
             this.label46.Text = "Chemin de l\'image :";
-            this.label46.Click += new System.EventHandler(this.label46_Click);
             // 
             // label47
             // 
@@ -2668,7 +2589,6 @@ namespace Mediatek86.vue
             this.label47.Size = new System.Drawing.Size(156, 23);
             this.label47.TabIndex = 10;
             this.label47.Text = "Délai mise à dispo :";
-            this.label47.Click += new System.EventHandler(this.label47_Click);
             // 
             // label48
             // 
@@ -2680,7 +2600,6 @@ namespace Mediatek86.vue
             this.label48.Size = new System.Drawing.Size(118, 23);
             this.label48.TabIndex = 7;
             this.label48.Text = "Empruntable :";
-            this.label48.Click += new System.EventHandler(this.label48_Click);
             // 
             // grpRevuesRecherche
             // 
@@ -2708,7 +2627,6 @@ namespace Mediatek86.vue
             this.grpRevuesRecherche.TabIndex = 19;
             this.grpRevuesRecherche.TabStop = false;
             this.grpRevuesRecherche.Text = "Recherches";
-            this.grpRevuesRecherche.Enter += new System.EventHandler(this.grpRevuesRecherche_Enter);
             // 
             // btnRevuesAnnulRayons
             // 
@@ -2760,7 +2678,6 @@ namespace Mediatek86.vue
             this.label2.Size = new System.Drawing.Size(254, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Saisir un numéro de document :";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txbRevuesNumRecherche
             // 
@@ -2769,7 +2686,6 @@ namespace Mediatek86.vue
             this.txbRevuesNumRecherche.Name = "txbRevuesNumRecherche";
             this.txbRevuesNumRecherche.Size = new System.Drawing.Size(98, 26);
             this.txbRevuesNumRecherche.TabIndex = 12;
-            this.txbRevuesNumRecherche.TextChanged += new System.EventHandler(this.txbRevuesNumRecherche_TextChanged);
             // 
             // btnRevuesAnnulGenres
             // 
@@ -2804,7 +2720,6 @@ namespace Mediatek86.vue
             this.label4.Size = new System.Drawing.Size(207, 23);
             this.label4.TabIndex = 9;
             this.label4.Text = "Ou sélectionner le rayon :";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // cbxRevuesPublics
             // 
@@ -2826,7 +2741,6 @@ namespace Mediatek86.vue
             this.label32.Size = new System.Drawing.Size(208, 23);
             this.label32.TabIndex = 7;
             this.label32.Text = "Ou sélectionner le public :";
-            this.label32.Click += new System.EventHandler(this.label32_Click);
             // 
             // cbxRevuesGenres
             // 
@@ -2848,7 +2762,6 @@ namespace Mediatek86.vue
             this.label33.Size = new System.Drawing.Size(206, 23);
             this.label33.TabIndex = 5;
             this.label33.Text = "Ou sélectionner le genre :";
-            this.label33.Click += new System.EventHandler(this.label33_Click);
             // 
             // dgvRevuesListe
             // 
@@ -2868,7 +2781,6 @@ namespace Mediatek86.vue
             this.dgvRevuesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRevuesListe.Size = new System.Drawing.Size(1266, 277);
             this.dgvRevuesListe.TabIndex = 4;
-            this.dgvRevuesListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRevuesListe_CellContentClick);
             this.dgvRevuesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRevuesListe_ColumnHeaderMouseClick);
             this.dgvRevuesListe.SelectionChanged += new System.EventHandler(this.dgvRevuesListe_SelectionChanged);
             // 
@@ -2882,7 +2794,6 @@ namespace Mediatek86.vue
             this.label34.Size = new System.Drawing.Size(280, 23);
             this.label34.TabIndex = 2;
             this.label34.Text = "Saisir le titre ou la partie d\'un titre :";
-            this.label34.Click += new System.EventHandler(this.label34_Click);
             // 
             // txbRevuesTitreRecherche
             // 
@@ -2904,7 +2815,6 @@ namespace Mediatek86.vue
             this.tabReceptionRevue.TabIndex = 4;
             this.tabReceptionRevue.Text = "Parutions des revues";
             this.tabReceptionRevue.UseVisualStyleBackColor = true;
-            this.tabReceptionRevue.Click += new System.EventHandler(this.tabReceptionRevue_Click);
             this.tabReceptionRevue.Enter += new System.EventHandler(this.tabReceptionRevue_Enter);
             // 
             // grpReceptionExemplaire
@@ -2927,7 +2837,6 @@ namespace Mediatek86.vue
             this.grpReceptionExemplaire.TabIndex = 16;
             this.grpReceptionExemplaire.TabStop = false;
             this.grpReceptionExemplaire.Text = "Nouvelle parution réceptionnée pour cette revue";
-            this.grpReceptionExemplaire.Enter += new System.EventHandler(this.grpReceptionExemplaire_Enter);
             // 
             // btnReceptionExemplaireImage
             // 
@@ -2952,7 +2861,6 @@ namespace Mediatek86.vue
             this.pcbReceptionExemplaireImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionExemplaireImage.TabIndex = 42;
             this.pcbReceptionExemplaireImage.TabStop = false;
-            this.pcbReceptionExemplaireImage.Click += new System.EventHandler(this.pcbReceptionExemplaireImage_Click);
             // 
             // btnReceptionExemplaireValider
             // 
@@ -2976,7 +2884,6 @@ namespace Mediatek86.vue
             this.txbReceptionExemplaireImage.ReadOnly = true;
             this.txbReceptionExemplaireImage.Size = new System.Drawing.Size(433, 26);
             this.txbReceptionExemplaireImage.TabIndex = 5;
-            this.txbReceptionExemplaireImage.TextChanged += new System.EventHandler(this.txbReceptionExemplaireImage_TextChanged);
             // 
             // label18
             // 
@@ -2988,7 +2895,6 @@ namespace Mediatek86.vue
             this.label18.Size = new System.Drawing.Size(173, 23);
             this.label18.TabIndex = 4;
             this.label18.Text = "Emplacement image :";
-            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // txbReceptionExemplaireNumero
             // 
@@ -2997,7 +2903,6 @@ namespace Mediatek86.vue
             this.txbReceptionExemplaireNumero.Name = "txbReceptionExemplaireNumero";
             this.txbReceptionExemplaireNumero.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionExemplaireNumero.TabIndex = 3;
-            this.txbReceptionExemplaireNumero.TextChanged += new System.EventHandler(this.txbReceptionExemplaireNumero_TextChanged);
             // 
             // label17
             // 
@@ -3009,7 +2914,6 @@ namespace Mediatek86.vue
             this.label17.Size = new System.Drawing.Size(149, 23);
             this.label17.TabIndex = 2;
             this.label17.Text = "Date de parution :";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // dtpReceptionExemplaireDate
             // 
@@ -3019,7 +2923,6 @@ namespace Mediatek86.vue
             this.dtpReceptionExemplaireDate.Name = "dtpReceptionExemplaireDate";
             this.dtpReceptionExemplaireDate.Size = new System.Drawing.Size(148, 26);
             this.dtpReceptionExemplaireDate.TabIndex = 1;
-            this.dtpReceptionExemplaireDate.ValueChanged += new System.EventHandler(this.dtpReceptionExemplaireDate_ValueChanged);
             // 
             // label16
             // 
@@ -3031,7 +2934,6 @@ namespace Mediatek86.vue
             this.label16.Size = new System.Drawing.Size(179, 23);
             this.label16.TabIndex = 0;
             this.label16.Text = "Numéro réceptionné :";
-            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // grpReceptionRevue
             // 
@@ -3068,7 +2970,6 @@ namespace Mediatek86.vue
             this.grpReceptionRevue.TabIndex = 15;
             this.grpReceptionRevue.TabStop = false;
             this.grpReceptionRevue.Text = "Recherche revue";
-            this.grpReceptionRevue.Enter += new System.EventHandler(this.grpReceptionRevue_Enter);
             // 
             // label56
             // 
@@ -3080,7 +2981,6 @@ namespace Mediatek86.vue
             this.label56.Size = new System.Drawing.Size(115, 23);
             this.label56.TabIndex = 55;
             this.label56.Text = "Image revue :";
-            this.label56.Click += new System.EventHandler(this.label56_Click);
             // 
             // pcbReceptionExemplaireRevueImage
             // 
@@ -3091,7 +2991,6 @@ namespace Mediatek86.vue
             this.pcbReceptionExemplaireRevueImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionExemplaireRevueImage.TabIndex = 54;
             this.pcbReceptionExemplaireRevueImage.TabStop = false;
-            this.pcbReceptionExemplaireRevueImage.Click += new System.EventHandler(this.pcbReceptionExemplaireRevueImage_Click);
             // 
             // label13
             // 
@@ -3103,7 +3002,6 @@ namespace Mediatek86.vue
             this.label13.Size = new System.Drawing.Size(94, 23);
             this.label13.TabIndex = 53;
             this.label13.Text = "Parutions :";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // dgvReceptionExemplairesListe
             // 
@@ -3123,7 +3021,6 @@ namespace Mediatek86.vue
             this.dgvReceptionExemplairesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReceptionExemplairesListe.Size = new System.Drawing.Size(586, 186);
             this.dgvReceptionExemplairesListe.TabIndex = 52;
-            this.dgvReceptionExemplairesListe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReceptionExemplairesListe_CellContentClick);
             this.dgvReceptionExemplairesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvExemplairesListe_ColumnHeaderMouseClick);
             this.dgvReceptionExemplairesListe.SelectionChanged += new System.EventHandler(this.dgvReceptionExemplairesListe_SelectionChanged);
             // 
@@ -3137,7 +3034,6 @@ namespace Mediatek86.vue
             this.chkReceptionRevueEmpruntable.Size = new System.Drawing.Size(18, 17);
             this.chkReceptionRevueEmpruntable.TabIndex = 51;
             this.chkReceptionRevueEmpruntable.UseVisualStyleBackColor = true;
-            this.chkReceptionRevueEmpruntable.CheckedChanged += new System.EventHandler(this.chkReceptionRevueEmpruntable_CheckedChanged);
             // 
             // txbReceptionRevueImage
             // 
@@ -3147,7 +3043,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevueImage.ReadOnly = true;
             this.txbReceptionRevueImage.Size = new System.Drawing.Size(584, 26);
             this.txbReceptionRevueImage.TabIndex = 50;
-            this.txbReceptionRevueImage.TextChanged += new System.EventHandler(this.txbReceptionRevueImage_TextChanged);
             // 
             // txbReceptionRevueRayon
             // 
@@ -3157,7 +3052,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevueRayon.ReadOnly = true;
             this.txbReceptionRevueRayon.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevueRayon.TabIndex = 49;
-            this.txbReceptionRevueRayon.TextChanged += new System.EventHandler(this.txbReceptionRevueRayon_TextChanged);
             // 
             // txbReceptionRevuePublic
             // 
@@ -3167,7 +3061,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevuePublic.ReadOnly = true;
             this.txbReceptionRevuePublic.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevuePublic.TabIndex = 48;
-            this.txbReceptionRevuePublic.TextChanged += new System.EventHandler(this.txbReceptionRevuePublic_TextChanged);
             // 
             // txbReceptionRevueGenre
             // 
@@ -3177,7 +3070,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevueGenre.ReadOnly = true;
             this.txbReceptionRevueGenre.Size = new System.Drawing.Size(309, 26);
             this.txbReceptionRevueGenre.TabIndex = 47;
-            this.txbReceptionRevueGenre.TextChanged += new System.EventHandler(this.txbReceptionRevueGenre_TextChanged);
             // 
             // txbReceptionRevueDelaiMiseADispo
             // 
@@ -3187,7 +3079,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevueDelaiMiseADispo.ReadOnly = true;
             this.txbReceptionRevueDelaiMiseADispo.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionRevueDelaiMiseADispo.TabIndex = 46;
-            this.txbReceptionRevueDelaiMiseADispo.TextChanged += new System.EventHandler(this.txbReceptionRevueDelaiMiseADispo_TextChanged);
             // 
             // txbReceptionRevuePeriodicite
             // 
@@ -3197,7 +3088,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevuePeriodicite.ReadOnly = true;
             this.txbReceptionRevuePeriodicite.Size = new System.Drawing.Size(148, 26);
             this.txbReceptionRevuePeriodicite.TabIndex = 45;
-            this.txbReceptionRevuePeriodicite.TextChanged += new System.EventHandler(this.txbReceptionRevuePeriodicite_TextChanged);
             // 
             // txbReceptionRevueTitre
             // 
@@ -3207,7 +3097,6 @@ namespace Mediatek86.vue
             this.txbReceptionRevueTitre.ReadOnly = true;
             this.txbReceptionRevueTitre.Size = new System.Drawing.Size(584, 26);
             this.txbReceptionRevueTitre.TabIndex = 44;
-            this.txbReceptionRevueTitre.TextChanged += new System.EventHandler(this.txbReceptionRevueTitre_TextChanged);
             // 
             // txbReceptionRevueNumero
             // 
@@ -3228,7 +3117,6 @@ namespace Mediatek86.vue
             this.label3.Size = new System.Drawing.Size(66, 23);
             this.label3.TabIndex = 42;
             this.label3.Text = "Genre :";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pcbReceptionRevueImage
             // 
@@ -3239,7 +3127,6 @@ namespace Mediatek86.vue
             this.pcbReceptionRevueImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbReceptionRevueImage.TabIndex = 41;
             this.pcbReceptionRevueImage.TabStop = false;
-            this.pcbReceptionRevueImage.Click += new System.EventHandler(this.pcbReceptionRevueImage_Click);
             // 
             // label15
             // 
@@ -3251,7 +3138,6 @@ namespace Mediatek86.vue
             this.label15.Size = new System.Drawing.Size(65, 23);
             this.label15.TabIndex = 40;
             this.label15.Text = "Public :";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // label49
             // 
@@ -3263,7 +3149,6 @@ namespace Mediatek86.vue
             this.label49.Size = new System.Drawing.Size(67, 23);
             this.label49.TabIndex = 39;
             this.label49.Text = "Rayon :";
-            this.label49.Click += new System.EventHandler(this.label49_Click);
             // 
             // label50
             // 
@@ -3275,7 +3160,6 @@ namespace Mediatek86.vue
             this.label50.Size = new System.Drawing.Size(54, 23);
             this.label50.TabIndex = 36;
             this.label50.Text = "Titre :";
-            this.label50.Click += new System.EventHandler(this.label50_Click);
             // 
             // label51
             // 
@@ -3287,7 +3171,6 @@ namespace Mediatek86.vue
             this.label51.Size = new System.Drawing.Size(130, 23);
             this.label51.TabIndex = 33;
             this.label51.Text = "Numéro revue :";
-            this.label51.Click += new System.EventHandler(this.label51_Click);
             // 
             // label52
             // 
@@ -3299,7 +3182,6 @@ namespace Mediatek86.vue
             this.label52.Size = new System.Drawing.Size(100, 23);
             this.label52.TabIndex = 37;
             this.label52.Text = "Périodicité :";
-            this.label52.Click += new System.EventHandler(this.label52_Click);
             // 
             // label53
             // 
@@ -3311,7 +3193,6 @@ namespace Mediatek86.vue
             this.label53.Size = new System.Drawing.Size(158, 23);
             this.label53.TabIndex = 34;
             this.label53.Text = "Chemin de l\'image :";
-            this.label53.Click += new System.EventHandler(this.label53_Click);
             // 
             // label54
             // 
@@ -3334,7 +3215,6 @@ namespace Mediatek86.vue
             this.label55.Size = new System.Drawing.Size(118, 23);
             this.label55.TabIndex = 35;
             this.label55.Text = "Empruntable :";
-            this.label55.Click += new System.EventHandler(this.label55_Click);
             // 
             // btnReceptionRechercher
             // 
