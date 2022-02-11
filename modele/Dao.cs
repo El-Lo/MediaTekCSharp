@@ -278,7 +278,7 @@ namespace Mediatek86.modele
         /// </summary>
         /// <param name="DocumentID"></param>
         /// <param name="montant"></param>
-        /// <returns></returns>
+        /// <returns>ID pour la commande, construit en utilisant la date, ID Document et le montant</returns>
         private static string creerCommandeID(string DocumentID, decimal montant)
         {
             return DateTime.Now.ToString("ddMMyyHHmmssffff") + DocumentID + montant.ToString();
@@ -468,7 +468,7 @@ namespace Mediatek86.modele
         /// Get Etape d'une commande
         /// </summary>
         /// <param name="CommandeID"></param>
-        /// <returns></returns>
+        /// <returns>ID de l'étape liée a la commande</returns>
         public static short GetEtapeDeCommande(string CommandeID)
         {
             string req = "select idEtapeSuivi from commandedocument where id = @commandeID";
@@ -581,7 +581,7 @@ namespace Mediatek86.modele
         /// </summary>
         /// <param name="NomUtilisateur"></param>
         /// <param name="MotDePasse"></param>
-        /// <returns></returns>
+        /// <returns>Service de l'utilisateur</returns>
         public static string VerifierLogin(string NomUtilisateur, string MotDePasse)
         {
 

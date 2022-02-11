@@ -50,9 +50,10 @@ namespace Mediatek86.vue
                 {
                    
                     if (Utilisateur.Service == Role.admin || Utilisateur.Service == Role.pres)
-                    {
-                        new Controle();
+                    {   
                         this.Hide();
+                        new Controle();
+                        
                      
                     }
                    

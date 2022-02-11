@@ -36,7 +36,7 @@ namespace Mediatek86.controleur
         /// <summary>
         /// Retourner une liste de revues avec des abonnement qui se terminera sous 30 jours 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List de chaines Revue titre plus la date de fin d'abonnement</returns>
         public List<string> RecupererRevuesAbonnementTerminant()
         {
             return Dao.RecupererRevuesAbonnementTerminant();
@@ -135,7 +135,7 @@ namespace Mediatek86.controleur
         /// Retourne une list d'abonnements pour une revue
         /// </summary>
         /// <param name="RevueID"></param>
-        /// <returns></returns>
+        /// <returns>List de revues</returns>
         public List<CommandeRevue> GetAbonnementsDeRevue(string RevueID)
         {
             return Dao.GetAbonnementsDeRevue(RevueID);
@@ -204,7 +204,7 @@ namespace Mediatek86.controleur
         /// <param name="DateCommande"></param>
         /// <param name="DatefinAbonnement"></param>
         /// <param name="DateDeParution"></param>
-        /// <returns></returns>
+        /// <returns>True si abonnement peut être supprimé, sinon false</returns>
         public static bool EstAbonnementSupprimable(DateTime DateCommande, DateTime DatefinAbonnement, string RevueID)
         {
             List<DateTime> DatesDeParution = Dao.GetDateDesExemplairesdeRevue(RevueID);

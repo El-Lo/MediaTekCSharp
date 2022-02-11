@@ -25,7 +25,7 @@ namespace Mediatek86.controleur
         /// Enregistrer le service de l'utilisateur
         /// </summary>
         /// <param name="Service"></param>
-        /// <returns></returns>
+        /// <returns>Vrai si service trouve un element dans l'enum Role qui lui correspond</returns>
         public bool EnregistrerService(string Service)
         {
             if (!string.IsNullOrWhiteSpace(Service))

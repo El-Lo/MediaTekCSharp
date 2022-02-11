@@ -14,7 +14,7 @@ namespace Mediatek86.controleur
         /// <param name="DateCommande"></param>
         /// <param name="DatefinAbonnement"></param>
         /// <param name="DateDeParution"></param>
-        /// <returns></returns>
+        /// <returns>Vrai si DateDeParution est entre les des autre dates</returns>
         public static bool ParutionDansAbonnement(DateTime DateCommande, DateTime DatefinAbonnement, DateTime DateDeParution)
         {
 
