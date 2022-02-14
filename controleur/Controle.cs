@@ -164,7 +164,7 @@ namespace Mediatek86.controleur
         }
         public string UpdateCommandeEtape(string ID, int newEtapeID)
         {
-            string erreur = "";
+            string message = "";
             // 1 En cours
             // 2 Livrée 
             // 3 Reglée
@@ -174,20 +174,30 @@ namespace Mediatek86.controleur
             int etapeActuelle = Dao.GetEtapeDeCommande(ID);
             if (etapeActuelle != 0)
             {
-                if ((etapeActuelle == 2 || etapeActuelle == 4) && (newEtapeID == 1 || newEtapeID == 4))
+                if ((etapeActuelle == 2 || etapeActuelle == 3) && (newEtapeID == 1 || newEtapeID == 4))
                 {
-                    erreur = "Une commande livrée ou réglée ne peut pas revenir à une étape précédente";
+                    message = "Une commande livrée ou réglée ne peut pas revenir à une étape précédente";
+                }
+                else if (newEtapeID == 2 && etapeActuelle == 3)
+                {
+                    message = "Une commande réglée ne peut pas revenir à une étape précédente";
                 }
                 else if (newEtapeID == 3 && etapeActuelle != 2)
                 {
-                    erreur = "Une commande ne peut pas être réglée si elle n'est pas livrée";
+                    message = "Une commande ne peut pas être réglée si elle n'est pas livrée";
                 }
                 else
                 {
                     Dao.UpdateCommandeEtape(ID, newEtapeID);
                 }
             }
-            return erreur;
+            int NewEtapeDansBDD = Dao.GetEtapeDeCommande(ID);
+
+            if (NewEtapeDansBDD == newEtapeID)
+            {
+                message = "1";
+            }
+            return message;
         }
 
         public void SupprimerCommandeDvdLivre(string DocID)

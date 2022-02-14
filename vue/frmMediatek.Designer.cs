@@ -324,6 +324,7 @@ namespace Mediatek86.vue
             this.lstbxNotifs = new System.Windows.Forms.ListBox();
             this.btnFermerNotifAbonRevues = new System.Windows.Forms.Button();
             this.label106 = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -386,7 +387,6 @@ namespace Mediatek86.vue
             this.tabOngletsApplication.SelectedIndex = 0;
             this.tabOngletsApplication.Size = new System.Drawing.Size(1324, 862);
             this.tabOngletsApplication.TabIndex = 0;
-           
             // 
             // tabLivres
             // 
@@ -1335,11 +1335,11 @@ namespace Mediatek86.vue
             // lblCommandeDvdNonSupprimable
             // 
             this.lblCommandeDvdNonSupprimable.AutoSize = true;
-            this.lblCommandeDvdNonSupprimable.Location = new System.Drawing.Point(35, 373);
+            this.lblCommandeDvdNonSupprimable.Location = new System.Drawing.Point(30, 373);
             this.lblCommandeDvdNonSupprimable.Name = "lblCommandeDvdNonSupprimable";
-            this.lblCommandeDvdNonSupprimable.Size = new System.Drawing.Size(402, 21);
+            this.lblCommandeDvdNonSupprimable.Size = new System.Drawing.Size(440, 21);
             this.lblCommandeDvdNonSupprimable.TabIndex = 14;
-            this.lblCommandeDvdNonSupprimable.Text = "Commande ne peut plus être supprimé car elle est livrée";
+            this.lblCommandeDvdNonSupprimable.Text = "Cette commande ne peut plus être supprimé car elle est livrée";
             // 
             // btnSupprimeCommandeDvd
             // 
@@ -1866,9 +1866,9 @@ namespace Mediatek86.vue
             this.lblCommandeLivreNonSupprimable.AutoSize = true;
             this.lblCommandeLivreNonSupprimable.Location = new System.Drawing.Point(27, 406);
             this.lblCommandeLivreNonSupprimable.Name = "lblCommandeLivreNonSupprimable";
-            this.lblCommandeLivreNonSupprimable.Size = new System.Drawing.Size(402, 21);
+            this.lblCommandeLivreNonSupprimable.Size = new System.Drawing.Size(440, 21);
             this.lblCommandeLivreNonSupprimable.TabIndex = 26;
-            this.lblCommandeLivreNonSupprimable.Text = "Commande ne peut plus être supprimé car elle est livrée";
+            this.lblCommandeLivreNonSupprimable.Text = "Cette commande ne peut plus être supprimé car elle est livrée";
             // 
             // btnSupprimeCommandeLivre
             // 
@@ -2837,6 +2837,7 @@ namespace Mediatek86.vue
             this.grpReceptionExemplaire.TabIndex = 16;
             this.grpReceptionExemplaire.TabStop = false;
             this.grpReceptionExemplaire.Text = "Nouvelle parution réceptionnée pour cette revue";
+            this.grpReceptionExemplaire.Visible = false;
             // 
             // btnReceptionExemplaireImage
             // 
@@ -3736,9 +3737,9 @@ namespace Mediatek86.vue
             this.pnlNotifAbonRevues.Controls.Add(this.lstbxNotifs);
             this.pnlNotifAbonRevues.Controls.Add(this.btnFermerNotifAbonRevues);
             this.pnlNotifAbonRevues.Controls.Add(this.label106);
-            this.pnlNotifAbonRevues.Location = new System.Drawing.Point(946, 485);
+            this.pnlNotifAbonRevues.Location = new System.Drawing.Point(733, 485);
             this.pnlNotifAbonRevues.Name = "pnlNotifAbonRevues";
-            this.pnlNotifAbonRevues.Size = new System.Drawing.Size(346, 189);
+            this.pnlNotifAbonRevues.Size = new System.Drawing.Size(559, 189);
             this.pnlNotifAbonRevues.TabIndex = 1;
             // 
             // lblNotifsAucun
@@ -3756,7 +3757,7 @@ namespace Mediatek86.vue
             this.lstbxNotifs.ItemHeight = 18;
             this.lstbxNotifs.Location = new System.Drawing.Point(-1, 38);
             this.lstbxNotifs.Name = "lstbxNotifs";
-            this.lstbxNotifs.Size = new System.Drawing.Size(346, 148);
+            this.lstbxNotifs.Size = new System.Drawing.Size(559, 148);
             this.lstbxNotifs.TabIndex = 3;
             this.lstbxNotifs.Visible = false;
             // 
@@ -3764,7 +3765,7 @@ namespace Mediatek86.vue
             // 
             this.btnFermerNotifAbonRevues.BackColor = System.Drawing.Color.Salmon;
             this.btnFermerNotifAbonRevues.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnFermerNotifAbonRevues.Location = new System.Drawing.Point(314, 3);
+            this.btnFermerNotifAbonRevues.Location = new System.Drawing.Point(525, 1);
             this.btnFermerNotifAbonRevues.Name = "btnFermerNotifAbonRevues";
             this.btnFermerNotifAbonRevues.Size = new System.Drawing.Size(29, 27);
             this.btnFermerNotifAbonRevues.TabIndex = 1;
@@ -3778,9 +3779,23 @@ namespace Mediatek86.vue
             this.label106.ForeColor = System.Drawing.Color.Red;
             this.label106.Location = new System.Drawing.Point(16, 9);
             this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(257, 18);
+            this.label106.Size = new System.Drawing.Size(414, 18);
             this.label106.TabIndex = 0;
-            this.label106.Text = "Revues avec abonnements a terminer";
+            this.label106.Text = "Revues dont l\'abonnement se termine dans moins de 30 jours";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLogout.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLogout.Location = new System.Drawing.Point(1123, -5);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(194, 27);
+            this.btnLogout.TabIndex = 17;
+            this.btnLogout.Text = "Se déconnecter";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // FrmMediatek
             // 
@@ -3788,6 +3803,7 @@ namespace Mediatek86.vue
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 862);
             this.Controls.Add(this.pnlNotifAbonRevues);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.tabOngletsApplication);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -4157,6 +4173,7 @@ namespace Mediatek86.vue
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.ListBox lstbxNotifs;
         private System.Windows.Forms.Label lblNotifsAucun;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
 

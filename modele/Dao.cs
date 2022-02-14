@@ -187,7 +187,11 @@ namespace Mediatek86.modele
 
             return lesCommandes;
         }
-
+        /// <summary>
+        /// Retourner les commandes de revue
+        /// </summary>
+        /// <param name="idRevue"></param>
+        /// <returns>List de commande de revue</returns>
         public static List<CommandeRevue> GetAbonnementsDeRevue(string idRevue)
         {
             List<CommandeRevue> lesCommandes = new List<CommandeRevue>();
@@ -244,7 +248,7 @@ namespace Mediatek86.modele
                 {"@id", id},
                 {"@nbExemplaires", nbExemplaires},
                 {"@DocumentID", DocumentID}
-            }; 
+            };
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters2);
             return true;
@@ -268,7 +272,7 @@ namespace Mediatek86.modele
                 {"@dateFinAbonnement", dateFinAbonnement},
                 {"@DocumentID", DocumentID}
             };
-            
+
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters2);
             return true;
@@ -298,7 +302,7 @@ namespace Mediatek86.modele
                 {"@dateTimeNow", DateTime.Now },
                 {"@montant", montant },
                 {"@id", id }
-            }; 
+            };
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
         }
@@ -459,7 +463,7 @@ namespace Mediatek86.modele
             Dictionary<string, object> parameters = new Dictionary<string, object>() {
                 {"@commandeID", CommandeID},
                 {"@EtapeID", EtapeID}
-            }; 
+            };
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
         }
@@ -475,7 +479,7 @@ namespace Mediatek86.modele
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
                 {"@commandeID", CommandeID}
-            }; 
+            };
             BddMySql curs = BddMySql.GetInstance(connectionString);
 
             curs.ReqSelect(req, parameters);
@@ -500,7 +504,7 @@ namespace Mediatek86.modele
 
             Dictionary<string, object> parameters = new Dictionary<string, object>() {
                 {"@id", DocID}
-            }; 
+            };
             BddMySql dbUpdater = BddMySql.GetInstance(connectionString);
             dbUpdater.ReqUpdate(req, parameters);
 

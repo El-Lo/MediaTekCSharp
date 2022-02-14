@@ -50,11 +50,11 @@ namespace Mediatek86.vue
                 {
                    
                     if (Utilisateur.Service == Role.admin || Utilisateur.Service == Role.pres)
-                    {   
+                    {
                         this.Hide();
-                        new Controle();
-                        
-                     
+                        FrmMediatek FrmMain = new FrmMediatek(new Controle());
+                        FrmMain.ShowDialog();
+                        this.Close();
                     }
                    
                     else

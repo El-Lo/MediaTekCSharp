@@ -29,7 +29,9 @@ namespace Mediatek86.vue
         private readonly BindingSource bdgRayons = new BindingSource();
         private readonly BindingSource bdgRevuesListe = new BindingSource();
         private readonly BindingSource bdgExemplairesListe = new BindingSource();
-        private readonly BindingSource bdgDocumentAvecCommandes = new BindingSource();
+        private readonly BindingSource bdgLivreAvecCommandes = new BindingSource();
+        private readonly BindingSource bdgDvdAvecCommandes = new BindingSource();
+        private readonly BindingSource bdgRevueAvecCommandes = new BindingSource();
         private List<Livre> lesLivres = new List<Livre>();
         private List<Dvd> lesDvd = new List<Dvd>();
         private List<Revue> lesRevues = new List<Revue>();
@@ -52,6 +54,7 @@ namespace Mediatek86.vue
                 tabOngletsApplication.TabPages.Remove(this.tabCommandeDvds);
                 tabOngletsApplication.TabPages.Remove(this.tabCommandeLivres);
                 tabOngletsApplication.TabPages.Remove(this.tabCommandeRevues);
+                pnlNotifAbonRevues.Visible = false;
             }
         }
         /// <summary>
@@ -164,14 +167,24 @@ namespace Mediatek86.vue
                 string EtapeID = item.Value;
                 if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
-                    string erreur = controle.UpdateCommandeEtape(lblCommandeDVDDetailID.Text, EtapeIDInt);
-                    if (string.IsNullOrWhiteSpace(erreur))
+                    string message = controle.UpdateCommandeEtape(lblCommandeDVDDetailID.Text, EtapeIDInt);
+                    if (string.IsNullOrWhiteSpace(message))
                     {
-                        ChercheDvdetCommandes();
+                        lblCommandeDvdDetailErreur.Text = "Une erreur est survenue, merci de réesayer.";
+                    }
+                    else if (message == "1")
+                    {
+                        lblCommandeDvdDetailErreur.Text = "Etape changée";
+                       ChercheDvdetCommandes();
+                        if (EtapeIDInt == 2 || EtapeIDInt == 3)
+                        {
+                            btnSupprimeCommandeDvd.Visible = false;
+                            lblCommandeDvdNonSupprimable.Visible = true;
+                        }
                     }
                     else
                     {
-                        lblCommandeDvdDetailErreur.Text = erreur;
+                        lblCommandeDvdDetailErreur.Text = message;
                     }
                 }
             }
@@ -183,6 +196,8 @@ namespace Mediatek86.vue
         /// <param name="e"></param>
         private void dgvCommandesdeDvd_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            lblCommandeDvdNonSupprimable.Visible = false;
+            lblCommandeDvdDetailErreur.Text = "";
             if (e.RowIndex != -1)
             {
                 DataGridView dgv = sender as DataGridView;
@@ -191,12 +206,25 @@ namespace Mediatek86.vue
                 // verifier que le row est selectionné
                 if (dgv.CurrentRow.Selected)
                 {
+                    string id = "", nbExemplaires = "", montant = "", selectedEtape = "", datecommande = "";
                     // chercher des valeurs du row selectionné
-                    string id = Convert.ToString(dgv.CurrentRow.Cells["id"].Value);
-                    string nbExemplaires = Convert.ToString(dgv.CurrentRow.Cells["NbExemplaire"].Value);
-                    string montant = Convert.ToString(dgv.CurrentRow.Cells["montant"].Value);
-                    string selectedEtape = Convert.ToString(dgv.CurrentRow.Cells["etapesuivi"].Value);
-                    string datecommande = Convert.ToString(dgv.CurrentRow.Cells["datecommande"].Value);
+                    if (dgv.CurrentRow.Cells["id"].Value != null)
+                    {
+                        id = Convert.ToString(dgv.CurrentRow.Cells["id"].Value);
+                    }
+                    if (dgv.CurrentRow.Cells["NbExemplaire"] != null)
+                    { 
+                        nbExemplaires = Convert.ToString(dgv.CurrentRow.Cells["NbExemplaire"].Value); 
+                    }
+
+                    if (dgv.CurrentRow.Cells["montant"].Value != null)
+                        montant = Convert.ToString(dgv.CurrentRow.Cells["montant"].Value);
+
+                    if (dgv.CurrentRow.Cells["etapesuivi"].Value != null)
+                        selectedEtape = Convert.ToString(dgv.CurrentRow.Cells["etapesuivi"].Value);
+
+                    if (dgv.CurrentRow.Cells["datecommande"].Value != null)
+                        datecommande = Convert.ToString(dgv.CurrentRow.Cells["datecommande"].Value);
                     // remplir les textboxes
                     pnlCommandeDvdDetail.Visible = true;
                     lblCommandeDVDDetailID.Text = id;
@@ -237,7 +265,7 @@ namespace Mediatek86.vue
                     Int32.TryParse(cmbx.Value, out int etapeID);
 
                     // si la commande est livré cacher le bouton pour supprimer et montrer une message sinon faire l'inverse
-                    if (etapeID > 1)
+                    if (etapeID == 2 || etapeID == 3)
                     {
                         btnSupprimeCommandeDvd.Visible = false;
                         lblCommandeDvdNonSupprimable.Visible = true;
@@ -374,8 +402,8 @@ namespace Mediatek86.vue
             List<CommandeDocument> commandes = controle.GetCommandesdeDeDocument(DvdID);
             // enregistrer pour le tri des colonnes 
             lesDvd.Find(x => x.Id.Equals(DvdID)).Commandes = commandes;
-            bdgDocumentAvecCommandes.DataSource = commandes;
-            dgvCommandesdeDvd.DataSource = bdgDocumentAvecCommandes;
+            bdgDvdAvecCommandes.DataSource = commandes;
+            dgvCommandesdeDvd.DataSource = bdgDvdAvecCommandes;
             dgvCommandesdeDvd.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvCommandesdeDvd.Columns["id"].Visible = false;
         }
@@ -412,8 +440,8 @@ namespace Mediatek86.vue
                         sortedList = lesDvd.Find(x => x.Id.Equals(item.Value)).Commandes.OrderBy(o => o.Id).Reverse().ToList();
                         break;
                 }
-                bdgDocumentAvecCommandes.DataSource = sortedList;
-                dgvCommandesdeDvd.DataSource = bdgDocumentAvecCommandes;
+                bdgDvdAvecCommandes.DataSource = sortedList;
+                dgvCommandesdeDvd.DataSource = bdgDvdAvecCommandes;
                 dgvCommandesdeDvd.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dgvCommandesdeDvd.Columns["id"].Visible = false;
             }
@@ -461,18 +489,29 @@ namespace Mediatek86.vue
             ComboboxItem item = (ComboboxItem)cbxCommandeLivreDetailEtape.SelectedItem;
             if (item != null)
             {
+                
                 string EtapeID = item.Value;
 
                 if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
-                    string erreur = controle.UpdateCommandeEtape(lblCommandeLivreDetailID.Text, EtapeIDInt);
-                    if (string.IsNullOrWhiteSpace(erreur))
+                    string message = controle.UpdateCommandeEtape(lblCommandeLivreDetailID.Text, EtapeIDInt);
+                    if (string.IsNullOrWhiteSpace(message))
                     {
+                        lblCommandeLivreDetailErreur.Text = "Une erreur est survenue, merci de réesayer.";
+                    }
+                    else if (message == "1")
+                    {
+                        lblCommandeLivreDetailErreur.Text = "Etape changée";
                         ChercheLivreetCommandes();
+                        if (EtapeIDInt == 2 || EtapeIDInt == 3)
+                        {
+                            btnSupprimeCommandeLivre.Visible = false;
+                            lblCommandeLivreNonSupprimable.Visible = true;
+                        }
                     }
                     else
                     {
-                        lblCommandeLivreDetailErreur.Text = erreur;
+                        lblCommandeLivreDetailErreur.Text = message;
                     }
                 }
 
@@ -495,7 +534,8 @@ namespace Mediatek86.vue
         /// <param name="e"></param>
         private void dgvCommandesdeLivre_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            lblCommandeLivreNonSupprimable.Visible = false;
+            lblCommandeLivreDetailErreur.Text = "";
             if (e.RowIndex != -1)
             {
                 DataGridView dgv = sender as DataGridView;
@@ -656,8 +696,8 @@ namespace Mediatek86.vue
                         txbCommandeLivresISBN.Text = Convert.ToString(livre.Isbn);
                         livre.Commandes = controle.GetCommandesdeDeDocument(livre.Id);
 
-                        bdgDocumentAvecCommandes.DataSource = livre.Commandes;
-                        dgvCommandesdeLivres.DataSource = bdgDocumentAvecCommandes;
+                        bdgLivreAvecCommandes.DataSource = livre.Commandes;
+                        dgvCommandesdeLivres.DataSource = bdgLivreAvecCommandes;
                         dgvCommandesdeLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                         dgvCommandesdeLivres.Columns["id"].Visible = false;
                     }
@@ -718,8 +758,8 @@ namespace Mediatek86.vue
             List<CommandeDocument> commandes = controle.GetCommandesdeDeDocument(LivreID);
             // enregistrer pour le tri des colonnes 
             lesLivres.Find(x => x.Id.Equals(LivreID)).Commandes = commandes;
-            bdgDocumentAvecCommandes.DataSource = commandes;
-            dgvCommandesdeLivres.DataSource = bdgDocumentAvecCommandes;
+            bdgLivreAvecCommandes.DataSource = commandes;
+            dgvCommandesdeLivres.DataSource = bdgLivreAvecCommandes;
             dgvCommandesdeLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvCommandesdeLivres.Columns["id"].Visible = false;
         }
@@ -755,8 +795,8 @@ namespace Mediatek86.vue
                         break;
 
                 }
-                bdgDocumentAvecCommandes.DataSource = sortedList;
-                dgvCommandesdeLivres.DataSource = bdgDocumentAvecCommandes;
+                bdgLivreAvecCommandes.DataSource = sortedList;
+                dgvCommandesdeLivres.DataSource = bdgLivreAvecCommandes;
                 dgvCommandesdeLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dgvCommandesdeLivres.Columns["id"].Visible = false;
             }
@@ -916,8 +956,8 @@ namespace Mediatek86.vue
                         chkCommandeRevuesEmpruntable.Checked = Revue.Empruntable;
                         Revue.Abonnements = controle.GetAbonnementsDeRevue(Revue.Id);
 
-                        bdgDocumentAvecCommandes.DataSource = Revue.Abonnements;
-                        dgvCommandesdeRevue.DataSource = bdgDocumentAvecCommandes;
+                        bdgDvdAvecCommandes.DataSource = Revue.Abonnements;
+                        dgvCommandesdeRevue.DataSource = bdgDvdAvecCommandes;
                         dgvCommandesdeRevue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                         dgvCommandesdeRevue.Columns["id"].Visible = false;
                     }
@@ -978,8 +1018,8 @@ namespace Mediatek86.vue
             List<CommandeRevue> commandes = controle.GetAbonnementsDeRevue(RevueID);
             // enregistrer pour le tri des colonnes 
             lesRevues.Find(x => x.Id.Equals(RevueID)).Abonnements = commandes;
-            bdgDocumentAvecCommandes.DataSource = commandes;
-            dgvCommandesdeRevue.DataSource = bdgDocumentAvecCommandes;
+            bdgDvdAvecCommandes.DataSource = commandes;
+            dgvCommandesdeRevue.DataSource = bdgDvdAvecCommandes;
             dgvCommandesdeRevue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvCommandesdeRevue.Columns["id"].Visible = false;
         }
@@ -1014,8 +1054,8 @@ namespace Mediatek86.vue
                         break;
 
                 }
-                bdgDocumentAvecCommandes.DataSource = sortedList;
-                dgvCommandesdeRevue.DataSource = bdgDocumentAvecCommandes;
+                bdgDvdAvecCommandes.DataSource = sortedList;
+                dgvCommandesdeRevue.DataSource = bdgDvdAvecCommandes;
                 dgvCommandesdeRevue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dgvCommandesdeRevue.Columns["id"].Visible = false;
             }
@@ -2312,6 +2352,13 @@ namespace Mediatek86.vue
             pnlNotifAbonRevues.Visible = false;
         }
 
-
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Utilisateur.Service = null;
+            this.Hide();
+            FrmLogin Login = new FrmLogin(new LoginControlleur());
+            Login.ShowDialog();
+            this.Close();
+        }
     }
 }
