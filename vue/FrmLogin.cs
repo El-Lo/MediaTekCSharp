@@ -19,7 +19,7 @@ namespace Mediatek86.vue
         private readonly LoginControlleur login;
         internal FrmLogin(LoginControlleur login)
         {
-            EcrireLogs.Enregistrer("123");
+           
             InitializeComponent();
             this.login = login;
         }
@@ -51,10 +51,9 @@ namespace Mediatek86.vue
                    
                     if (Utilisateur.Service == Role.admin || Utilisateur.Service == Role.pres)
                     {
-                        this.Hide();
+                        this.Dispose();
                         FrmMediatek FrmMain = new FrmMediatek(new Controle());
                         FrmMain.ShowDialog();
-                        this.Close();
                     }
                    
                     else

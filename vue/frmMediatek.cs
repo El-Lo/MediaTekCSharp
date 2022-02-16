@@ -2355,10 +2355,10 @@ namespace Mediatek86.vue
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Utilisateur.Service = null;
-            this.Hide();
+            this.Dispose();
             FrmLogin Login = new FrmLogin(new LoginControlleur());
             Login.ShowDialog();
-            this.Close();
+           
         }
     }
 }
