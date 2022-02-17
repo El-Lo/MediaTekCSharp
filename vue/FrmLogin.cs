@@ -16,11 +16,12 @@ namespace Mediatek86.vue
 {
     public partial class FrmLogin : Form
     {
+        private readonly Controle controle;
         private readonly LoginControlleur login;
-        internal FrmLogin(LoginControlleur login)
+        internal FrmLogin(Controle controle, LoginControlleur login)
         {
-           
             InitializeComponent();
+            this.controle = controle;
             this.login = login;
         }
         /// <summary>
@@ -51,9 +52,10 @@ namespace Mediatek86.vue
                    
                     if (Utilisateur.Service == Role.admin || Utilisateur.Service == Role.pres)
                     {
+                        
+                        FrmMediatek frmMediatek = new FrmMediatek(this.controle);
                         this.Dispose();
-                        FrmMediatek FrmMain = new FrmMediatek(new Controle());
-                        FrmMain.ShowDialog();
+                        frmMediatek.ShowDialog();
                     }
                    
                     else

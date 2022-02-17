@@ -485,13 +485,10 @@ namespace Mediatek86.vue
         {
             lblCommandeLivreDetailErreur.Text = "";
             // changer l'etape pour la commande
-
             ComboboxItem item = (ComboboxItem)cbxCommandeLivreDetailEtape.SelectedItem;
             if (item != null)
             {
-                
                 string EtapeID = item.Value;
-
                 if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
                     string message = controle.UpdateCommandeEtape(lblCommandeLivreDetailID.Text, EtapeIDInt);
@@ -514,10 +511,9 @@ namespace Mediatek86.vue
                         lblCommandeLivreDetailErreur.Text = message;
                     }
                 }
-
             }
-
         }
+
         /// <summary>
         /// Fermer panel pnlCommandeLivreDetail
         /// </summary>
@@ -587,19 +583,22 @@ namespace Mediatek86.vue
 
                     // trouver l'étape
                     ComboboxItem cmbx = (ComboboxItem)cbxCommandeLivreDetailEtape.SelectedItem;
-                    Int32.TryParse(cmbx.Value, out int etapeID);
-
-                    // si la commande est livré cacher le bouton pour supprimer et montrer une message sinon faire l'inverse
-                    if (etapeID > 1)
+                    if (cmbx != null)
                     {
-                        btnSupprimeCommandeLivre.Visible = false;
-                        lblCommandeLivreNonSupprimable.Visible = true;
+                        Int32.TryParse(cmbx.Value, out int etapeID);
+                        // si la commande est livré cacher le bouton pour supprimer et montrer une message sinon faire l'inverse
+                        if (etapeID > 1)
+                        {
+                            btnSupprimeCommandeLivre.Visible = false;
+                            lblCommandeLivreNonSupprimable.Visible = true;
+                        }
+                        else
+                        {
+                            btnSupprimeCommandeLivre.Visible = true;
+                            lblCommandeLivreNonSupprimable.Visible = false;
+                        }
                     }
-                    else
-                    {
-                        btnSupprimeCommandeLivre.Visible = true;
-                        lblCommandeLivreNonSupprimable.Visible = false;
-                    }
+                  
                 }
             }
         }
@@ -2355,8 +2354,9 @@ namespace Mediatek86.vue
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Utilisateur.Service = null;
+            
+            FrmLogin Login = new FrmLogin(this.controle, new LoginControlleur());
             this.Dispose();
-            FrmLogin Login = new FrmLogin(new LoginControlleur());
             Login.ShowDialog();
            
         }

@@ -30,6 +30,11 @@ namespace Mediatek86.controleur
             lesGenres = Dao.GetAllGenres();
             lesRayons = Dao.GetAllRayons();
             lesPublics = Dao.GetAllPublics();
+            FrmLogin frmLogin = new FrmLogin(this, new LoginControlleur());
+            frmLogin.ShowDialog();
+        }
+        public void showFrmMediaTek(Role roleType)
+        {
             FrmMediatek frmMediatek = new FrmMediatek(this);
             frmMediatek.ShowDialog();
         }
