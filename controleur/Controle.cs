@@ -12,17 +12,22 @@ namespace Mediatek86.controleur
 {
     internal class Controle
     {
-        private readonly List<Livre> lesLivres;
-        private readonly List<Dvd> lesDvd;
-        private readonly List<Revue> lesRevues;
-        private readonly List<Categorie> lesRayons;
-        private readonly List<Categorie> lesPublics;
-        private readonly List<Categorie> lesGenres;
+        private List<Livre> lesLivres;
+        private List<Dvd> lesDvd;
+        private List<Revue> lesRevues;
+        private List<Categorie> lesRayons;
+        private List<Categorie> lesPublics;
+        private List<Categorie> lesGenres;
 
         /// <summary>
-        /// Ouverture de la fenêtre
+        /// Ouverture de la fenêtre authentification
         /// </summary>
         public Controle()
+        {
+            FrmLogin frmLogin = new FrmLogin(this, new LoginControlleur());
+            frmLogin.ShowDialog();
+        }
+        public void showFrmMediaTek(Role? roleType)
         {
             lesLivres = Dao.GetAllLivres();
             lesDvd = Dao.GetAllDvd();
@@ -30,11 +35,6 @@ namespace Mediatek86.controleur
             lesGenres = Dao.GetAllGenres();
             lesRayons = Dao.GetAllRayons();
             lesPublics = Dao.GetAllPublics();
-            FrmLogin frmLogin = new FrmLogin(this, new LoginControlleur());
-            frmLogin.ShowDialog();
-        }
-        public void showFrmMediaTek(Role roleType)
-        {
             FrmMediatek frmMediatek = new FrmMediatek(this);
             frmMediatek.ShowDialog();
         }
@@ -126,11 +126,11 @@ namespace Mediatek86.controleur
         {
             return Dao.CreerExemplaire(exemplaire);
         }
-
+         
         /// <summary>
         /// Retourne une list de commandes pour un document (DVD ou Livre)
         /// </summary>
-        /// <param name="exemplaire">Le document concerné</param>
+        /// <param name="DocID">Le document concerné</param>
         /// <returns>List de commandes</returns>
         public List<CommandeDocument> GetCommandesdeDeDocument(string DocID)
         {
@@ -149,9 +149,11 @@ namespace Mediatek86.controleur
 
 
         /// <summary>
-        /// Enregistrer une commande pour un document (DVD ou Livre)
+        ///  Enregistrer une commande pour un document (DVD ou Livre)
         /// </summary>
-        /// <param name="exemplaire">Le document concerné</param>
+        /// <param name="DocumentID"></param>
+        /// <param name="montant"></param>
+        /// <param name="nbExemplaires"></param>
         /// <returns>True si la création a pu se faire</returns>
         public bool EnregistrerCommandeDocument(string DocumentID, decimal montant, int nbExemplaires)
         {
@@ -161,12 +163,20 @@ namespace Mediatek86.controleur
         /// <summary>
         /// Enregistrer une abonnement pour une revue
         /// </summary>
-        /// <param name="exemplaire">La revue concernée</param>
+        /// <param name="DocumentID"></param>
+        /// <param name="montant"></param>
+        /// <param name="DateFinAbonnement"></param>
         /// <returns>True si la création a pu se faire</returns>
         public bool EnregistrerRevueAbonnement(string DocumentID, decimal montant, DateTime DateFinAbonnement)
         {
             return Dao.EnregistrerAbonnement(DocumentID, montant, DateFinAbonnement);
         }
+        /// <summary>
+        /// Mis a jour d'une étape
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="newEtapeID"></param>
+        /// <returns>Indicateur de succès</returns>
         public string UpdateCommandeEtape(string ID, int newEtapeID)
         {
             string message = "";
@@ -174,63 +184,78 @@ namespace Mediatek86.controleur
             // 2 Livrée 
             // 3 Reglée
             // 4 Relancée
-            // Une commande livrée (2) ou réglée(3) ne peut pas revenir à une étape précédente : en cours (1) ou relancée (4)
+            // Une commande livrée (2) ou réglée(3) ne peut pas revenir à une étape précédente : 
+            // en cours (1) ou relancée (4)
             // Une commande ne peut pas être réglée (3) si elle n'est pas livrée(2)
+
+            // Récuperer l'étape actuelle de la commande pour vérifier la validité de la demande
             int etapeActuelle = Dao.GetEtapeDeCommande(ID);
             if (etapeActuelle != 0)
             {
                 if ((etapeActuelle == 2 || etapeActuelle == 3) && (newEtapeID == 1 || newEtapeID == 4))
                 {
+                    // Une commande livrée ou réglée ne peut pas revenir à une étape précédente
                     message = "Une commande livrée ou réglée ne peut pas revenir à une étape précédente";
                 }
                 else if (newEtapeID == 2 && etapeActuelle == 3)
                 {
+                    // Une commande réglée ne peut pas revenir à une étape précédente
                     message = "Une commande réglée ne peut pas revenir à une étape précédente";
                 }
                 else if (newEtapeID == 3 && etapeActuelle != 2)
                 {
+                    // Une commande ne peut pas être réglée si elle n'est pas livrée
                     message = "Une commande ne peut pas être réglée si elle n'est pas livrée";
                 }
                 else
                 {
+                    // Mise a jour de la commande
                     Dao.UpdateCommandeEtape(ID, newEtapeID);
                 }
             }
+            // Récuperer la nouvelle étape dans la BDD pour vérifier que la changement à bien été effectué
             int NewEtapeDansBDD = Dao.GetEtapeDeCommande(ID);
-
+            // Vérifier que l'étape venue de la BDD est égale a l'étape souhaité
             if (NewEtapeDansBDD == newEtapeID)
             {
+                // "1" egale succès
                 message = "1";
             }
             return message;
         }
-
+        /// <summary>
+        /// Référence a DAO
+        /// </summary>
+        /// <param name="DocID"></param>
         public void SupprimerCommandeDvdLivre(string DocID)
         {
             Dao.SupprimerCommandeDvdLivre(DocID);
         }
+        /// <summary>
+        /// Lien à DAO pour supprimer un abonnement
+        /// </summary>
+        /// <param name="IDAbonnement"></param>
         public void SupprimerAbonnement(string IDAbonnement)
         {
             Dao.SupprimerAbonnement(IDAbonnement);
         }
+         
         /// <summary>
         /// Verifier si une commande peut être supprimée. 
         /// </summary>
         /// <param name="DateCommande"></param>
         /// <param name="DatefinAbonnement"></param>
-        /// <param name="DateDeParution"></param>
+        /// <param name="RevueID"></param>
         /// <returns>True si abonnement peut être supprimé, sinon false</returns>
         public static bool EstAbonnementSupprimable(DateTime DateCommande, DateTime DatefinAbonnement, string RevueID)
         {
             List<DateTime> DatesDeParution = Dao.GetDateDesExemplairesdeRevue(RevueID);
-
-
             DateTime a = DatesDeParution.FirstOrDefault(x => VerifierDates.ParutionDansAbonnement(DateCommande, DatefinAbonnement, x));
-
             if (a != DateTime.MinValue)
+            { 
                 // une parution exist, donc la commande ne peut pas être supprimée, donc retourner faux
-                return false; 
-            
+                return false;
+            }
             return true;
         }
         

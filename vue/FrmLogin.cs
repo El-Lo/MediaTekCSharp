@@ -31,7 +31,9 @@ namespace Mediatek86.vue
         /// <param name="e"></param>
         private void btnAuthentifier_Click(object sender, EventArgs e)
         {
+            // Réinitialiser le message d'erreur
             lblEchecAuthentification.Visible = false;
+            // Vérifier que l'utilisateur a saisie un mot de passe et un nom d'utilisateur
             if (String.IsNullOrWhiteSpace(txbMotDePasse.Text) || String.IsNullOrWhiteSpace(txbNomUtilisateur.Text))
             {
                 lblEchecAuthentification.Visible = true;
@@ -49,33 +51,30 @@ namespace Mediatek86.vue
                 // Si authentification reussi
                 if (login.VerifierLogin(NomUtilisateur, Convert.ToBase64String(HashValue)))
                 {
-                   
                     if (Utilisateur.Service == Role.admin || Utilisateur.Service == Role.pres)
-                    {
-                        
-                        FrmMediatek frmMediatek = new FrmMediatek(this.controle);
+                    { 
+                        // Fermer FrmLogin
                         this.Dispose();
-                        frmMediatek.ShowDialog();
+                        // Montrer la fenêtre principale
+                        controle.showFrmMediaTek(Utilisateur.Service);
                     }
-                   
                     else
                     {
-                        string message = "Vos droits ne sont pas suffisants pour accéder à cette application, donc l'application se fermera. ";
+                        // La personne n'a pas le droit d'utiliser l'application, donc fermer l'application après un message d'information
+                        string message = "Vos droits ne sont pas suffisants pour accéder à cette application, donc l'application se fermera.";
                         string title = "Erreur d'authentificatoin";
                         MessageBoxButtons buttons = MessageBoxButtons.OK;
-                        DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                        MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                        // Fermer l'application
                         System.Windows.Forms.Application.Exit();
                     }
-
                 }
                 else
                 {
+                    // Montrer le message échec d'authentification
                     lblEchecAuthentification.Visible = true;
                 }
-
-
             }
         }
-
     }
 }

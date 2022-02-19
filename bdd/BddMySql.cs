@@ -61,7 +61,6 @@ namespace Mediatek86.bdd
         public void ReqSelect(string stringQuery, Dictionary<string, object> parameters)
         {
             MySqlCommand command;
-            
             try
             {
                 command = new MySqlCommand(stringQuery, connection);

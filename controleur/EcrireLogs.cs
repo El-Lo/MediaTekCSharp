@@ -10,6 +10,9 @@ using System.Reflection;
 
 namespace Mediatek86.controleur
 {
+    /// <summary>
+    /// Enregistrer les logs dans un fichier txt
+    /// </summary>
     public static class EcrireLogs
     {
        /// <summary>
@@ -21,13 +24,14 @@ namespace Mediatek86.controleur
             string m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             try
             {
-                using (StreamWriter w = File.AppendText(m_exePath + "\\" + "log.txt"))
+                using (StreamWriter w = File.AppendText($"{m_exePath}\\log.txt"))
                 {
                     Log(logMessage, w);
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
         /// <summary>
@@ -47,6 +51,7 @@ namespace Mediatek86.controleur
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
     }

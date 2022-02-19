@@ -19,7 +19,7 @@ namespace Mediatek86.vue
         #region Variables globales
 
         private readonly Controle controle;
-        const string ETATNEUF = "00001";
+        private string ETATNEUF = "00001";
 
 
         private readonly BindingSource bdgLivresListe = new BindingSource();
@@ -62,31 +62,40 @@ namespace Mediatek86.vue
         /// </summary>
         private void VerifierAbonnements()
         {
+            //Récuperer les abonnements
             List<string> dit = controle.RecupererRevuesAbonnementTerminant();
             if (dit != null)
             {
+                // Montrer le panel
                 pnlNotifAbonRevues.Visible = true;
+                // Si il y a des abonnements
                 if (dit.Count > 0)
                 {
+                    // Cacher le message
                     lblNotifsAucun.Visible = false;
+                    // Montrer la listbox
                     lstbxNotifs.Visible = true;
-
+                    // Ajouter les abonnements à la listbox
                     foreach (string str in dit)
                     {
                         lstbxNotifs.Items.Add(str);
                     }
+                    // Ne permet pas la selection (Plus tard nous pouvons ajouter plus de fonctionnalité mais pour l'instant ça suffira)
                     lstbxNotifs.SelectionMode = SelectionMode.None;
-
                 }
                 else
                 {
+                    // Montrer un message pour dire qu'il n'y a aucun abonnement qui terminera sous 30 jours
                     lblNotifsAucun.Visible = true;
+                    // Cacher la listbox
                     lstbxNotifs.Visible = false;
                 }
             }
             else
             {
+                // Montrer un message pour dire qu'il n'y a aucun abonnement qui terminera sous 30 jours
                 lblNotifsAucun.Visible = true;
+                // Cacher la listbox
                 lstbxNotifs.Visible = false;
             }
         }
@@ -132,9 +141,9 @@ namespace Mediatek86.vue
 
             cbxFindDvdByNum.SelectedIndex = -1;
             cbxFindDvdByNum.Items.Clear();
-            foreach (Dvd dvd in lesDvd)
+            foreach (string id in lesDvd.Select(x => x.Id))
             {
-                ComboboxItem item = new ComboboxItem(dvd.Id, dvd.Id);
+                ComboboxItem item = new ComboboxItem(id, id);
                 cbxFindDvdByNum.Items.Add(item);
             }
 
@@ -304,7 +313,6 @@ namespace Mediatek86.vue
                 cbxCommandeDvdDetailEtape.Items.Clear();
                 // réinitialiser la liste de commandes
                 ChercheDvdetCommandes();
-
             }
 
         }
@@ -360,16 +368,18 @@ namespace Mediatek86.vue
         /// </summary>
         private void ChercheDvdetCommandes()
         {
+            // Récuperer le choix de l'utilisateur(trice)
             ComboboxItem item = (ComboboxItem)cbxFindDvdByNum.SelectedItem;
             if (item != null)
             {
                 string Num = item.Value;
                 if (!String.IsNullOrWhiteSpace(Num))
                 {
+                    // Trouver le Dvd
                     Dvd Dvd = lesDvd.Find(x => x.Id.Equals(Num));
                     if (Dvd != null)
                     {
-
+                        // Afficher les données du Dvd
                         txbCommandeDvdTitre.Text = Dvd.Titre;
                         txbCommandeDvdRealisat.Text = Dvd.Realisateur;
                         txbCommandeDvdCheminImage.Text = Dvd.Image;
@@ -379,16 +389,14 @@ namespace Mediatek86.vue
                         txbCommandeDvdRayon.Text = Dvd.Rayon;
                         txbCommandeDvdPublic.Text = Dvd.Public;
                         txbCommandeDvdDuree.Text = Convert.ToString(Dvd.Duree);
+                        //Afficher les commandes de Dvd
                         UpdateCommandesListPourDvd(Dvd.Id);
-
-
-
 
                     }
                     else
                     {
+                        // Afficher l'erreur
                         MessageBox.Show("numéro introuvable");
-
                     }
                 }
             }
@@ -468,38 +476,43 @@ namespace Mediatek86.vue
             }
 
             cbxFindLivreByNum.SelectedIndex = -1;
-
-            foreach (Livre unlivre in lesLivres)
+            foreach (string id in lesLivres.Select(x => x.Id))
             {
-                ComboboxItem item = new ComboboxItem(unlivre.Id, unlivre.Id);
-
+                ComboboxItem item = new ComboboxItem(id, id);
                 cbxFindLivreByNum.Items.Add(item);
             }
         }
         /// <summary>
-        /// Enregistrer une nouvelle etape d'une commande de livre
+        /// Enregistrer une nouvelle étape d'une commande de livre
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnUpdateCommandeLivreEtape_Click(object sender, EventArgs e)
         {
+            //Réinitialiser le message d'erreur
             lblCommandeLivreDetailErreur.Text = "";
-            // changer l'etape pour la commande
+            // Récuperer la nouvelle étape
             ComboboxItem item = (ComboboxItem)cbxCommandeLivreDetailEtape.SelectedItem;
             if (item != null)
             {
                 string EtapeID = item.Value;
                 if (Int32.TryParse(EtapeID, out int EtapeIDInt))
                 {
+                    // mis à jour de l'étape
                     string message = controle.UpdateCommandeEtape(lblCommandeLivreDetailID.Text, EtapeIDInt);
+                    // Pas de message = erreur
                     if (string.IsNullOrWhiteSpace(message))
                     {
                         lblCommandeLivreDetailErreur.Text = "Une erreur est survenue, merci de réesayer.";
                     }
+                    // "1" Signifie succès
                     else if (message == "1")
                     {
                         lblCommandeLivreDetailErreur.Text = "Etape changée";
+                        // Réinitialiser la liste de commandes dans FrmMediaTek
                         ChercheLivreetCommandes();
+                        // Si la commande est au moins livrée, ellene peut plus être supprimée, 
+                        // donc cacher bouton pour supprimer et montrer le message d'explication
                         if (EtapeIDInt == 2 || EtapeIDInt == 3)
                         {
                             btnSupprimeCommandeLivre.Visible = false;
@@ -508,6 +521,7 @@ namespace Mediatek86.vue
                     }
                     else
                     {
+                        // Afficher erreur
                         lblCommandeLivreDetailErreur.Text = message;
                     }
                 }
@@ -612,24 +626,23 @@ namespace Mediatek86.vue
         {
             string message = "Voulez-vous vraiment supprimer cette commande ?";
             string title = "Suppression de commande";
+            // Vérifier l'intention de l'utilisateur(trice)
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-            if (result.ToString().ToLower() == "yes")
+            // Vérification succès & Récuperer ID Commande 
+            if (result.ToString().ToLower() == "yes" && !string.IsNullOrWhiteSpace(lblCommandeLivreDetailID.Text))
             {
-                if (!string.IsNullOrWhiteSpace(lblCommandeLivreDetailID.Text))
-                {
+                    // Supprimer la commande
                     controle.SupprimerCommandeDvdLivre(lblCommandeLivreDetailID.Text);
-                }
-                // réinitialiser pnlCommandeLivreDetail
-                pnlCommandeLivreDetail.Visible = false;
-                lblCommandeLivreDetailID.Text = "";
-                lblCommandeLivreDetailDateDeCommande.Text = "";
-                txbCommandeLivreDetailMontant.Text = "";
-                txbCommandeLivreDetailNExemplaires.Text = "";
-                cbxCommandeLivreDetailEtape.Items.Clear();
-                // réinitialiser la liste de commandes
-                ChercheLivreetCommandes();
-
+                    // Réinitialiser pnlCommandeLivreDetail
+                    pnlCommandeLivreDetail.Visible = false;
+                    lblCommandeLivreDetailID.Text = "";
+                    lblCommandeLivreDetailDateDeCommande.Text = "";
+                    txbCommandeLivreDetailMontant.Text = "";
+                    txbCommandeLivreDetailNExemplaires.Text = "";
+                    cbxCommandeLivreDetailEtape.Items.Clear();
+                    // réinitialiser la liste de commandes
+                    ChercheLivreetCommandes();
             }
         }
         /// <summary>
@@ -661,16 +674,16 @@ namespace Mediatek86.vue
             //si l'enregistrement s'est bien passée, réinitialise les champs
             else
             {
+                // Réinitialiser la groupbox
                 txbNewCommandeLivreMontant.Text = "";
                 txbNewCommandeLivreNbExemplaires.Text = "";
+                // Réinitialiser la liste de commandes
                 ChercheLivreetCommandes();
             }
-
-
         }
 
         /// <summary>
-        /// Recuperer un livre avec ses commandes
+        /// Récuperer un livre avec ses commandes
         /// </summary>
         private void ChercheLivreetCommandes()
         {
@@ -680,10 +693,11 @@ namespace Mediatek86.vue
                 string Num = item.Value;
                 if (!String.IsNullOrWhiteSpace(Num))
                 {
+                    // Trouver le livre
                     Livre livre = lesLivres.Find(x => x.Id.Equals(Num));
                     if (livre != null)
                     {
-
+                        // Afficher le livre
                         txbCommandeLivreTitre.Text = livre.Titre;
                         txbCommandeLivreAuteur.Text = livre.Auteur;
                         txbCommandeLivreCheminImage.Text = livre.Image;
@@ -694,7 +708,7 @@ namespace Mediatek86.vue
                         txbCommandeLivrePublic.Text = livre.Public;
                         txbCommandeLivresISBN.Text = Convert.ToString(livre.Isbn);
                         livre.Commandes = controle.GetCommandesdeDeDocument(livre.Id);
-
+                        // Afficher les commandes de livre
                         bdgLivreAvecCommandes.DataSource = livre.Commandes;
                         dgvCommandesdeLivres.DataSource = bdgLivreAvecCommandes;
                         dgvCommandesdeLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -702,6 +716,7 @@ namespace Mediatek86.vue
                     }
                     else
                     {
+                        // Afficher message, livre introuvable
                         MessageBox.Show("numéro introuvable");
 
                     }
@@ -792,7 +807,6 @@ namespace Mediatek86.vue
                     default:
                         sortedList = lesLivres.Find(x => x.Id.Equals(item.Value)).Commandes.OrderBy(o => o.Id).Reverse().ToList();
                         break;
-
                 }
                 bdgLivreAvecCommandes.DataSource = sortedList;
                 dgvCommandesdeLivres.DataSource = bdgLivreAvecCommandes;
@@ -820,12 +834,11 @@ namespace Mediatek86.vue
             {
                 lesRevues = controle.GetAllRevues();
             }
-
             cbxFindRevueByNum.SelectedIndex = -1;
             cbxFindRevueByNum.Items.Clear();
-            foreach (Revue unRevue in lesRevues)
+            foreach (string id in lesRevues.Select(x => x.Id))
             {
-                ComboboxItem item = new ComboboxItem(unRevue.Id, unRevue.Id);
+                ComboboxItem item = new ComboboxItem(id, id);
                 cbxFindRevueByNum.Items.Add(item);
             }
         }
@@ -886,43 +899,46 @@ namespace Mediatek86.vue
         }
 
         /// <summary>
-        /// Enregistrer une command de Revue
+        /// Enregistrer un abonnement(commande) de revue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnEnregistrerAbonnementRevue_Click(object sender, EventArgs e)
         {
+            // Réinitialiser l'erreur
             lblErrorAjouteDocumentRevue.Text = "";
+            //Récuperer ID Revue
             string idRevue = lblCommandeRevueNumero.Text;
-            // verifier saisie montant
+            // Verifier saisie montant
             if (!Decimal.TryParse(txbNewCommandeRevueMontant.Text, out decimal montant))
             {
                 lblErrorAjouteDocumentRevue.Text = "Montant incorrect, veuillez réessayer, merci.";
                 return;
             }
-            // verifier saisie nbExemplaires
+            // Verifier saisie de la date
             if (!DateTime.TryParse(txbNewAbonnementDateFin.Text, out DateTime dateFinAbonnement))
             {
-
                 lblErrorAjouteDocumentRevue.Text = "Date de fin d'abonnement incorrect, veuillez réessayer, merci.";
                 return;
             }
+            // Vérifier la date, la date doit être une date future
             else if (dateFinAbonnement < DateTime.Now)
             {
                 lblErrorAjouteDocumentRevue.Text = "Date de fin d'abonnement incorrect, merci de saisir une date future.";
                 return;
             }
-            // verifier enregistrement
+            // Verifier enregistrement
             if (!controle.EnregistrerRevueAbonnement(idRevue, montant, dateFinAbonnement))
             {
                 lblErrorAjouteDocumentRevue.Text = "Une erreur est survenue, merci de réesayer. (Err : 15e)";
-
             }
-            //si l'enregistrement s'est bien passée, réinitialise les champs
+            // Si l'enregistrement s'est bien passée, réinitialise les champs
             else
             {
+                //Réinitialiser le groupbox
                 txbNewCommandeRevueMontant.Text = "";
                 txbNewAbonnementDateFin.Text = "";
+                // Réintialiser la liste d'abonnements
                 ChercheRevueetCommandes();
             }
 
@@ -940,21 +956,22 @@ namespace Mediatek86.vue
                 string Num = item.Value;
                 if (!String.IsNullOrEmpty(Num))
                 {
+                    // Trouver Revue
                     Revue Revue = lesRevues.Find(x => x.Id.Equals(Num));
                     if (Revue != null)
                     {
-
+                        // Afficher le Revue
                         txbCommandeRevueTitre.Text = Revue.Titre;
                         txbCommandeRevuePeriodicite.Text = Revue.Periodicite;
                         txbReceptionRevueDelaiMiseADispo.Text = Revue.DelaiMiseADispo.ToString();
-
                         txbCommandeRevueGenre.Text = Revue.Genre;
                         lblCommandeRevueNumero.Text = Revue.Id;
                         txbCommandeRevueRayon.Text = Revue.Rayon;
                         txbCommandeRevuePublic.Text = Revue.Public;
                         chkCommandeRevuesEmpruntable.Checked = Revue.Empruntable;
+                        //Récuperer les abonnemenets de ce revue
                         Revue.Abonnements = controle.GetAbonnementsDeRevue(Revue.Id);
-
+                        // Afficher les abonnements pour ce revue
                         bdgDvdAvecCommandes.DataSource = Revue.Abonnements;
                         dgvCommandesdeRevue.DataSource = bdgDvdAvecCommandes;
                         dgvCommandesdeRevue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -962,6 +979,7 @@ namespace Mediatek86.vue
                     }
                     else
                     {
+                        // Afficher le message d'erreur
                         MessageBox.Show("numéro introuvable");
 
                     }
@@ -1073,12 +1091,10 @@ namespace Mediatek86.vue
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
             if (result.ToString().ToLower() == "yes" && !string.IsNullOrWhiteSpace(lblCommandeRevueIdAbonnement.Text))
             {
-
                 // récuperer revue
                 Revue revue = lesRevues.Find(x => x.Id.Equals(lblCommandeRevueNumero.Text));
                 // récuperer commande
                 CommandeRevue cv = revue.Abonnements.Find(x => x.Id.Equals(lblCommandeRevueIdAbonnement.Text));
-
                 if (Controle.EstAbonnementSupprimable(cv.DateCommande, cv.DateFinAbonnement, lblCommandeRevueIdAbonnement.Text))
                 {
                     controle.SupprimerAbonnement(lblCommandeRevueIdAbonnement.Text);
@@ -1087,17 +1103,10 @@ namespace Mediatek86.vue
                     lblCommandeRevueIdAbonnement.Text = "";
                     lblCommandeRevueDetailDateDeCommande.Text = "";
                     lblCommandeRevueDetailMontant.Text = "";
-
-
                     // réinitialiser la liste de commandes
                     ChercheRevueetCommandes();
                 }
-
-
-
-
             }
-
         }
         #endregion
 
