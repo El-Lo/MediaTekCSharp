@@ -32,6 +32,7 @@ namespace Mediatek86.bdd
             try
             {
                 connection = new MySqlConnection(stringConnect);
+                
                 connection.Open();
             }
             catch (MySqlException e)
@@ -175,10 +176,10 @@ namespace Mediatek86.bdd
         /// </summary>
         private void ErreurGraveBddNonAccessible(Exception e)
         {
-            MessageBox.Show("Base de données non accessibles", "Erreur grave");
+            MessageBox.Show("Base de données non accessibles, merci de réessayer", "Erreur grave");
             Console.WriteLine("Base de données non accessibles" + e.Message);
             EcrireLogs.Enregistrer(e.Message);
-            Environment.Exit(1);
+            //Environment.Exit(1);
         }
     }
 }

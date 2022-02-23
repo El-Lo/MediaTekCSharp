@@ -10,11 +10,11 @@ namespace Mediatek86.modele
     public static class Dao
     {
 
-        private static readonly string server = "n1nlmysql63plsk.secureserver.net";
-        private static readonly string userid = "readyplayerone";
-        private static readonly string password = "gR2Fu8f8aFbR6gdFg8716sdfgPqMzNxEK";
-        private static readonly string database = "ph12504474619_mediatek86";
-        private static readonly string connectionString = "server=" + server + ";user id=" + userid + ";password=" + password + ";database=" + database + ";SslMode=none";
+        private static readonly string server = "mediatek86csharp.cv1z66pysopi.us-east-1.rds.amazonaws.com";
+        private static readonly string userid = "ReadyPlayerOne";
+        private static readonly string password = "DSgfdflgkjfdGdfsGSEgGds43905830451690";
+        private static readonly string database = "mediatek86csharp";
+        private static readonly string connectionString = "server=" + server + ";port=3306; user id=" + userid + ";password=" + password + ";database=" + database + ";SslMode=none";
 
         /// <summary>
         /// Retourne tous les genres à partir de la BDD
